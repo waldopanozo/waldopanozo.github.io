@@ -510,6 +510,21 @@ ul {
   font-weight: bold;
 }
 
+.tech-stack-badge {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-light);
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+  font-size: 0.9rem;
+  color: var(--text-gray);
+}
+
+.tech-stack-badge strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
 /* ============================================
    7. SKILLS SECTION
    ============================================ */
@@ -737,7 +752,79 @@ ul {
 }
 
 /* ============================================
-   9. CONTACT SECTION
+   9. EDUCATION SECTION
+   ============================================ */
+.education-section {
+  background-color: var(--bg-light);
+}
+
+.education-timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.education-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
+  border-radius: 2px;
+}
+
+.education-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 3rem;
+}
+
+.education-item::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 0.5rem;
+  width: 16px;
+  height: 16px;
+  background: var(--secondary-color);
+  border: 4px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--secondary-color);
+}
+
+.education-year {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.education-content h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.education-content h4 {
+  font-size: 1.05rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.education-content p {
+  color: var(--text-gray);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ============================================
+   10. CONTACT SECTION
    ============================================ */
 .contact-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -829,7 +916,7 @@ ul {
 }
 
 /* ============================================
-   10. FOOTER
+   11. FOOTER
    ============================================ */
 .footer {
   background: var(--text-dark);
@@ -858,7 +945,7 @@ ul {
 }
 
 /* ============================================
-   11. RESPONSIVE DESIGN
+   12. RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 768px) {
   .hero-title {
@@ -923,7 +1010,7 @@ ul {
 }
 
 /* ============================================
-   12. UTILITIES
+   13. UTILITIES
    ============================================ */
 .text-center {
   text-align: center;
