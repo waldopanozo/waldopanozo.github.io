@@ -158,6 +158,21 @@ ul {
   text-align: center;
 }
 
+.hero-photo {
+  margin-bottom: 2rem;
+}
+
+.hero-photo img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
+}
+
 .hero-badge {
   display: inline-block;
   padding: 0.5rem 1.5rem;
@@ -339,6 +354,21 @@ ul {
    ============================================ */
 .about-section {
   background-color: var(--bg-light);
+}
+
+.about-photo-wrapper {
+  margin-bottom: 2rem;
+}
+
+.about-photo {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 5px solid white;
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
 }
 
 .about-content h3 {
@@ -954,6 +984,16 @@ ul {
 
   .hero-subtitle {
     font-size: 1.1rem;
+  }
+
+  .hero-photo img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .about-photo {
+    width: 200px;
+    height: 200px;
   }
 
   .hero-stats {
