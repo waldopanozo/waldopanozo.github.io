@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Waldo Panozo Resume - curriculum Vitate - CV">
+    <meta name="description" content="Waldo Panozo - Senior Software Engineer & Architect | 15+ años de experiencia en desarrollo de software, arquitectura de sistemas y liderazgo técnico">
+    <meta name="keywords" content="Software Engineer, Software Architect, Full Stack Developer, React, PHP, Java, IoT, Project Manager">
+    <meta name="author" content="Waldo Panozo">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-
-    <title>Waldo Panozo - Software Engineer</title>
+    <title>Waldo Panozo - Senior Software Engineer & Architect</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <script src="assets/js/modernizr.js"></script>
+    <link href="assets/css/style-v2.css" rel="stylesheet">
   </head>
   <body>
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="main-nav">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -23,369 +31,550 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">WALDO M. PANOZO</a>
+          <a class="navbar-brand" href="/">WALDO PANOZO</a>
         </div>
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">HOME</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#portfoliowrap">PORTFOLIO</a></li>
-            <li><a href="#interests">INTERESTS</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-            <li><a target="_blank" href="https://ezdevelopment.com">BLOG <i class="fa fa-link"></i></a></li>
+            <li class="active"><a href="#home">INICIO</a></li>
+            <li><a href="#about">SOBRE MÍ</a></li>
+            <li><a href="#experience">EXPERIENCIA</a></li>
+            <li><a href="#skills">TECNOLOGÍAS</a></li>
+            <li><a href="#portfolio">PORTFOLIO</a></li>
+            <li><a href="#contact">CONTACTO</a></li>
           </ul>
         </div>
       </div>
-    </div>
-	<div id="headerwrap">
-	    <div  class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2">
-					<h3>Hello, nice to meet you!</h3>
-					<h1>I really put all my best to every project!</h1>
-					<h5>Some of my project are private <b>(companies restriction)</b>, but I can show you part of the process.</h5>
-					<h4>This is some of my prefer tech stack (The order is random)</h4>
-				</div>
-				<div class="col-lg-8 col-lg-offset-2 himg">
-					<img src="assets/img/techstack.png" class="img-responsive">
-				</div>
-			</div><!-- /row -->
-	    </div> <!-- /container -->
-	</div><!-- /headerwrap -->
+    </nav>
 
-	
-	 <div id="about">
-	 	<div class="container">
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1">
+            <div class="hero-content">
+              <div class="hero-badge">Senior Software Engineer & Architect</div>
+              <h1 class="hero-title">Transformando ideas en <span class="highlight">soluciones tecnológicas</span> de clase mundial</h1>
+              <p class="hero-subtitle">15+ años liderando equipos, diseñando arquitecturas escalables y desarrollando software de alto impacto para empresas e instituciones educativas</p>
+              <div class="hero-cta">
+                <a href="#portfolio" class="btn btn-primary btn-lg">Ver Portfolio</a>
+                <a href="#contact" class="btn btn-outline btn-lg">Contactar</a>
+              </div>
+              <div class="hero-stats">
+                <div class="stat-item">
+                  <div class="stat-number">15+</div>
+                  <div class="stat-label">Años de Experiencia</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">50+</div>
+                  <div class="stat-label">Proyectos Completados</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">6</div>
+                  <div class="stat-label">Años en Academia</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">100%</div>
+                  <div class="stat-label">Compromiso</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <a href="#about"><i class="fa fa-chevron-down"></i></a>
+      </div>
+    </section>
 
- 			<div class="row centered">
-				<h1>Ho I am?</h1>
-				<div class="hoami">
-					My name is <b> Waldo Panozo </b>, I'm Telecommications Engineer, working in the Tech field for accross 15 years, in roles like Software Developer, Software Engineer, Software Architect, Project Manager,Software Manager, etc.
-					The last 6 years I'm working for one of the biggest universities of my country, teaching and leading software & IoT projects. 
-				</div>
-				<p><br/>If you may know me a little more about me, please follow this <a target="_blank" href="https://www.linkedin.com/in/waldopanozo/" class="btn btn-theme"><i class="fa fa-linkedin"></i></a></p>
-				
-			</div>
- 			<div class="row centered">
-				<h1>Strengths</h1>
- 				<div class="col-md-4">
- 					<i class="fa fa-hand-o-up"></i>
- 					<h4>Persistent</h4>
- 					<p>
-						I do not stop with anything until I finish my tasks, or a project. I'm really like my job.
-					</p>
- 					<p><br/><a href="#" class="btn btn-theme">More Info</a></p>
- 				</div>
- 				<div class="col-md-4">
- 					<i class="fa fa-spinner"></i>
- 					<h4>Hyperactive</h4>
- 					<p>
-						This is an advantage since I am very curious and that makes me improve my skills quickly.
-					</p>
- 					<p><br/><a href="#" class="btn btn-theme">More Info</a></p>
- 				</div>
- 				<div class="col-md-4">
- 					<i class="fa fa-battery-full"></i>
- 					<h4>Tireless</h4>
- 					<p>
-						Apart from being persistent, I am very passionate about technology and it is a great motivation to never get tired of learning something.amesone
-					</p>
- 					<p><br/><a href="#" class="btn btn-theme">More Info</a></p>
- 				</div>		 				
-	 		</div>
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Sobre Mí</h2>
+            <p class="section-subtitle">Ingeniero en Telecomunicaciones especializado en desarrollo de software de nivel empresarial</p>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-6">
+            <div class="about-content">
+              <h3>Experiencia Profesional</h3>
+              <p>Soy <strong>Waldo Panozo</strong>, Ingeniero en Telecomunicaciones con más de <strong>15 años de experiencia</strong> en el campo tecnológico, desempeñándome en roles estratégicos como:</p>
+              <ul class="role-list">
+                <li><i class="fa fa-check-circle"></i> <strong>Software Architect</strong> - Diseño de arquitecturas escalables y robustas</li>
+                <li><i class="fa fa-check-circle"></i> <strong>Senior Software Engineer</strong> - Desarrollo de soluciones complejas</li>
+                <li><i class="fa fa-check-circle"></i> <strong>Technical Lead</strong> - Liderazgo de equipos de desarrollo</li>
+                <li><i class="fa fa-check-circle"></i> <strong>Project Manager</strong> - Gestión de proyectos tecnológicos</li>
+                <li><i class="fa fa-check-circle"></i> <strong>Software Manager</strong> - Dirección de equipos y estrategias técnicas</li>
+              </ul>
+              <p class="mt-30">Durante los últimos <strong>6 años</strong>, trabajo en una de las universidades más importantes de mi país, donde combino la <strong>enseñanza</strong> con el <strong>liderazgo de proyectos</strong> de software e IoT, formando a la próxima generación de ingenieros mientras desarrollo soluciones innovadoras.</p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="about-highlights">
+              <h3>Fortalezas Clave</h3>
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fa fa-rocket"></i>
+                </div>
+                <div class="highlight-content">
+                  <h4>Arquitectura de Sistemas</h4>
+                  <p>Diseño de arquitecturas escalables, mantenibles y de alto rendimiento para aplicaciones empresariales complejas.</p>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fa fa-users"></i>
+                </div>
+                <div class="highlight-content">
+                  <h4>Liderazgo Técnico</h4>
+                  <p>Experiencia probada liderando equipos multidisciplinarios, estableciendo mejores prácticas y guiando decisiones técnicas estratégicas.</p>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fa fa-lightbulb-o"></i>
+                </div>
+                <div class="highlight-content">
+                  <h4>Innovación & IoT</h4>
+                  <p>Especialización en proyectos IoT, integración hardware-software y desarrollo de soluciones inteligentes con Arduino, ESP32, Raspberry Pi.</p>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fa fa-graduation-cap"></i>
+                </div>
+                <div class="highlight-content">
+                  <h4>Educación & Mentoring</h4>
+                  <p>Comprometido con la formación de nuevos talentos y la transferencia de conocimiento en el ámbito académico y profesional.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-12 text-center">
+            <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank" class="btn btn-primary">
+              <i class="fa fa-linkedin"></i> Ver Perfil Completo en LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-			 
-	 	</div>
-	 </div>
-	 
-	
-	 <div id="portfoliowrap">
-        <h3> PORTFOLIO / LATEST WORKS</h3>
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Experiencia Profesional</h2>
+            <p class="section-subtitle">Trayectoria de crecimiento continuo en roles de liderazgo técnico</p>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-10 col-lg-offset-1">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-year">2018 - Presente</div>
+                <div class="timeline-content">
+                  <h3>Profesor & Líder de Proyectos Software & IoT</h3>
+                  <h4>Universidad (Una de las más importantes del país)</h4>
+                  <p>Liderazgo de proyectos tecnológicos de alto impacto, desarrollo de soluciones IoT innovadoras y formación de estudiantes en tecnologías modernas. Gestión de equipos multidisciplinarios y colaboración en investigación aplicada.</p>
+                  <ul>
+                    <li>Diseño y desarrollo de arquitecturas de software escalables</li>
+                    <li>Liderazgo de proyectos IoT con integración hardware-software</li>
+                    <li>Mentoring y formación técnica de estudiantes</li>
+                    <li>Colaboración en proyectos de investigación aplicada</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2012 - 2018</div>
+                <div class="timeline-content">
+                  <h3>Software Architect & Technical Lead</h3>
+                  <h4>Empresas Tecnológicas</h4>
+                  <p>Diseño de arquitecturas de software empresariales, liderazgo técnico de equipos de desarrollo y toma de decisiones estratégicas en stack tecnológico. Desarrollo de soluciones complejas para múltiples industrias.</p>
+                  <ul>
+                    <li>Arquitectura de sistemas distribuidos y microservicios</li>
+                    <li>Liderazgo de equipos de desarrollo (5-15 miembros)</li>
+                    <li>Definición de estándares y mejores prácticas</li>
+                    <li>Optimización de rendimiento y escalabilidad</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2008 - 2012</div>
+                <div class="timeline-content">
+                  <h3>Senior Software Engineer</h3>
+                  <h4>Empresas Tecnológicas</h4>
+                  <p>Desarrollo de aplicaciones web y móviles complejas, implementación de APIs RESTful, optimización de bases de datos y colaboración en diseño de sistemas.</p>
+                  <ul>
+                    <li>Desarrollo full-stack de aplicaciones empresariales</li>
+                    <li>Implementación de APIs RESTful y servicios web</li>
+                    <li>Optimización de consultas y rendimiento de BD</li>
+                    <li>Code reviews y mentoring de desarrolladores junior</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="portfolio-centered">
-            <div class="recentitems portfolio">
-                            
-                <div class="portfolio-item code">
-                    <div class="he-wrap tpl6">
-					<img src="assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg" alt="">
-						<div class="he-view">
-							<div class="bg a0" data-animate="fadeIn">
-                                <h3 class="a1" data-animate="fadeInDown">RestFul service in github</h3>
-                                <a data-rel="prettyPhoto" href="assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
-                                <a target="_blank" href="https://github.com/waldopanozo/php-slim-rest-sqlite" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
-                        	</div><!-- he bg -->
-						</div><!-- he view -->		
-					</div><!-- he wrap -->
-				</div><!-- end col-12 -->
-        
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Stack Tecnológico</h2>
+            <p class="section-subtitle">Dominio profundo en tecnologías modernas y arquitecturas escalables</p>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-3 col-md-6">
+            <div class="skill-category">
+              <div class="skill-icon">
+                <i class="fa fa-code"></i>
+              </div>
+              <h3>Backend</h3>
+              <ul class="skill-list">
+                <li>PHP (Slim, Laravel, Yii2)</li>
+                <li>Java (Spring, Spring Boot)</li>
+                <li>Node.js & Express</li>
+                <li>Python (Django, Flask)</li>
+                <li>RESTful APIs</li>
+                <li>Microservicios</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="skill-category">
+              <div class="skill-icon">
+                <i class="fa fa-desktop"></i>
+              </div>
+              <h3>Frontend</h3>
+              <ul class="skill-list">
+                <li>React & React Hooks</li>
+                <li>JavaScript (ES6+)</li>
+                <li>TypeScript</li>
+                <li>HTML5 & CSS3</li>
+                <li>Bootstrap & Tailwind</li>
+                <li>Responsive Design</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="skill-category">
+              <div class="skill-icon">
+                <i class="fa fa-database"></i>
+              </div>
+              <h3>Bases de Datos</h3>
+              <ul class="skill-list">
+                <li>MySQL & PostgreSQL</li>
+                <li>SQLite</li>
+                <li>MongoDB</li>
+                <li>Redis</li>
+                <li>Optimización de Queries</li>
+                <li>Diseño de Esquemas</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="skill-category">
+              <div class="skill-icon">
+                <i class="fa fa-cogs"></i>
+              </div>
+              <h3>DevOps & Tools</h3>
+              <ul class="skill-list">
+                <li>Git & GitLab/GitHub</li>
+                <li>Docker & Containers</li>
+                <li>CI/CD Pipelines</li>
+                <li>Linux Administration</li>
+                <li>Composer & Maven</li>
+                <li>Agile/Scrum</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-12">
+            <div class="tech-showcase">
+              <h3 class="text-center mb-40">Especialidades Adicionales</h3>
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <div class="tech-item">
+                    <i class="fa fa-microchip"></i>
+                    <h4>IoT & Hardware</h4>
+                    <p>Arduino, ESP32, Raspberry Pi, Orange Pi, integración hardware-software</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="tech-item">
+                    <i class="fa fa-cloud"></i>
+                    <h4>Cloud & Architecture</h4>
+                    <p>Arquitecturas escalables, diseño de sistemas distribuidos, patrones de diseño</p>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="tech-item">
+                    <i class="fa fa-bar-chart"></i>
+                    <h4>Business Intelligence</h4>
+                    <p>Análisis de datos, SEO, Digital Marketing, Data Analysis</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-				<div class="portfolio-item code">
-                    <div class="he-wrap tpl6">
-					<img src="assets/samples/react/tictactoe/tictactoe.png" alt="">
-						<div class="he-view">
-							<div class="bg a0" data-animate="fadeIn">
-                                <h3 class="a1" data-animate="fadeInDown">Tic Tac Toe Game Sample (React)</h3>
-                                <a data-rel="prettyPhoto" href="assets/samples/react/tictactoe/tictactoe.png" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
-                                <a target="_blank" href="assets/samples/react/tictactoe/index.html" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
-                        	</div><!-- he bg -->
-						</div><!-- he view -->		
-					</div><!-- he wrap -->
-				</div><!-- end col-12 -->
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section portfolio-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-subtitle">Selección de proyectos que demuestran experiencia y calidad técnica</p>
+          </div>
+        </div>
+        <div class="row mt-60 portfolio-grid">
+          <div class="col-lg-4 col-md-6 portfolio-item">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg" alt="RESTful API PHP">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-links">
+                    <a href="assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
+                    <a href="https://github.com/waldopanozo/php-slim-rest-sqlite" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>RESTful API con PHP Slim</h3>
+                <p>API RESTful desarrollada con PHP Slim Framework, Composer y SQLite. Arquitectura limpia y escalable.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">PHP</span>
+                  <span class="tag">Slim</span>
+                  <span class="tag">REST API</span>
+                  <span class="tag">SQLite</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-				<div class="portfolio-item code">
-                    <div class="he-wrap tpl6">
-					<img src="assets/samples/react/calculator/calculator.png" alt="">
-						<div class="he-view">
-							<div class="bg a0" data-animate="fadeIn">
-                                <h3 class="a1" data-animate="fadeInDown">Calculator Sample (React)</h3>
-                                <a data-rel="prettyPhoto" href="assets/samples/react/calculator/calculator.png" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
-                                <a target="_blank" href="assets/samples/react/calculator/index.html" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
-                        	</div><!-- he bg -->
-						</div><!-- he view -->		
-					</div><!-- he wrap -->
-				</div><!-- end col-12 -->
+          <div class="col-lg-4 col-md-6 portfolio-item">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="assets/samples/react/tictactoe/tictactoe.png" alt="Tic Tac Toe React">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-links">
+                    <a href="assets/samples/react/tictactoe/tictactoe.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
+                    <a href="assets/samples/react/tictactoe/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Tic Tac Toe Game</h3>
+                <p>Juego clásico desarrollado con React, demostrando manejo de estado y lógica de juego.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Game Development</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="assets/samples/react/calculator/calculator.png" alt="Calculator React">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-links">
+                    <a href="assets/samples/react/calculator/calculator.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
+                    <a href="assets/samples/react/calculator/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Calculator App</h3>
+                <p>Calculadora funcional desarrollada con React, con interfaz intuitiva y cálculos precisos.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">UI/UX</span>
+                  <span class="tag">JavaScript</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-				<div class="portfolio-item code">
-                    <div class="he-wrap tpl6">
-					<img src="assets/samples/react/accordion/accordion.png" alt="">
-						<div class="he-view">
-							<div class="bg a0" data-animate="fadeIn">
-                                <h3 class="a1" data-animate="fadeInDown">Accordion Sample (React)</h3>
-                                <a data-rel="prettyPhoto" href="assets/samples/react/accordion/accordion.png" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
-                                <a target="_blank" href="assets/samples/react/accordion/index.html" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
-                                <a target="_blank" href="https://gitlab.com/waldo.panozo/list_items_accordion" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-gitlab"></i></a>
-                        	</div><!-- he bg -->
-						</div><!-- he view -->		
-					</div><!-- he wrap -->
-				</div><!-- end col-12 -->
+          <div class="col-lg-4 col-md-6 portfolio-item">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="assets/samples/react/accordion/accordion.png" alt="Accordion React">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-links">
+                    <a href="assets/samples/react/accordion/accordion.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
+                    <a href="assets/samples/react/accordion/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                    <a href="https://gitlab.com/waldo.panozo/list_items_accordion" target="_blank" class="portfolio-link"><i class="fa fa-gitlab"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Accordion Component</h3>
+                <p>Componente acordeón reutilizable con React, optimizado para rendimiento y accesibilidad.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Components</span>
+                  <span class="tag">GitLab</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="assets/samples/react/xmas_timer/xmas_timer.png" alt="Xmas Timer React">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-links">
+                    <a href="assets/samples/react/xmas_timer/xmas_timer.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
+                    <a href="assets/samples/react/xmas_timer/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                    <a href="https://gitlab.com/waldo.panozo/countdown_xmas.git" target="_blank" class="portfolio-link"><i class="fa fa-gitlab"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Christmas Countdown Timer</h3>
+                <p>Temporizador de cuenta regresiva desarrollado con React, con diseño atractivo y animaciones.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Timer</span>
+                  <span class="tag">Animations</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-				<div class="portfolio-item code">
-                    <div class="he-wrap tpl6">
-					<img src="assets/samples/react/xmas_timer/xmas_timer.png" alt="">
-						<div class="he-view">
-							<div class="bg a0" data-animate="fadeIn">
-                                <h3 class="a1" data-animate="fadeInDown">Xmas timer (React)</h3>
-                                <a data-rel="prettyPhoto" href="assets/samples/react/xmas_timer/xmas_timer.png" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
-                                <a target="_blank" href="assets/samples/react/xmas_timer/index.html" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
-                                <a target="_blank" href="https://gitlab.com/waldo.panozo/countdown_xmas.git" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-gitlab"></i></a>
-                        	</div><!-- he bg -->
-						</div><!-- he view -->		
-					</div><!-- he wrap -->
-				</div><!-- end col-12 -->
+          <div class="col-lg-4 col-md-6 portfolio-item">
+            <div class="portfolio-card">
+              <div class="portfolio-image">
+                <img src="assets/samples/react/mortgage_calc/mortgage_calc.png" alt="Mortgage Calculator React">
+                <div class="portfolio-overlay">
+                  <div class="portfolio-links">
+                    <a href="assets/samples/react/mortgage_calc/mortgage_calc.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
+                    <a href="assets/samples/react/mortgage_calc/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                    <a href="https://gitlab.com/waldo.panozo/mortgage_calc_react" target="_blank" class="portfolio-link"><i class="fa fa-gitlab"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h3>Mortgage Calculator</h3>
+                <p>Calculadora de hipotecas con cálculos financieros complejos, desarrollada con React.</p>
+                <div class="portfolio-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Finance</span>
+                  <span class="tag">Calculations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-12 text-center">
+            <p class="note-text"><i class="fa fa-info-circle"></i> Muchos proyectos son privados debido a restricciones de empresas, pero puedo mostrar parte del proceso en entrevistas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-				<div class="portfolio-item code">
-                    <div class="he-wrap tpl6">
-					<img src="assets/samples/react/mortgage_calc/mortgage_calc.png" alt="">
-						<div class="he-view">
-							<div class="bg a0" data-animate="fadeIn">
-                                <h3 class="a1" data-animate="fadeInDown">Simple Mortgage Calculator (React)</h3>
-                                <a data-rel="prettyPhoto" href="assets/samples/react/mortgage_calc/mortgage_calc.png" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
-                                <a target="_blank" href="assets/samples/react/mortgage_calc/index.html" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
-                                <a target="_blank" href="https://gitlab.com/waldo.panozo/mortgage_calc_react" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-gitlab"></i></a>
-                        	</div><!-- he bg -->
-						</div><!-- he view -->		
-					</div><!-- he wrap -->
-				</div><!-- end col-12 -->
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Contacto</h2>
+            <p class="section-subtitle">¿Interesado en trabajar juntos? Estoy abierto a nuevas oportunidades y proyectos desafiantes</p>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-4 col-md-6">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fa fa-envelope"></i>
+              </div>
+              <h3>Email</h3>
+              <p><a href="mailto:waldo.panozo@gmail.com">waldo.panozo@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fa fa-whatsapp"></i>
+              </div>
+              <h3>WhatsApp</h3>
+              <p><a href="https://wa.me/59177499919" target="_blank">+591 - 77499919</a></p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fa fa-map-marker"></i>
+              </div>
+              <h3>Ubicación</h3>
+              <p>Cochabamba, Bolivia<br>Abierto a oportunidades remotas y relocalización</p>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-12 text-center">
+            <div class="social-links">
+              <h3>Sígueme en</h3>
+              <div class="social-icons">
+                <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank" class="social-icon" title="LinkedIn">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/waldopanozo" target="_blank" class="social-icon" title="GitHub">
+                  <i class="fa fa-github"></i>
+                </a>
+                <a href="https://ezdevelopment.com" target="_blank" class="social-icon" title="Blog">
+                  <i class="fa fa-globe"></i>
+                </a>
+                <a href="https://www.facebook.com/waldopanozo" target="_blank" class="social-icon" title="Facebook">
+                  <i class="fa fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com/waldopanozo" target="_blank" class="social-icon" title="Twitter">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-				<div class="portfolio-item system">
-                    <div class="he-wrap tpl6">
-					<img src="assets/img/under.png" alt="">
-						<div class="he-view">
-							<div class="bg a0" data-animate="fadeIn">
-                                <h3 class="a1" data-animate="fadeInDown">Mi next project</h3>
-                                <a data-rel="prettyPhoto" href="assets/img/under.png" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
-                                <a href="https://github.com/waldopanozo/php-slim-rest-sqlite" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
-                        	</div><!-- he bg -->
-						</div><!-- he view -->		
-					</div><!-- he wrap -->
-				</div><!-- end col-12 -->
-                
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <p>&copy; 2024 Waldo Panozo. Todos los derechos reservados.</p>
+            <p class="footer-links">
+              <a href="https://ezdevelopment.com" target="_blank">Blog</a> |
+              <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank">LinkedIn</a> |
+              <a href="https://github.com/waldopanozo" target="_blank">GitHub</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-				
-                    
-        </div><!-- portfolio container -->
-	 </div><!--/Portfoliowrap -->
-	 
-	 
-	
-
-	 <div id="interests" class="container mtb">
-	 	<div class="row">
-	 		<div class="col-lg-3">
-		 		<h4>Other Projects/Interests</h4>
-		 		<p>
-					My passion about technology, and my background ride me to the use and creation of electronics, test some new techs, IoT, IA with hardware, this means, use of arduino, ES32, Raspberry Pi, Orange Pi, etc.
-				</p>
-				<p>
-					And of course the Business Science (BSc) world, I have some knoledge about the fiels of SEO, Digital Marketing, Business Intelligence, Data Analysis, Finances, Trading market, etc.
-				</p>
- 				<p><br/><a href="https://ezdevelopment.com" target="_blank" class="btn btn-theme">Check my blog <i class="fa fa-link"></i></a></p>
-	 		</div>
-	 		
-			 <div class="col-lg-3">
-				<h4>Programming Blog entries</h4>
-				<div class="hline"></div>
-				<p><a target="_blank"  href="https://ezdevelopment.com/informatica/introduccion-java-intellij-idea/">INTRODUCCIÓN A JAVA CON INTELLIJ IDEA</a></p>
-				<p><a target="_blank" href="https://ezdevelopment.com/informatica/lenguajes-de-programacion/php/instalacion-composer-yii2/">INSTALACIÓN DE COMPOSER & YII2</a></p>
-				<p><a target="_blank" href="https://ezdevelopment.com/informatica/lenguajes-de-programacion/java/java-spring-tutorial-1/">JAVA + INTELLIJ IDEA + TOMCAT + SPRING + MAVEN TUTORIAL # 1</a></p>
-			</div>
-
-	 		<div class="col-lg-3">
-	 			<h4>Electronic Blog entries</h4>
-	 			<div class="hline"></div>
-	 			
-				<p><a target="_blank" href="https://ezdevelopment.com/tecnologia/165/">MULTIPLEXACION POR DIVISION DE TIEMPO CON PIC Y DISPLAY DE 7-SEGTMENTOS</a></p>
-				<p><a target="_blank" href="https://ezdevelopment.com/informatica/servers/starting-with-orange-pi-and-python-1/">STARTING WITH ORANGE PI AND PYTHON # 1</a></p>
-				<p><a target="_blank" href="https://ezdevelopment.com/informatica/lenguajes-de-programacion/starting-with-orange-pi-and-python-2/">STARTING WITH ORANGE PI AND PYTHON # 2</a></p>
-				<p><a target="_blank" href="https://ezdevelopment.com/tecnologia/iot/easiest-way-to-connect-to-network-in-terminal/">EASIEST WAY TO CONNECT TO A NETWORK IN TERMINAL</a></p>
-	 		</div>
-	 		
-	 		<div class="col-lg-3">
-				<h4>Business Blog entries</h4>
-				<div class="hline"></div>
-				<p><a target="_blank" href="https://ezdevelopment.com/informatica/seo/seo-keyword-planner-google/">INTRODUCCION AL SEO CON KEYWORD PLANNER</a></p>
-			</div>
-	 		
-	 	</div><! --/row -->
-	 </div><! --/container -->
-	 
-
-	 <div id="footerwrap">
-	 	<div id="contact" class="container">
-		 	<div class="row">
-		 		<div class="col-lg-4">
-		 			<h4>Social</h4>
-		 			<div class="hline-w"></div>
-		 			<p>
-		 				<a href="https://www.linkedin.com/in/waldopanozo/"><i class="fa fa-linkedin"></i></a>
-		 				<a href="https://ezdevelopment.com"><i class="fa fa-globe"></i></a>
-		 				<a href="https://github.com/waldopanozo"><i class="fa fa-github"></i></a>
-		 				<a href="https://www.facebook.com/waldopanozo"><i class="fa fa-facebook"></i></a>
-		 				<a href="https://twitter.com/waldopanozo"><i class="fa fa-twitter"></i></a>
-		 			</p>
-		 		</div>
-		 		<div  class="col-lg-4">
-		 			<h4>Where I'm living NOW?</h4>
-		 			<div class="hline-w"></div>
-		 			<p>
-		 				Cochabamba, <br>
-						Bolivia
-		 			</p>
-					<p>
-						I have plans for migrate soon.. (I'm really hoping this happen ) :)
-					</p>
-		 		</div>
-				 <div  class="col-lg-4 text-left">
-					<h4>Contact me</h4>
-					<div class="hline-w"></div>
-					<p>
-						<b> <i class="fa fa-at"></i>Email:</b> <a href="mailto:waldo.panozo@gmail.com">waldo.panozo@gmail.com</a> 
-					</p>
-				   <p>
-						<b> <i class="fa fa-whatsapp"></i>Whatsapp:</b> <a href="https://wa.me/59177499919"> +591 - 77499919</a> 
-				   </p>
-				</div>
-		 	
-		 	</div><! --/row -->
-	 	</div><! --/container -->
-	 </div><! --/footerwrap -->
-	 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/retina-1.1.0.js"></script>
-	<script src="assets/js/jquery.hoverdir.js"></script>
-	<script src="assets/js/jquery.hoverex.min.js"></script>
-	<script src="assets/js/jquery.prettyPhoto.js"></script>
-  	<script src="assets/js/jquery.isotope.min.js"></script>
-  	<script src="assets/js/custom.js"></script>
-
-
-    <script>
-// Portfolio
-(function($) {
-	"use strict";
-	var $container = $('.portfolio'),
-		$items = $container.find('.portfolio-item'),
-		portfolioLayout = 'fitRows';
-		
-		if( $container.hasClass('portfolio-centered') ) {
-			portfolioLayout = 'masonry';
-		}
-				
-		$container.isotope({
-			filter: '*',
-			animationEngine: 'best-available',
-			layoutMode: portfolioLayout,
-			animationOptions: {
-			duration: 750,
-			easing: 'linear',
-			queue: false
-		},
-		masonry: {
-		}
-		}, refreshWaypoints());
-		
-		function refreshWaypoints() {
-			setTimeout(function() {
-			}, 1000);   
-		}
-				
-		$('nav.portfolio-filter ul a').on('click', function() {
-				var selector = $(this).attr('data-filter');
-				$container.isotope({ filter: selector }, refreshWaypoints());
-				$('nav.portfolio-filter ul a').removeClass('active');
-				$(this).addClass('active');
-				return false;
-		});
-		
-		function getColumnNumber() { 
-			var winWidth = $(window).width(), 
-			columnNumber = 1;
-		
-			if (winWidth > 1200) {
-				columnNumber = 5;
-			} else if (winWidth > 950) {
-				columnNumber = 4;
-			} else if (winWidth > 600) {
-				columnNumber = 3;
-			} else if (winWidth > 400) {
-				columnNumber = 2;
-			} else if (winWidth > 250) {
-				columnNumber = 1;
-			}
-				return columnNumber;
-			}       
-			
-			function setColumns() {
-				var winWidth = $(window).width(), 
-				columnNumber = getColumnNumber(), 
-				itemWidth = Math.floor(winWidth / columnNumber);
-				
-				$container.find('.portfolio-item').each(function() { 
-					$(this).css( { 
-					width : itemWidth + 'px' 
-				});
-			});
-		}
-		
-		function setPortfolio() { 
-			setColumns();
-			$container.isotope('reLayout');
-		}
-			
-		$container.imagesLoaded(function () { 
-			setPortfolio();
-		});
-		
-		$(window).on('resize', function () { 
-		setPortfolio();          
-	});
-})(jQuery);
-</script>
+    <script src="assets/js/custom-v2.js"></script>
   </body>
 </html>
