@@ -118,6 +118,111 @@ ul {
   background-color: var(--text-dark);
 }
 
+.nav-menu-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-link-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-gray);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.nav-link-icon:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+  transform: translateY(-2px);
+}
+
+.nav-cta {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 15px 25px -10px rgba(37, 99, 235, 0.6);
+}
+
+.nav-cta:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 35px -15px rgba(30, 64, 175, 0.8);
+}
+
+.navbar-nav > li > a {
+  position: relative;
+}
+
+.navbar-nav > li > a::after {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.15rem;
+  height: 2px;
+  background-color: var(--primary-color);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: var(--transition);
+}
+
+.navbar-nav > li.active > a::after,
+.navbar-nav > li > a:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  #main-nav .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  #main-nav .navbar-nav {
+    float: none !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .nav-menu-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .nav-cta {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 /* ============================================
    3. HERO SECTION
    ============================================ */
@@ -252,6 +357,14 @@ ul {
   background-color: white;
   color: var(--primary-color);
   transform: translateY(-2px);
+}
+
+.download-resume-btn {
+  box-shadow: 0 20px 35px -20px rgba(37, 99, 235, 0.8);
+}
+
+.download-resume-btn:hover {
+  box-shadow: 0 30px 45px -25px rgba(37, 99, 235, 0.9);
 }
 
 .btn-lg {
@@ -538,6 +651,25 @@ ul {
   left: 0;
   color: var(--primary-color);
   font-weight: bold;
+}
+
+.role-block {
+  margin-bottom: 1.5rem;
+}
+
+.role-block:last-of-type {
+  margin-bottom: 0;
+}
+
+.role-block h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.role-block ul {
+  margin-bottom: 0.5rem;
 }
 
 .tech-stack-badge {

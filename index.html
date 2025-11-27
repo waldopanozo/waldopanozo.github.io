@@ -25,7 +25,14 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="main-nav">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#main-nav-collapse"
+            aria-controls="main-nav-collapse"
+            aria-expanded="false"
+          >
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -33,16 +40,45 @@
           </button>
           <a class="navbar-brand" href="/">WALDO M. PANOZO</a>
         </div>
-        <div class="navbar-collapse collapse navbar-right">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#home">HOME</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#experience">EXPERIENCE</a></li>
-            <li><a href="#skills">SKILLS</a></li>
-            <li><a href="#education">EDUCATION</a></li>
-            <li><a href="#portfolio">PORTFOLIO</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-          </ul>
+        <div class="navbar-collapse collapse" id="main-nav-collapse">
+          <div class="nav-menu-wrapper">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#home">HOME</a></li>
+              <li><a href="#about">ABOUT</a></li>
+              <li><a href="#experience">EXPERIENCE</a></li>
+              <li><a href="#skills">SKILLS</a></li>
+              <li><a href="#education">EDUCATION</a></li>
+              <li><a href="#portfolio">PORTFOLIO</a></li>
+              <li><a href="#contact">CONTACT</a></li>
+            </ul>
+            <div class="nav-actions">
+              <a
+                href="https://www.linkedin.com/in/waldopanozo/"
+                target="_blank"
+                class="nav-link-icon"
+                aria-label="LinkedIn"
+              >
+                <i class="fa fa-linkedin"></i>
+              </a>
+              <a
+                href="https://github.com/waldopanozo"
+                target="_blank"
+                class="nav-link-icon"
+                aria-label="GitHub"
+              >
+                <i class="fa fa-github"></i>
+              </a>
+              <a
+                href="assets/docs/Resume%20Waldo%20Panozo%20Ramirez.pdf"
+                class="btn nav-cta"
+                target="_blank"
+                rel="noopener"
+                download
+              >
+                Download Resume
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -55,13 +91,21 @@
           <div class="col-lg-10 col-lg-offset-1">
             <div class="hero-content">
               <div class="hero-photo">
-                <img src="https://photos.app.goo.gl/qy25TgfhVAwjHTpq7" alt="Waldo M. Panozo">
+                <img src="assets/img/profile_1.jpg" alt="Waldo M. Panozo">
               </div>
               <div class="hero-badge">Software Engineer</div>
-              <h1 class="hero-title">Developing software that is <span class="highlight">sustainable, scalable, and maintainable</span></h1>
-              <p class="hero-subtitle">Software Engineer with 15+ years of experience developing software using PHP, Java, JavaScript, and Web Services (REST) with a great attitude. Passionate about developing software that is sustainable, scalable, and maintainable, I consider myself a technology and learning enthusiast that's why I love building new things and engineering.</p>
+              <h1 class="hero-title">Building <span class="highlight">sustainable, scalable, and maintainable</span> software</h1>
+              <p class="hero-subtitle">Senior Software Engineer with 15+ years designing high-impact solutions with PHP, Java, JavaScript, and REST services. I love driving measurable results through clean architecture, modern frameworks, and collaborative leadership—whether remotely or on-site.</p>
               <div class="hero-cta">
-                <a href="#portfolio" class="btn btn-primary btn-lg">View Portfolio</a>
+                <a
+                  href="assets/docs/Resume%20Waldo%20Panozo%20Ramirez.pdf"
+                  class="btn btn-primary btn-lg"
+                  target="_blank"
+                  rel="noopener"
+                  download
+                >
+                  Download Resume
+                </a>
                 <a href="#contact" class="btn btn-outline btn-lg">Contact Me</a>
               </div>
               <div class="hero-stats">
@@ -103,17 +147,17 @@
         <div class="row mt-60">
           <div class="col-lg-6">
             <div class="about-photo-wrapper text-center">
-              <img src="https://photos.app.goo.gl/qy25TgfhVAwjHTpq7" alt="Waldo M. Panozo" class="about-photo">
+              <img src="assets/img/profile_1.jpg" alt="Waldo M. Panozo" class="about-photo">
             </div>
             <div class="about-content">
               <h3>Professional Profile</h3>
-              <p>I'm <strong>Waldo M. Panozo</strong>, a Software Engineer with more than <strong>15 years of experience</strong> developing software using PHP, Java, JavaScript, and Web Services REST. I consider myself a technology and learning enthusiast, that's why I love building new things and engineering.</p>
-              <p class="mt-30">Passionate about developing software that is <strong>sustainable, scalable, and maintainable</strong>. I really like the possibility of remote work, but the possibility of relocation is very attractive to me and my family.</p>
+              <p>I'm <strong>Waldo M. Panozo</strong>, a Senior Software Engineer with <strong>15+ years of experience</strong> designing and scaling products with PHP, Java, JavaScript, and modern REST architectures. I thrive on translating business goals into resilient engineering roadmaps, mentoring teams, and delivering measurable impact.</p>
+              <p class="mt-30">Remote-first collaboration energizes me, yet I'm equally enthusiastic about relocating when it creates bigger outcomes for my family and the teams I support.</p>
               <ul class="role-list">
-                <li><i class="fa fa-check-circle"></i> <strong>Development Leader</strong> - Leading teams and high-impact projects</li>
-                <li><i class="fa fa-check-circle"></i> <strong>Senior Software Engineer</strong> - Developing complex and scalable solutions</li>
-                <li><i class="fa fa-check-circle"></i> <strong>IT Manager</strong> - Managing infrastructure and technical teams</li>
-                <li><i class="fa fa-check-circle"></i> <strong>Full Stack Developer</strong> - Experience in frontend and backend</li>
+                <li><i class="fa fa-check-circle"></i> <strong>Senior Software Engineer</strong> · Owning end-to-end features, search experiences, and analytics improvements</li>
+                <li><i class="fa fa-check-circle"></i> <strong>Tech Lead</strong> · Coaching teams, driving architecture decisions, coordinating cross-squad delivery</li>
+                <li><i class="fa fa-check-circle"></i> <strong>Software Development Lead</strong> · Building tools that serve 15K+ users per year in public institutions</li>
+                <li><i class="fa fa-check-circle"></i> <strong>IT Manager</strong> · Optimizing infrastructure, comms costs, and hybrid team operations</li>
               </ul>
             </div>
           </div>
@@ -122,20 +166,29 @@
               <h3>Key Achievements</h3>
               <div class="highlight-item">
                 <div class="highlight-icon">
-                  <i class="fa fa-line-chart"></i>
+                  <i class="fa fa-car"></i>
                 </div>
                 <div class="highlight-content">
-                  <h4>+70% Productivity</h4>
-                  <p>Increased productivity in daily tasks by at least 70% by programming a Web system for team organization based on agile processes, like KANBAN or SCRUM.</p>
+                  <h4>Vehicle Search Launch</h4>
+                  <p>Delivered a new multi-tenant vehicle search experience presented at SEMA 2025, earning direct recognition from the CEO for leading the initiative end-to-end.</p>
                 </div>
               </div>
               <div class="highlight-item">
                 <div class="highlight-icon">
-                  <i class="fa fa-clock-o"></i>
+                  <i class="fa fa-line-chart"></i>
                 </div>
                 <div class="highlight-content">
-                  <h4>Time Reduction</h4>
-                  <p>Designed a Web for providers administration, and showcase of his products, reducing the time of procedures for external and internal users, from 15 days to 5 days.</p>
+                  <h4>+70% Productivity</h4>
+                  <p>Built a web system for agile task orchestration that boosted the productivity of university development teams by at least 70%.</p>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fa fa-bolt"></i>
+                </div>
+                <div class="highlight-content">
+                  <h4>Hackathon Wins</h4>
+                  <p>Two-time Revolution Parts hackathon winner: 57% faster GMV loading through advanced caching and an AI assistant to search product imagery.</p>
                 </div>
               </div>
               <div class="highlight-item">
@@ -143,17 +196,8 @@
                   <i class="fa fa-users"></i>
                 </div>
                 <div class="highlight-content">
-                  <h4>15K+ Users</h4>
-                  <p>Brings services for more than 15k students and administrative roles per year, built with my team a system for qualifying which student can take/postulate a scholarship.</p>
-                </div>
-              </div>
-              <div class="highlight-item">
-                <div class="highlight-icon">
-                  <i class="fa fa-server"></i>
-                </div>
-                <div class="highlight-content">
-                  <h4>20M+ Transactions</h4>
-                  <p>Programmed the first API of the university by implementing a load-balanced proxy with several microservices, making it perform simple and complex transactions and receiving more than 20 million transactions each year.</p>
+                  <h4>15K+ Users Served</h4>
+                  <p>Led digital initiatives at Universidad Mayor de San Simón, including scholarship qualification systems and provider portals reaching 15K+ users annually.</p>
                 </div>
               </div>
             </div>
@@ -185,86 +229,110 @@
           <div class="col-lg-10 col-lg-offset-1">
             <div class="timeline">
               <div class="timeline-item">
-                <div class="timeline-year">2017 - Present</div>
+                <div class="timeline-year">2023 - Present</div>
                 <div class="timeline-content">
-                  <h3>Development Leader</h3>
-                  <h4>Public University "Mayor de San Simón", Bolivia | April 2021 – Present</h4>
-                  <p>Leading the development of critical web systems that impact more than 15,000 annual users. Focus on agile processes and scalable architectures.</p>
-                  <ul>
-                    <li>Increases productivity in daily tasks by at least 70% by programming a Web system for team organization based on agile processes, like KANBAN or SCRUM.</li>
-                    <li>Designed a Web for providers administration, and showcase of his products, reducing the time of procedures for external and internal users, from 15 days to 5 days.</li>
-                    <li>Brings services for more than 15k students and administrative roles per year, built with my team a system for qualifying which student can take/postulate a scholarship.</li>
-                    <li>Integration to the main infrastructure of central systems a Web (containing APIs), developed by a team that received tickets generated by university users during the pandemic.</li>
-                  </ul>
+                  <h3>Revolution Parts</h3>
+                  <h4>Canada / USA (Assuresoft Paraguay) | January 2023 – Present</h4>
+                  <div class="role-block">
+                    <h5>Senior Software Engineer · December 2023 – Present</h5>
+                    <ul>
+                      <li>Launched a new multi-tenant vehicle search experience showcased at SEMA 2025, owning the full delivery path and earning recognition from the CEO.</li>
+                      <li>Improved GMV conversions by 13.7% through targeted SEO initiatives and instrumentation enhancements in Google Analytics.</li>
+                      <li>Twice won the company hackathon: 57% faster GMV loads with advanced caching (Mobile Optimization) and an AI assistant for image search (Overall).</li>
+                    </ul>
+                  </div>
+                  <div class="role-block">
+                    <h5>Tech Lead · February 2025 – May 2025</h5>
+                    <ul>
+                      <li>Trained new team members and orchestrated the restructuring of the GMV (formerly BXP) squad until an on-site leader was hired.</li>
+                      <li>Coordinated sprint rituals, advanced PR reviews, and cross-team HLD discussions to align delivery across product streams.</li>
+                    </ul>
+                  </div>
                   <div class="tech-stack-badge">
-                    <strong>Tech Stack:</strong> PHP (YII2), Java, jQuery, JavaScript, React, PostgreSQL, GitLab, Jenkins
+                    <strong>Tech Stack:</strong> PHP (Laravel, Slim), Python, React, JavaScript, Redis, Elasticsearch, Docker, GitHub Actions, Go, Cypress, Linux, Scrum, Confluence, Figma
                   </div>
                 </div>
               </div>
               <div class="timeline-item">
-                <div class="timeline-year">2017 - 2021</div>
+                <div class="timeline-year">2017 - 2023</div>
                 <div class="timeline-content">
-                  <h3>Senior Software Developer</h3>
-                  <h4>Public University "Mayor de San Simón", Bolivia | January 2017 – April 2021</h4>
-                  <p>Development of complex systems with hardware-software integration and high-performance APIs.</p>
-                  <ul>
-                    <li>Increased control of more than 15K users through the development of a support control system with hardware connection with biometric devices linked by SDK & API.</li>
-                    <li>Built a Survey system, with a dynamic form construction, can control the list of users allowed to take specific surveys, this system uses JQuery, PHP, and PostgreSQL with SQL and NoSQL fields mixed.</li>
-                    <li>Programmed the first API of the university by implementing a load-balanced proxy with several microservices, making it perform simple and complex transactions and receiving more than 20 million transactions each year.</li>
-                  </ul>
+                  <h3>Public University “Mayor de San Simón”</h3>
+                  <h4>Cochabamba, Bolivia | January 2017 – December 2023</h4>
+                  <div class="role-block">
+                    <h5>Software Development Lead · April 2021 – December 2023</h5>
+                    <ul>
+                      <li>Boosted day-to-day productivity by 70% with a web platform that digitized agile workflows for multiple development squads.</li>
+                      <li>Designed a provider administration portal that cut request processing time from 15 days to 5 days for internal and external users.</li>
+                      <li>Led scholarship qualification services supporting 15K+ students and administrative staff every year.</li>
+                      <li>Integrated ticket-driven pandemic support systems into the university’s central infrastructure and APIs.</li>
+                    </ul>
+                  </div>
+                  <div class="role-block">
+                    <h5>Senior Software Developer · January 2017 – April 2021</h5>
+                    <ul>
+                      <li>Implemented a biometric-enabled support control system to monitor 80K+ users through SDK and API integrations.</li>
+                      <li>Built a dynamic survey platform mixing SQL and NoSQL storage to manage access-controlled questionnaires.</li>
+                      <li>Developed the university’s first API using a load-balanced proxy and microservices, enabling 20M+ yearly transactions.</li>
+                    </ul>
+                  </div>
                   <div class="tech-stack-badge">
-                    <strong>Tech Stack:</strong> PHP (YII2), Java (Spring Boot, Security, JPA), C#, jQuery, JavaScript, PostgreSQL, GitLab, Jenkins
+                    <strong>Tech Stack:</strong> PHP (Yii2), Java (Spring Boot, Security, JPA), Angular, React, jQuery, JavaScript, PostgreSQL, GitLab, Jenkins
                   </div>
                 </div>
               </div>
               <div class="timeline-item">
-                <div class="timeline-year">2015 - 2016</div>
+                <div class="timeline-year">2008 - 2016</div>
                 <div class="timeline-content">
-                  <h3>Senior Software Engineer</h3>
-                  <h4>Bilingual Communications (BICOM USA) | August 2015 – April 2016</h4>
-                  <p>Development of innovative systems for call recording and real estate management.</p>
-                  <ul>
-                    <li>Developed a calling recording system in the network, by software and hardware, the system recognizes and sends by email the confirmation recording to a lead directly to the clients.</li>
-                    <li>Programmed a real state system, for registering all the real state products, searching algorithms, and offering systems randomly by trending viewing in the real estate finder.</li>
-                  </ul>
-                  <div class="tech-stack-badge">
-                    <strong>Tech Stack:</strong> PHP (YII2), jQuery, MySQL
+                  <h3>Bilingual Communications (BICOM USA)</h3>
+                  <h4>Remote | January 2008 – April 2016</h4>
+                  <div class="role-block">
+                    <h5>Senior Software Engineer (Contractor) · August 2015 – April 2016</h5>
+                    <ul>
+                      <li>Created a network-based call recording platform combining hardware and software to email confirmations directly to clients.</li>
+                      <li>Built a real-estate catalog and recommendation engine that surfaced listings via trending engagement signals.</li>
+                    </ul>
+                    <div class="tech-stack-badge">
+                      <strong>Tech Stack:</strong> PHP (Yii2), jQuery, MySQL
+                    </div>
+                  </div>
+                  <div class="role-block">
+                    <h5>IT Manager · January 2010 – January 2014</h5>
+                    <ul>
+                      <li>Cut communication and operations expenses by 70% through smart VoIP gateways, broadband upgrades, and remote-ready onboarding.</li>
+                    </ul>
+                  </div>
+                  <div class="role-block">
+                    <h5>Software Engineer · January 2008 – December 2009</h5>
+                    <ul>
+                      <li>Maintained the corporate website with lead registration, uploads, and review workflows.</li>
+                      <li>Developed an SMS marketing platform with reusable templates for first-touch outreach.</li>
+                    </ul>
+                    <div class="tech-stack-badge">
+                      <strong>Tech Stack:</strong> PHP, jQuery, MySQL
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-year">2014 - 2015</div>
                 <div class="timeline-content">
-                  <h3>Principal Software Engineer</h3>
-                  <h4>Menuocity (USA) | February 2014 – March 2015</h4>
-                  <p>Development of the main site with innovative implementations for restaurant order management.</p>
+                  <h3>Menuocity (USA)</h3>
+                  <h4>Principal Software Engineer · February 2014 – March 2015</h4>
                   <ul>
-                    <li>Developed the main site, with very cool implementations, like sending fax and email directly for an order to the manager of the restaurant, making calling remembers for orders made.</li>
+                    <li>Developed the primary ordering site, enabling fax/email dispatches for restaurant managers and automated call reminders for placed orders.</li>
                   </ul>
                   <div class="tech-stack-badge">
-                    <strong>Tech Stack:</strong> PHP (YII2), JavaScript, MySQL
+                    <strong>Tech Stack:</strong> PHP (Yii2), JavaScript, MySQL
                   </div>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">2010 - 2014</div>
-                <div class="timeline-content">
-                  <h3>IT Manager</h3>
-                  <h4>Bilingual Communications (BICOM USA) | January 2010 – January 2014</h4>
-                  <p>IT infrastructure management and operational cost optimization.</p>
-                  <ul>
-                    <li>Reduced 70% of expenses in communications and operations by implementing smart voip gateways, changing all the internal network broadband, and implementing a system for creating accounts for new employees with voip for working from home.</li>
-                  </ul>
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-year">2011</div>
                 <div class="timeline-content">
-                  <h3>Software Engineer</h3>
-                  <h4>Iventiva | February 2011 – August 2011</h4>
-                  <p>Development for OrchidLabs, CuisineLinks web system, a social network for sharing recipes.</p>
+                  <h3>Iventiva</h3>
+                  <h4>Software Engineer · February 2011 – August 2011</h4>
                   <ul>
-                    <li>Developed for OrchidLabs, CuisineLinks web system, was a social network for sharing recipes, with specific instructions, and the UI very similar to Facebook of this age.</li>
+                    <li>Built CuisineLinks, a social recipe-sharing platform for OrchidLabs with Facebook-style UI patterns and guided publishing flows.</li>
                   </ul>
                   <div class="tech-stack-badge">
                     <strong>Tech Stack:</strong> Java (Spring), jQuery, MySQL
@@ -272,28 +340,12 @@
                 </div>
               </div>
               <div class="timeline-item">
-                <div class="timeline-year">2008 - 2009</div>
-                <div class="timeline-content">
-                  <h3>Software Engineer</h3>
-                  <h4>Bilingual Communications (BICOM USA) | January 2008 – December 2009</h4>
-                  <p>Development and maintenance of the official website and marketing systems.</p>
-                  <ul>
-                    <li>Designed and maintained the official website, with standard functionality, register clients, upload and review leads.</li>
-                    <li>Developed a SMS Marketing system, which lets create campaigns and templates, for sending SMS, the tool has been used for the first contact to new clients.</li>
-                  </ul>
-                  <div class="tech-stack-badge">
-                    <strong>Tech Stack:</strong> PHP, jQuery, MySQL
-                  </div>
-                </div>
-              </div>
-              <div class="timeline-item">
                 <div class="timeline-year">2009 - 2010</div>
                 <div class="timeline-content">
-                  <h3>Software Engineer</h3>
-                  <h4>Intersoft | June 2009 – March 2010</h4>
-                  <p>Development of tracking system for DOLE with ISO implementation control in agricultural fields.</p>
+                  <h3>Intersoft</h3>
+                  <h4>Software Engineer · June 2009 – March 2010</h4>
                   <ul>
-                    <li>Developed a tracker for DOLE which controls the implementation of ISO in agricultural fields, with a website and mobile app.</li>
+                    <li>Developed a DOLE field-tracking platform monitoring ISO compliance with synchronized web and mobile experiences.</li>
                   </ul>
                   <div class="tech-stack-badge">
                     <strong>Tech Stack:</strong> Java (WebObjects), Oracle, MySQL
@@ -440,11 +492,19 @@
                 </div>
               </div>
               <div class="education-item">
-                <div class="education-year">2018</div>
+                <div class="education-year">In Progress</div>
                 <div class="education-content">
-                  <h3>Postgraduate Diploma Higher Education</h3>
+                  <h3>MSc. AI, Machine Learning & Data Science</h3>
+                  <h4>Public University "El Alto", Bolivia</h4>
+                  <p>Master's studies focused on AI, ML, and Data Science - In progress</p>
+                </div>
+              </div>
+              <div class="education-item">
+                <div class="education-year">2010</div>
+                <div class="education-content">
+                  <h3>MSc. Telematics</h3>
                   <h4>Public University "Mayor de San Simón"</h4>
-                  <p>Postgraduate Diploma Higher Education – August 2018</p>
+                  <p>Master of Science in Telematics – 2010</p>
                 </div>
               </div>
               <div class="education-item">
@@ -456,11 +516,11 @@
                 </div>
               </div>
               <div class="education-item">
-                <div class="education-year">2010</div>
+                <div class="education-year">2018</div>
                 <div class="education-content">
-                  <h3>MSc. Telematics</h3>
+                  <h3>Postgraduate Diploma Higher Education</h3>
                   <h4>Public University "Mayor de San Simón"</h4>
-                  <p>Master of Science in Telematics – 2010</p>
+                  <p>Postgraduate Diploma in Higher Education – August 2018</p>
                 </div>
               </div>
               <div class="education-item">
@@ -693,6 +753,19 @@
             </div>
           </div>
         </div>
+        <div class="row mt-40">
+          <div class="col-lg-12 text-center">
+            <a
+              href="assets/docs/Resume%20Waldo%20Panozo%20Ramirez.pdf"
+              class="btn btn-primary btn-lg download-resume-btn"
+              target="_blank"
+              rel="noopener"
+              download
+            >
+              Download Full Resume
+            </a>
+          </div>
+        </div>
         <div class="row mt-60">
           <div class="col-lg-12 text-center">
             <div class="social-links">
@@ -725,7 +798,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <p>&copy; 2024 Waldo M. Panozo. All rights reserved.</p>
+            <p>&copy; <span id="current-year"></span> Waldo M. Panozo. All rights reserved.</p>
             <p class="footer-links">
               <a href="https://waldopanozo.github.io/" target="_blank">Portfolio</a> |
               <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank">LinkedIn</a> |
@@ -741,5 +814,13 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/custom-v2.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var yearSpan = document.getElementById('current-year');
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
   </body>
 </html>
