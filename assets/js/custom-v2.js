@@ -155,6 +155,59 @@
     });
 
     // ============================================
+    // Portfolio Carousel Controls
+    // ============================================
+    (function() {
+      var track = document.getElementById('portfolio-track');
+      if (!track) return;
+
+      var prevBtn = document.querySelector('.carousel-control.prev');
+      var nextBtn = document.querySelector('.carousel-control.next');
+
+      function getGap() {
+        var styles = window.getComputedStyle(track);
+        var gap = styles.columnGap || styles.gap || '0';
+        return parseFloat(gap) || 0;
+      }
+
+      function getScrollAmount() {
+        var slide = track.querySelector('.portfolio-slide');
+        if (!slide) return track.clientWidth;
+        return slide.getBoundingClientRect().width + getGap();
+      }
+
+      function updateControls() {
+        if (!prevBtn || !nextBtn) return;
+        var maxScroll = track.scrollWidth - track.clientWidth;
+        prevBtn.disabled = track.scrollLeft <= 5;
+        nextBtn.disabled = track.scrollLeft >= maxScroll - 5;
+      }
+
+      function scrollTrack(direction) {
+        track.scrollBy({
+          left: direction * getScrollAmount(),
+          behavior: 'smooth'
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+          scrollTrack(-1);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+          scrollTrack(1);
+        });
+      }
+
+      track.addEventListener('scroll', updateControls);
+      window.addEventListener('resize', updateControls);
+      updateControls();
+    })();
+
+    // ============================================
     // Mobile Menu Close on Link Click
     // ============================================
     $('.navbar-nav a').on('click', function() {
