@@ -99,6 +99,19 @@
           setNodeText(bioNode, about.bio);
         }
 
+        // Render full bio in the about section
+        var bioFullNode = document.querySelector('[data-about-bio-full]');
+        if (bioFullNode && about.bio_full) {
+          // Split bio_full by newlines to create paragraphs
+          var paragraphs = about.bio_full.split('\n\n').filter(function(p) { return p.trim(); });
+          bioFullNode.innerHTML = paragraphs.map(function(para) {
+            return '<p>' + para.trim() + '</p>';
+          }).join('');
+        } else if (bioFullNode && about.bio) {
+          // Fallback to bio if bio_full is not available
+          bioFullNode.innerHTML = '<p>' + about.bio + '</p>';
+        }
+
         var rolesList = document.querySelector('[data-about-roles]');
         if (rolesList && Array.isArray(about.roles)) {
           rolesList.innerHTML = about.roles.map(function(role) {
