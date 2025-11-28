@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Resume API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 200px;
+            font-family: monospace;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .credentials-stored {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .section-selector {
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Admin Panel - Resume API</h1>
+
+        <!-- Configurar Credenciales -->
+        <div class="section">
+            <h2>1. Configurar Credenciales de Acceso</h2>
+            <div id="credentials-message"></div>
+            <div class="form-group">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" placeholder="admin" value="admin">
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Tu contraseña segura">
+            </div>
+            <button onclick="setupCredentials()">Guardar Credenciales</button>
+        </div>
+
+        <!-- Gestionar Secciones -->
+        <div class="section">
+            <h2>2. Gestionar Secciones del CV</h2>
+            <div id="section-message"></div>
+            
+            <div class="form-group">
+                <label for="section-select">Sección:</label>
+                <select id="section-select" onchange="loadSection()">
+                    <option value="">Selecciona una sección...</option>
+                    <option value="profile">Profile</option>
+                    <option value="about">About</option>
+                    <option value="experience">Experience</option>
+                    <option value="skills">Skills</option>
+                    <option value="education">Education</option>
+                    <option value="portfolio">Portfolio</option>
+                    <option value="contact">Contact</option>
+                    <option value="social">Social</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="section-data">Datos (JSON):</label>
+                <textarea id="section-data" placeholder='{"key": "value"}'></textarea>
+            </div>
+
+            <div class="actions">
+                <button onclick="updateSection()">Actualizar Sección</button>
+                <button class="btn-danger" onclick="deleteSection()">Eliminar Sección</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://api.waldo.panozo.info';
+        let storedCredentials = null;
+
+        // Cargar credenciales guardadas
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('api_credentials');
+            if (saved) {
+                storedCredentials = JSON.parse(saved);
+                showMessage('credentials-message', 'Credenciales guardadas localmente. Puedes usarlas para gestionar secciones.', 'success');
+            }
+        });
+
+        function getCredentials() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            return btoa(`${username}:${password}`);
+        }
+
+        function showMessage(containerId, message, type) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `<div class="message ${type}">${message}</div>`;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        async function setupCredentials() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                showMessage('credentials-message', 'Por favor completa usuario y contraseña', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/admin/auth/setup`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Guardar credenciales localmente
+                    storedCredentials = { username, password };
+                    localStorage.setItem('api_credentials', JSON.stringify(storedCredentials));
+                    showMessage('credentials-message', '✓ Credenciales configuradas exitosamente', 'success');
+                } else {
+                    showMessage('credentials-message', `Error: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showMessage('credentials-message', `Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function loadSection() {
+            const sectionName = document.getElementById('section-select').value;
+            if (!sectionName) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/resume/${sectionName}`);
+                const data = await response.json();
+                
+                document.getElementById('section-data').value = JSON.stringify(data, null, 2);
+            } catch (error) {
+                showMessage('section-message', `Error al cargar: ${error.message}`, 'error');
+            }
+        }
+
+        async function updateSection() {
+            const sectionName = document.getElementById('section-select').value;
+            const sectionData = document.getElementById('section-data').value;
+
+            if (!sectionName) {
+                showMessage('section-message', 'Por favor selecciona una sección', 'error');
+                return;
+            }
+
+            if (!sectionData) {
+                showMessage('section-message', 'Por favor ingresa los datos JSON', 'error');
+                return;
+            }
+
+            let payload;
+            try {
+                payload = JSON.parse(sectionData);
+            } catch (e) {
+                showMessage('section-message', 'JSON inválido. Por favor verifica el formato', 'error');
+                return;
+            }
+
+            // Usar credenciales guardadas o las del formulario
+            const credentials = storedCredentials 
+                ? btoa(`${storedCredentials.username}:${storedCredentials.password}`)
+                : getCredentials();
+
+            try {
+                const response = await fetch(`${API_BASE}/admin/sections/${sectionName}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Basic ${credentials}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ payload })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('section-message', '✓ Sección actualizada exitosamente', 'success');
+                } else if (response.status === 401) {
+                    showMessage('section-message', 'Error: Credenciales inválidas. Configura las credenciales primero.', 'error');
+                } else {
+                    showMessage('section-message', `Error: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showMessage('section-message', `Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function deleteSection() {
+            const sectionName = document.getElementById('section-select').value;
+
+            if (!sectionName) {
+                showMessage('section-message', 'Por favor selecciona una sección', 'error');
+                return;
+            }
+
+            if (!confirm(`¿Estás seguro de eliminar la sección "${sectionName}"?`)) {
+                return;
+            }
+
+            const credentials = storedCredentials 
+                ? btoa(`${storedCredentials.username}:${storedCredentials.password}`)
+                : getCredentials();
+
+            try {
+                const response = await fetch(`${API_BASE}/admin/sections/${sectionName}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Basic ${credentials}`
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('section-message', '✓ Sección eliminada exitosamente', 'success');
+                    document.getElementById('section-select').value = '';
+                    document.getElementById('section-data').value = '';
+                } else if (response.status === 401) {
+                    showMessage('section-message', 'Error: Credenciales inválidas', 'error');
+                } else {
+                    showMessage('section-message', `Error: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showMessage('section-message', `Error: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
+
