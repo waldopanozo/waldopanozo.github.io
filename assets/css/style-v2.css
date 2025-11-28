@@ -829,6 +829,15 @@ ul {
   transition: var(--transition);
 }
 
+.portfolio-image-clickable {
+  cursor: pointer;
+}
+
+.portfolio-image-clickable:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
 .portfolio-card:hover .portfolio-image img {
   transform: scale(1.1);
 }

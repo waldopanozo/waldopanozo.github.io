@@ -305,11 +305,13 @@
             : '';
 
           var links = [];
+          // Add search icon for lightbox if image exists
           if (item.image) {
-            links.push('<a href="' + item.image + '" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>');
+            links.push('<a href="' + item.image + '" class="portfolio-link portfolio-lightbox-link" data-lightbox-src="' + item.image + '"><i class="fa fa-search"></i></a>');
           }
+          // Add external link icon if link exists
           if (item.link) {
-            links.push('<a href="' + item.link + '" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>');
+            links.push('<a href="' + item.link + '" target="_blank" class="portfolio-link" onclick="event.stopPropagation();"><i class="fa fa-external-link"></i></a>');
           }
 
           return (
@@ -328,6 +330,72 @@
             '</div>'
           );
         }).join('');
+
+        // Add click handlers for lightbox links after rendering
+        track.querySelectorAll('.portfolio-lightbox-link').forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var imgSrc = this.getAttribute('data-lightbox-src');
+            openLightbox(imgSrc);
+          });
+        });
+      }
+
+      function openLightbox(imgSrc) {
+        // Create lightbox overlay
+        var lightbox = document.createElement('div');
+        lightbox.className = 'lightbox-overlay';
+        lightbox.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; cursor: pointer;';
+        
+        var lightboxImg = document.createElement('img');
+        lightboxImg.src = imgSrc;
+        lightboxImg.className = 'lightbox-image';
+        lightboxImg.style.cssText = 'max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);';
+        
+        var lightboxClose = document.createElement('span');
+        lightboxClose.className = 'lightbox-close';
+        lightboxClose.innerHTML = '&times;';
+        lightboxClose.style.cssText = 'position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001; line-height: 1;';
+        
+        lightbox.appendChild(lightboxImg);
+        lightbox.appendChild(lightboxClose);
+        document.body.appendChild(lightbox);
+        document.body.style.overflow = 'hidden';
+        
+        // Close on click (overlay or close button)
+        function closeLightbox() {
+          lightbox.style.opacity = '0';
+          setTimeout(function() {
+            lightbox.remove();
+            document.body.style.overflow = 'auto';
+          }, 300);
+        }
+        
+        lightboxClose.addEventListener('click', function(e) {
+          e.stopPropagation();
+          closeLightbox();
+        });
+        
+        lightbox.addEventListener('click', function(e) {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+        
+        // Close on ESC key
+        function handleEsc(e) {
+          if (e.key === 'Escape') {
+            closeLightbox();
+            document.removeEventListener('keydown', handleEsc);
+          }
+        }
+        document.addEventListener('keydown', handleEsc);
+        
+        // Fade in
+        setTimeout(function() {
+          lightbox.style.opacity = '1';
+          lightbox.style.transition = 'opacity 0.3s ease';
+        }, 10);
       }
 
       function sanitizeWhatsapp(number) {
