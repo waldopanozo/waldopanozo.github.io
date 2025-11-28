@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">WALDO M. PANOZO</a>
+          <a class="navbar-brand" href="/" data-profile-field="name" data-profile-transform="uppercase">WALDO M. PANOZO</a>
         </div>
         <div class="navbar-collapse collapse" id="main-nav-collapse">
           <div class="nav-menu-wrapper">
@@ -93,9 +93,9 @@
               <div class="hero-photo">
                 <img src="assets/img/profile_1.jpg" alt="Waldo M. Panozo">
               </div>
-              <div class="hero-badge">Software Engineer</div>
+              <div class="hero-badge" data-profile-field="headline">Software Engineer</div>
               <h1 class="hero-title">Building <span class="highlight">sustainable, scalable, and maintainable</span> software</h1>
-              <p class="hero-subtitle">Senior Software Engineer with 15+ years designing high-impact solutions with PHP, Java, JavaScript, and REST services. I love driving measurable results through clean architecture, modern frameworks, and collaborative leadership—whether remotely or on-site.</p>
+              <p class="hero-subtitle" data-profile-field="summary">Senior Software Engineer with 15+ years designing high-impact solutions with PHP, Java, JavaScript, and REST services. I love driving measurable results through clean architecture, modern frameworks, and collaborative leadership—whether remotely or on-site.</p>
               <div class="hero-cta">
                 <a
                   href="assets/docs/Resume%20Waldo%20Panozo%20Ramirez.pdf"
@@ -108,7 +108,7 @@
                 </a>
                 <a href="#contact" class="btn btn-outline btn-lg">Contact Me</a>
               </div>
-              <div class="hero-stats">
+              <div class="hero-stats" data-profile-stats>
                 <div class="stat-item">
                   <div class="stat-number">15+</div>
                   <div class="stat-label">Years Experience</div>
@@ -141,7 +141,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">Software Engineer with 15+ years of experience developing sustainable, scalable, and maintainable software</p>
+            <p class="section-subtitle" data-about-bio>Software Engineer with 15+ years of experience developing sustainable, scalable, and maintainable software</p>
           </div>
         </div>
         <div class="row mt-60">
@@ -153,7 +153,7 @@
               <h3>Professional Profile</h3>
               <p>I'm <strong>Waldo M. Panozo</strong>, a Senior Software Engineer with <strong>15+ years of experience</strong> designing and scaling products with PHP, Java, JavaScript, and modern REST architectures. I thrive on translating business goals into resilient engineering roadmaps, mentoring teams, and delivering measurable impact.</p>
               <p class="mt-30">Remote-first collaboration energizes me, yet I'm equally enthusiastic about relocating when it creates bigger outcomes for my family and the teams I support.</p>
-              <ul class="role-list">
+              <ul class="role-list" data-about-roles>
                 <li><i class="fa fa-check-circle"></i> <strong>Senior Software Engineer</strong> · Owning end-to-end features, search experiences, and analytics improvements</li>
                 <li><i class="fa fa-check-circle"></i> <strong>Tech Lead</strong> · Coaching teams, driving architecture decisions, coordinating cross-squad delivery</li>
                 <li><i class="fa fa-check-circle"></i> <strong>Software Development Lead</strong> · Building tools that serve 80K+ authenticated users and 15K+ scholarship applicants per year</li>
@@ -162,7 +162,7 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <div class="about-highlights">
+            <div class="about-highlights" data-about-achievements>
               <h3>Key Achievements</h3>
               <div class="highlight-item">
                 <div class="highlight-icon">
@@ -227,7 +227,7 @@
         </div>
         <div class="row mt-60">
           <div class="col-lg-10 col-lg-offset-1">
-            <div class="timeline">
+            <div class="timeline" data-experience-list>
               <div class="timeline-item">
                 <div class="timeline-year">2023 - Present</div>
                 <div class="timeline-content">
@@ -367,7 +367,7 @@
             <p class="section-subtitle">Technical expertise acquired through 15+ years of practical experience</p>
           </div>
         </div>
-        <div class="row mt-60">
+        <div class="row mt-60" data-skills-primary>
           <div class="col-lg-4 col-md-6">
             <div class="skill-category">
               <div class="skill-icon">
@@ -405,7 +405,7 @@
             </div>
           </div>
         </div>
-        <div class="row mt-60">
+        <div class="row mt-60" data-skills-secondary>
           <div class="col-lg-6 col-md-6">
             <div class="skill-category">
               <div class="skill-icon">
@@ -433,7 +433,7 @@
         </div>
         <div class="row mt-60">
           <div class="col-lg-12">
-            <div class="tech-showcase">
+            <div class="tech-showcase" data-skills-additional>
               <h3 class="text-center mb-40">Additional Technologies</h3>
               <div class="row">
                 <div class="col-lg-3 col-md-6">
@@ -482,7 +482,7 @@
         </div>
         <div class="row mt-60">
           <div class="col-lg-10 col-lg-offset-1">
-            <div class="education-timeline">
+            <div class="education-timeline" data-education-list>
               <div class="education-item">
                 <div class="education-year">Present</div>
                 <div class="education-content">
@@ -551,7 +551,7 @@
             <i class="fa fa-chevron-left"></i>
           </button>
           <div class="portfolio-window">
-            <div class="portfolio-track" id="portfolio-track">
+          <div class="portfolio-track" id="portfolio-track" data-portfolio-track>
             <div class="portfolio-slide">
               <div class="portfolio-card">
                 <div class="portfolio-image">
@@ -711,7 +711,7 @@
             <p class="section-subtitle">Interested in working together? I really like the possibility of remote work, but the possibility of relocation is very attractive to me and my family</p>
           </div>
         </div>
-        <div class="contact-grid mt-60">
+        <div class="contact-grid mt-60" data-contact-grid>
           <div class="contact-card contact-card--accent">
             <div class="contact-icon">
               <i class="fa fa-envelope"></i>
@@ -765,7 +765,7 @@
           <div class="col-lg-12 text-center">
             <div class="social-links">
               <h3>Follow me on</h3>
-              <div class="social-icons">
+            <div class="social-icons" data-social-links>
                 <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank" class="social-icon" title="LinkedIn">
                   <i class="fa fa-linkedin"></i>
                 </a>

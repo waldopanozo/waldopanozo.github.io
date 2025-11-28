@@ -1,0 +1,298 @@
+{
+  "profile": {
+    "name": "Waldo Miguel Panozo",
+    "headline": "Senior Software Engineer",
+    "summary": "Senior Software Engineer with 15+ years designing high-impact solutions with PHP, Java, JavaScript, and REST services. I love driving measurable results through clean architecture, modern frameworks, and collaborative leadership—whether remotely or on-site.",
+    "location": "Asunción, Paraguay (GMT-3)",
+    "availability": ["Remote Work", "Relocation"],
+    "stats": [
+      { "label": "Years Experience", "value": "15+" },
+      { "label": "Transactions/Year", "value": "20M+" },
+      { "label": "Active Users", "value": "90K+" },
+      { "label": "Productivity Gain", "value": "70%" }
+    ]
+  },
+  "about": {
+    "bio": "I'm Waldo M. Panozo, a Senior Software Engineer with 15+ years of experience designing and scaling products with PHP, Java, JavaScript, and modern REST architectures.",
+    "achievements": [
+      {
+        "title": "Vehicle Search Launch",
+        "description": "Led the delivery of a multi-tenant vehicle search experience highlighted at SEMA 2025."
+      },
+      {
+        "title": "+70% Productivity",
+        "description": "Built an agile orchestration platform that increased productivity by at least 70%."
+      },
+      {
+        "title": "Hackathon Wins",
+        "description": "Two-time Revolution Parts hackathon winner for caching and AI initiatives."
+      },
+      {
+        "title": "80K+ Users Served",
+        "description": "Delivered biometric control and scholarship platforms supporting 80K+ users."
+      }
+    ],
+    "roles": [
+      "Senior Software Engineer",
+      "Tech Lead",
+      "Software Development Lead",
+      "IT Manager"
+    ]
+  },
+  "experience": [
+    {
+      "company": "Revolution Parts",
+      "location": "Canada / USA (Assuresoft Paraguay)",
+      "period": "January 2023 – Present",
+      "timeline_label": "2023 - Present",
+      "roles": [
+        {
+          "title": "Senior Software Engineer",
+          "period": "December 2023 – Present",
+          "highlights": [
+            "Launched a new multi-tenant vehicle search experience showcased at SEMA 2025.",
+            "Improved GMV conversions by 13.7% through SEO and analytics instrumentation.",
+            "Won company hackathon twice by delivering caching optimizations and AI tooling."
+          ]
+        },
+        {
+          "title": "Tech Lead",
+          "period": "February 2025 – May 2025",
+          "highlights": [
+            "Onboarded new team members and restructured the GMV squad until leadership hire.",
+            "Coordinated sprint rituals, PR reviews, and cross-team HLD to align delivery."
+          ]
+        }
+      ],
+      "tech_stack": ["PHP", "Laravel", "Slim", "Python", "React", "Redis", "Elasticsearch", "Docker", "GitHub Actions", "Go", "Cypress", "Linux"]
+    },
+    {
+      "company": "Public University “Mayor de San Simón”",
+      "location": "Cochabamba, Bolivia",
+      "period": "January 2017 – December 2023",
+      "timeline_label": "2017 - 2023",
+      "roles": [
+        {
+          "title": "Software Development Lead",
+          "period": "April 2021 – December 2023",
+          "highlights": [
+            "Boosted productivity by 70% via a digital workflow platform.",
+            "Designed provider administration portals reducing request time from 15 to 5 days.",
+            "Led scholarship services serving 15K+ students annually."
+          ]
+        },
+        {
+          "title": "Senior Software Developer",
+          "period": "January 2017 – April 2021",
+          "highlights": [
+            "Implemented biometric-enabled support control for 80K+ users.",
+            "Created dynamic survey platform mixing SQL and NoSQL storage.",
+            "Built the university’s first API enabling 20M+ yearly transactions."
+          ]
+        }
+      ],
+      "tech_stack": ["PHP", "Yii2", "Java", "Spring Boot", "Angular", "React", "jQuery", "PostgreSQL", "GitLab", "Jenkins"]
+    },
+    {
+      "company": "Bilingual Communications (BICOM USA)",
+      "location": "Remote",
+      "period": "January 2008 – April 2016",
+      "timeline_label": "2008 - 2016",
+      "roles": [
+        {
+          "title": "Senior Software Engineer (Contractor)",
+          "period": "August 2015 – April 2016",
+          "highlights": [
+            "Created a call recording platform combining hardware and software.",
+            "Built a real-estate catalog with recommendation engine driven by engagement."
+          ]
+        },
+        {
+          "title": "IT Manager",
+          "period": "January 2010 – January 2014",
+          "highlights": [
+            "Reduced communication and operations expenses by 70% using VoIP and broadband upgrades."
+          ]
+        },
+        {
+          "title": "Software Engineer",
+          "period": "January 2008 – December 2009",
+          "highlights": [
+            "Maintained corporate website with lead workflows.",
+            "Developed an SMS marketing platform with reusable templates."
+          ]
+        }
+      ],
+      "tech_stack": ["PHP", "Yii2", "jQuery", "MySQL"]
+    },
+    {
+      "company": "Menuocity (USA)",
+      "location": "Remote",
+      "period": "February 2014 – March 2015",
+      "timeline_label": "2014 - 2015",
+      "roles": [
+        {
+          "title": "Principal Software Engineer",
+          "period": "February 2014 – March 2015",
+          "highlights": [
+            "Developed the primary ordering site with automated notifications for restaurant managers."
+          ]
+        }
+      ],
+      "tech_stack": ["PHP", "Yii2", "JavaScript", "MySQL"]
+    },
+    {
+      "company": "Iventiva",
+      "location": "Remote",
+      "period": "February 2011 – August 2011",
+      "timeline_label": "2011",
+      "roles": [
+        {
+          "title": "Software Engineer",
+          "period": "February 2011 – August 2011",
+          "highlights": [
+            "Built CuisineLinks, a social recipe-sharing platform with guided publishing flows."
+          ]
+        }
+      ],
+      "tech_stack": ["Java", "Spring", "jQuery", "MySQL"]
+    },
+    {
+      "company": "Intersoft",
+      "location": "Remote",
+      "period": "June 2009 – March 2010",
+      "timeline_label": "2009 - 2010",
+      "roles": [
+        {
+          "title": "Software Engineer",
+          "period": "June 2009 – March 2010",
+          "highlights": [
+            "Developed a DOLE field-tracking platform monitoring ISO compliance."
+          ]
+        }
+      ],
+      "tech_stack": ["Java", "WebObjects", "Oracle", "MySQL"]
+    }
+  ],
+  "skills": {
+    "programming_languages": {
+      "advanced": ["JavaScript (12+ YOE)", "PHP (15+ YOE)", "Java (8+ YOE)", "Python (5+ YOE)"],
+      "intermediate": ["C# (4+ YOE)"]
+    },
+    "frameworks": {
+      "advanced": ["ASP.NET", "Yii2", "jQuery"],
+      "intermediate": ["REST APIs", "Laravel", "Django", "React", "React Native"]
+    },
+    "databases": {
+      "advanced": ["MySQL", "MariaDB", "PostgreSQL"],
+      "intermediate": ["Oracle", "SQLite"]
+    },
+    "project_management": {
+      "advanced": ["Scrum", "Requirements Analysis", "Business Process"],
+      "intermediate": ["Kanban", "Design Thinking"]
+    },
+    "languages": {
+      "upper_intermediate": ["English"],
+      "native": ["Spanish"]
+    },
+    "additional": {
+      "Version Control": ["GitLab", "GitHub", "Git"],
+      "CI/CD": ["Jenkins", "Automated Pipelines"],
+      "APIs & Microservices": ["REST APIs", "Load Balancing", "Proxy"],
+      "Mobile & Web": ["React Native", "Mobile Applications"]
+    }
+  },
+  "education": [
+    {
+      "title": "Ph.D. Business Science",
+      "institution": "Public University \"Mariscal Jose Ballivian\"",
+      "status": "In progress",
+      "notes": "Doctorate in Business Science - In progress"
+    },
+    {
+      "title": "MSc. AI, Machine Learning & Data Science",
+      "institution": "Public University \"El Alto\", Bolivia",
+      "status": "In progress",
+      "notes": "Master's studies focused on AI, ML, and Data Science - In progress"
+    },
+    {
+      "title": "MSc. Telematics",
+      "institution": "Public University \"Mayor de San Simón\"",
+      "status": "2010"
+    },
+    {
+      "title": "International Leadership Training Program",
+      "institution": "Georgetown University, USA",
+      "status": "2012"
+    },
+    {
+      "title": "Postgraduate Diploma Higher Education",
+      "institution": "Public University \"Mayor de San Simón\"",
+      "status": "2018"
+    },
+    {
+      "title": "Bachelor of Telecommunication Engineering",
+      "institution": "Private University \"Aquino Bolivia\"",
+      "status": "2008"
+    }
+  ],
+  "portfolio": [
+    {
+      "title": "RESTful API with PHP Slim",
+      "description": "RESTful API using PHP Slim, Composer, and SQLite with clean architecture.",
+      "tags": ["PHP", "Slim", "REST API", "SQLite"],
+      "image": "assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg",
+      "link": "https://github.com/waldopanozo/php-slim-rest-sqlite"
+    },
+    {
+      "title": "Tic Tac Toe Game",
+      "description": "Classic Tic Tac Toe built with React focusing on state management.",
+      "tags": ["React", "JavaScript", "Game Development"],
+      "image": "assets/samples/react/tictactoe/tictactoe.png",
+      "link": "https://waldopanozo.github.io/assets/samples/react/tictactoe/index.html"
+    },
+    {
+      "title": "Calculator App",
+      "description": "Functional calculator in React with precise calculations.",
+      "tags": ["React", "UI/UX", "JavaScript"],
+      "image": "assets/samples/react/calculator/calculator.png",
+      "link": "https://waldopanozo.github.io/assets/samples/react/calculator/index.html"
+    },
+    {
+      "title": "Accordion Component",
+      "description": "Reusable accordion component optimized for performance and accessibility.",
+      "tags": ["React", "Components", "GitLab"],
+      "image": "assets/samples/react/accordion/accordion.png",
+      "link": "https://gitlab.com/waldo.panozo/list_items_accordion"
+    },
+    {
+      "title": "Christmas Countdown Timer",
+      "description": "Countdown timer with festive UI and animations.",
+      "tags": ["React", "Timer", "Animations"],
+      "image": "assets/samples/react/xmas_timer/xmas_timer.png",
+      "link": "https://gitlab.com/waldo.panozo/countdown_xmas"
+    },
+    {
+      "title": "Mortgage Calculator",
+      "description": "Mortgage calculator handling complex financial calculations.",
+      "tags": ["React", "Finance", "Calculations"],
+      "image": "assets/samples/react/mortgage_calc/mortgage_calc.png",
+      "link": "https://gitlab.com/waldo.panozo/mortgage_calc_react"
+    }
+  ],
+  "contact": {
+    "email": "waldo.panozo@gmail.com",
+    "whatsapp_bolivia": "+59177499919",
+    "whatsapp_paraguay": "+595984039973",
+    "location": "Asunción, Paraguay",
+    "timezone": "GMT-3"
+  },
+  "social": [
+    { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/waldopanozo/" },
+    { "platform": "GitHub", "url": "https://github.com/waldopanozo" },
+    { "platform": "Blog", "url": "https://ezdevelopment.com" },
+    { "platform": "Facebook", "url": "https://www.facebook.com/waldopanozo" },
+    { "platform": "Twitter", "url": "https://twitter.com/waldopanozo" }
+  ]
+}
+

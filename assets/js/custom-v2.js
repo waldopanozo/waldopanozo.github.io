@@ -7,6 +7,445 @@
   'use strict';
 
   $(document).ready(function() {
+    // ============================================
+    // Resume API Integration
+    // ============================================
+    (function integrateResumeApi() {
+      if (!window.fetch) {
+        console.warn('Resume API integration skipped: fetch not supported.');
+        return;
+      }
+
+      var defaultBaseUrl = 'http://localhost:8081';
+      var apiBase = (window.__RESUME_API_BASE_URL__ || defaultBaseUrl).replace(/\/$/, '');
+      var fallbackUrl = (window.__RESUME_FALLBACK_URL__ || 'assets/data/resume-fallback.json').replace(/^\//, '');
+
+      var SKILL_CARD_META = {
+        programming_languages: { title: 'Programming Languages', icon: 'fa fa-code' },
+        frameworks: { title: 'Frameworks & Tools', icon: 'fa fa-cogs' },
+        databases: { title: 'Databases', icon: 'fa fa-database' },
+        project_management: { title: 'Project Management', icon: 'fa fa-tasks' },
+        languages: { title: 'Languages', icon: 'fa fa-language' },
+      };
+
+      var SOCIAL_ICONS = {
+        linkedin: 'fa fa-linkedin',
+        github: 'fa fa-github',
+        blog: 'fa fa-globe',
+        facebook: 'fa fa-facebook',
+        twitter: 'fa fa-twitter',
+        x: 'fa fa-twitter',
+      };
+
+      function setNodeText(node, value, transform) {
+        if (!node || typeof value === 'undefined' || value === null) {
+          return;
+        }
+
+        if (Array.isArray(value)) {
+          value = value.join(' · ');
+        }
+
+        var finalValue = value;
+        var nodeTransform = transform || node.dataset.profileTransform;
+        if (nodeTransform === 'uppercase' && typeof finalValue === 'string') {
+          finalValue = finalValue.toUpperCase();
+        }
+
+        node.textContent = finalValue;
+      }
+
+      function renderStats(stats) {
+        var container = document.querySelector('[data-profile-stats]');
+        if (!container || !Array.isArray(stats) || !stats.length) {
+          return;
+        }
+
+        container.innerHTML = stats.map(function(stat) {
+          if (!stat || !stat.value || !stat.label) {
+            return '';
+          }
+
+          return (
+            '<div class="stat-item">' +
+              '<div class="stat-number">' + stat.value + '</div>' +
+              '<div class="stat-label">' + stat.label + '</div>' +
+            '</div>'
+          );
+        }).join('');
+      }
+
+      function hydrateProfile(profile) {
+        if (!profile || typeof profile !== 'object') {
+          return;
+        }
+
+        document.querySelectorAll('[data-profile-field]').forEach(function(node) {
+          var field = node.dataset.profileField;
+          if (!field) return;
+          setNodeText(node, profile[field]);
+        });
+
+        renderStats(profile.stats);
+      }
+
+      function hydrateAbout(about) {
+        if (!about || typeof about !== 'object') {
+          return;
+        }
+
+        var bioNode = document.querySelector('[data-about-bio]');
+        if (bioNode && about.bio) {
+          setNodeText(bioNode, about.bio);
+        }
+
+        var rolesList = document.querySelector('[data-about-roles]');
+        if (rolesList && Array.isArray(about.roles)) {
+          rolesList.innerHTML = about.roles.map(function(role) {
+            return '<li><i class="fa fa-check-circle"></i> <strong>' + role + '</strong></li>';
+          }).join('');
+        }
+
+        var highlightsWrapper = document.querySelector('[data-about-achievements]');
+        if (highlightsWrapper && Array.isArray(about.achievements)) {
+          highlightsWrapper.innerHTML = about.achievements.map(function(item) {
+            if (!item || !item.title || !item.description) {
+              return '';
+            }
+
+            return (
+              '<div class="highlight-item">' +
+                '<div class="highlight-icon"><i class="fa fa-star"></i></div>' +
+                '<div class="highlight-content">' +
+                  '<h4>' + item.title + '</h4>' +
+                  '<p>' + item.description + '</p>' +
+                '</div>' +
+              '</div>'
+            );
+          }).join('');
+        }
+      }
+
+      function renderExperience(experience) {
+        var timeline = document.querySelector('[data-experience-list]');
+        if (!timeline || !Array.isArray(experience)) {
+          return;
+        }
+
+        timeline.innerHTML = experience.map(function(job) {
+          if (!job) return '';
+
+          var rolesHtml = (job.roles || []).map(function(role) {
+            if (!role || !role.title) return '';
+
+            var highlights = Array.isArray(role.highlights)
+              ? '<ul>' + role.highlights.map(function(point) {
+                  return '<li>' + point + '</li>';
+                }).join('') + '</ul>'
+              : '';
+
+            return (
+              '<div class="role-block">' +
+                '<h5>' + role.title + (role.period ? ' · ' + role.period : '') + '</h5>' +
+                highlights +
+              '</div>'
+            );
+          }).join('');
+
+          var techStack = Array.isArray(job.tech_stack) && job.tech_stack.length
+            ? '<div class="tech-stack-badge"><strong>Tech Stack:</strong> ' + job.tech_stack.join(', ') + '</div>'
+            : '';
+
+          return (
+            '<div class="timeline-item">' +
+              '<div class="timeline-year">' + (job.timeline_label || job.period || '') + '</div>' +
+              '<div class="timeline-content">' +
+                '<h3>' + (job.company || '') + '</h3>' +
+                (job.location || job.period ? '<h4>' + [job.location, job.period].filter(Boolean).join(' | ') + '</h4>' : '') +
+                rolesHtml +
+                techStack +
+              '</div>' +
+            '</div>'
+          );
+        }).join('');
+      }
+
+      function capitalize(text) {
+        if (typeof text !== 'string') return text;
+        return text.charAt(0).toUpperCase() + text.slice(1);
+      }
+
+      function buildSkillLines(skillGroup) {
+        if (!skillGroup || typeof skillGroup !== 'object') return '';
+
+        return Object.keys(skillGroup).map(function(level) {
+          var entries = skillGroup[level];
+          if (!Array.isArray(entries) || !entries.length) {
+            return '';
+          }
+
+          var label = capitalize(level.replace(/_/g, ' '));
+          return '<li><strong>' + label + ':</strong> ' + entries.join(', ') + '</li>';
+        }).join('');
+      }
+
+      function renderSkillColumns(keys, skills, columnClass) {
+        return keys.map(function(key) {
+          var data = skills[key];
+          if (!data) return '';
+
+          var meta = SKILL_CARD_META[key] || { title: capitalize(key.replace(/_/g, ' ')), icon: 'fa fa-cogs' };
+          var listItems = buildSkillLines(data);
+          if (!listItems) return '';
+
+          return (
+            '<div class="' + columnClass + '">' +
+              '<div class="skill-category">' +
+                '<div class="skill-icon"><i class="' + meta.icon + '"></i></div>' +
+                '<h3>' + meta.title + '</h3>' +
+                '<ul class="skill-list">' + listItems + '</ul>' +
+              '</div>' +
+            '</div>'
+          );
+        }).join('');
+      }
+
+      function renderSkills(skills) {
+        if (!skills || typeof skills !== 'object') {
+          return;
+        }
+
+        var primaryRow = document.querySelector('[data-skills-primary]');
+        if (primaryRow) {
+          primaryRow.innerHTML = renderSkillColumns(
+            ['programming_languages', 'frameworks', 'databases'],
+            skills,
+            'col-lg-4 col-md-6'
+          );
+        }
+
+        var secondaryRow = document.querySelector('[data-skills-secondary]');
+        if (secondaryRow) {
+          secondaryRow.innerHTML = renderSkillColumns(
+            ['project_management', 'languages'],
+            skills,
+            'col-lg-6 col-md-6'
+          );
+        }
+
+        var additionalWrapper = document.querySelector('[data-skills-additional]');
+        if (additionalWrapper && skills.additional) {
+          var additionalHtml = Object.keys(skills.additional).map(function(name) {
+            var items = skills.additional[name];
+            if (!Array.isArray(items) || !items.length) return '';
+
+            return (
+              '<div class="col-lg-3 col-md-6">' +
+                '<div class="tech-item">' +
+                  '<i class="fa fa-check-square-o"></i>' +
+                  '<h4>' + name + '</h4>' +
+                  '<p>' + items.join(', ') + '</p>' +
+                '</div>' +
+              '</div>'
+            );
+          }).join('');
+
+          additionalWrapper.innerHTML = '<h3 class="text-center mb-40">Additional Technologies</h3><div class="row">' + additionalHtml + '</div>';
+        }
+      }
+
+      function renderEducation(education) {
+        var timeline = document.querySelector('[data-education-list]');
+        if (!timeline || !Array.isArray(education)) {
+          return;
+        }
+
+        timeline.innerHTML = education.map(function(entry) {
+          if (!entry) return '';
+
+          return (
+            '<div class="education-item">' +
+              '<div class="education-year">' + (entry.status || '') + '</div>' +
+              '<div class="education-content">' +
+                '<h3>' + (entry.title || '') + '</h3>' +
+                '<h4>' + (entry.institution || '') + '</h4>' +
+                (entry.notes ? '<p>' + entry.notes + '</p>' : '') +
+              '</div>' +
+            '</div>'
+          );
+        }).join('');
+      }
+
+      function renderPortfolio(portfolio) {
+        var track = document.querySelector('[data-portfolio-track]');
+        if (!track || !Array.isArray(portfolio)) {
+          return;
+        }
+
+        track.innerHTML = portfolio.map(function(item) {
+          if (!item) return '';
+
+          var tags = Array.isArray(item.tags)
+            ? item.tags.map(function(tag) {
+                return '<span class="tag">' + tag + '</span>';
+              }).join('')
+            : '';
+
+          var links = [];
+          if (item.image) {
+            links.push('<a href="' + item.image + '" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>');
+          }
+          if (item.link) {
+            links.push('<a href="' + item.link + '" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>');
+          }
+
+          return (
+            '<div class="portfolio-slide">' +
+              '<div class="portfolio-card">' +
+                '<div class="portfolio-image">' +
+                  (item.image ? '<img src="' + item.image + '" alt="' + (item.title || 'Portfolio item') + '">' : '') +
+                  (links.length ? '<div class="portfolio-overlay"><div class="portfolio-links">' + links.join('') + '</div></div>' : '') +
+                '</div>' +
+                '<div class="portfolio-content">' +
+                  '<h3>' + (item.title || '') + '</h3>' +
+                  '<p>' + (item.description || '') + '</p>' +
+                  '<div class="portfolio-tags">' + tags + '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>'
+          );
+        }).join('');
+      }
+
+      function sanitizeWhatsapp(number) {
+        if (typeof number !== 'string') return null;
+        return number.replace(/[^\d]/g, '');
+      }
+
+      function renderContact(contact, profile) {
+        var grid = document.querySelector('[data-contact-grid]');
+        if (!grid || !contact) {
+          return;
+        }
+
+        var cards = [];
+        if (contact.email) {
+          cards.push({
+            icon: 'fa fa-envelope',
+            title: 'Email',
+            content: '<a href="mailto:' + contact.email + '">' + contact.email + '</a>',
+          });
+        }
+
+        if (contact.whatsapp_bolivia) {
+          var boliviaNumber = sanitizeWhatsapp(contact.whatsapp_bolivia);
+          var boliviaContent = boliviaNumber
+            ? '<a href="https://wa.me/' + boliviaNumber + '" target="_blank">' + contact.whatsapp_bolivia + '</a>'
+            : contact.whatsapp_bolivia;
+          cards.push({
+            icon: 'fa fa-whatsapp',
+            title: 'WhatsApp Bolivia',
+            content: boliviaContent,
+          });
+        }
+
+        if (contact.whatsapp_paraguay) {
+          var paraguayNumber = sanitizeWhatsapp(contact.whatsapp_paraguay);
+          var paraguayContent = paraguayNumber
+            ? '<a href="https://wa.me/' + paraguayNumber + '" target="_blank">' + contact.whatsapp_paraguay + '</a>'
+            : contact.whatsapp_paraguay;
+          cards.push({
+            icon: 'fa fa-whatsapp',
+            title: 'WhatsApp Paraguay',
+            content: paraguayContent,
+          });
+        }
+
+        if (contact.location || contact.timezone) {
+          cards.push({
+            icon: 'fa fa-map-marker',
+            title: 'Location',
+            content: (contact.location || '') + (contact.timezone ? '<br>(' + contact.timezone + ')' : ''),
+          });
+        }
+
+        if (profile && Array.isArray(profile.availability) && profile.availability.length) {
+          cards.push({
+            icon: 'fa fa-globe',
+            title: 'Availability',
+            content: profile.availability.join('<br>'),
+          });
+        }
+
+        grid.innerHTML = cards.map(function(card) {
+          if (!card.content) return '';
+
+          return (
+            '<div class="contact-card' + (card.icon === 'fa fa-envelope' ? ' contact-card--accent' : '') + '">' +
+              '<div class="contact-icon"><i class="' + card.icon + '"></i></div>' +
+              '<h3>' + card.title + '</h3>' +
+              '<p>' + card.content + '</p>' +
+            '</div>'
+          );
+        }).join('');
+      }
+
+      function renderSocial(social) {
+        var container = document.querySelector('[data-social-links]');
+        if (!container || !Array.isArray(social)) {
+          return;
+        }
+
+        container.innerHTML = social.map(function(item) {
+          if (!item || !item.url) return '';
+
+          var iconKey = item.platform ? item.platform.toLowerCase() : '';
+          var icon = SOCIAL_ICONS[iconKey] || 'fa fa-globe';
+
+          return (
+            '<a href="' + item.url + '" target="_blank" class="social-icon" title="' + (item.platform || 'Social') + '">' +
+              '<i class="' + icon + '"></i>' +
+            '</a>'
+          );
+        }).join('');
+      }
+
+      function requestJson(url, options) {
+        return fetch(url, options).then(function(response) {
+          if (!response.ok) {
+            throw new Error('Request to ' + url + ' failed with status ' + response.status);
+          }
+          return response.json();
+        });
+      }
+
+      function fetchResume() {
+        return requestJson(apiBase + '/resume', {
+          headers: { 'Accept': 'application/json' },
+          cache: 'no-store',
+        }).catch(function(error) {
+          console.warn('Resume API unavailable, falling back to local JSON.', error);
+          return requestJson('/' + fallbackUrl, { cache: 'no-store' });
+        });
+      }
+
+      fetchResume()
+        .then(function(data) {
+          data = data || {};
+          hydrateProfile(data.profile || {});
+          hydrateAbout(data.about || {});
+          renderExperience(data.experience || []);
+          renderSkills(data.skills || {});
+          renderEducation(data.education || []);
+          renderPortfolio(data.portfolio || []);
+          renderContact(data.contact || {}, data.profile || {});
+          renderSocial(data.social || []);
+          animateOnScroll();
+        })
+        .catch(function(error) {
+          console.warn('Unable to load resume data from API:', error);
+        });
+    })();
     
     // ============================================
     // Smooth Scrolling for Navigation Links
