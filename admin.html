@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Resume API</title>
+    <title>Admin Panel - Resume API</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #0f172a;
+            --primary-light: #60a5fa;
+            --secondary-color: #0ea5e9;
+            --accent-color: #38bdf8;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --text-light: #94a3b8;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.12);
+            --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.18);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,177 +34,304 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e0e7ff 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--text-dark);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
         }
 
         h1 {
-            color: #333;
-            margin-bottom: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
         }
 
         .section {
             margin-bottom: 40px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 8px;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-md);
         }
 
         .section h2 {
-            color: #667eea;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--primary-color);
             margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--primary-color);
+            border-radius: 2px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
+            color: var(--text-dark);
             font-weight: 500;
+            font-size: 0.95rem;
         }
 
-        input, textarea {
+        input, textarea, select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             font-size: 14px;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--bg-white);
+            color: var(--text-dark);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         textarea {
-            min-height: 200px;
-            font-family: monospace;
+            min-height: 300px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            resize: vertical;
         }
 
         button {
-            background: #667eea;
+            background: var(--primary-color);
             color: white;
             border: none;
             padding: 12px 24px;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 500;
-            transition: background 0.2s;
+            font-weight: 600;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            box-shadow: var(--shadow-sm);
         }
 
         button:hover {
-            background: #5568d3;
+            background: #1d4ed8;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
         }
 
         button:disabled {
-            background: #ccc;
+            background: var(--text-light);
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .btn-danger {
-            background: #e74c3c;
+            background: #dc2626;
         }
 
         .btn-danger:hover {
-            background: #c0392b;
+            background: #b91c1c;
         }
 
         .message {
-            padding: 12px;
-            border-radius: 4px;
+            padding: 16px;
+            border-radius: 8px;
             margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid;
         }
 
         .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: #d1fae5;
+            color: #065f46;
+            border-color: #6ee7b7;
         }
 
         .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #fca5a5;
         }
 
-        .credentials-stored {
-            background: #d1ecf1;
-            color: #0c5460;
-            padding: 15px;
+        .info-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(56, 189, 248, 0.1) 100%);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .info-box p {
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-box strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .info-box code {
+            background: rgba(15, 23, 42, 0.1);
+            padding: 2px 6px;
             border-radius: 4px;
-            margin-bottom: 20px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: var(--primary-dark);
         }
 
-        .section-selector {
-            margin-bottom: 20px;
+        pre {
+            background: var(--primary-dark);
+            color: #e0e7ff;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
         }
 
         .actions {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .actions button {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .hint {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .actions button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🔐 Admin Panel - Resume API</h1>
+        <h1>🔐 Admin Panel</h1>
+        <p class="subtitle">Manage your Resume API sections and authentication</p>
 
-        <!-- Configurar Credenciales -->
+        <!-- Configure Credentials -->
         <div class="section">
-            <h2>1. Configurar Credenciales de Acceso</h2>
+            <h2>1. Authentication Credentials</h2>
             <div id="credentials-message"></div>
-            <div class="form-group">
-                <p style="color: #666; line-height: 1.6;">
-                    <strong>⚠️ Seguridad:</strong> Las credenciales de autenticación solo pueden configurarse desde la terminal del servidor por razones de seguridad.
+            <div class="info-box">
+                <p>
+                    <strong>⚠️ Security Notice:</strong> Authentication credentials can only be configured from the server terminal for security reasons.
                 </p>
-                <p style="color: #666; line-height: 1.6; margin-top: 10px;">
-                    Para configurar las credenciales, ejecuta en el servidor:
+                <p>
+                    To configure credentials, run on the server:
                 </p>
-                <pre style="background: #f0f0f0; padding: 15px; border-radius: 4px; margin-top: 10px; overflow-x: auto;"><code>php scripts/setup_auth.php &lt;username&gt; &lt;password&gt;</code></pre>
-                <p style="color: #666; line-height: 1.6; margin-top: 15px;">
-                    Una vez configuradas, ingresa tus credenciales a continuación para gestionar las secciones:
+                <pre><code>php scripts/setup_auth.php &lt;username&gt; &lt;password&gt;</code></pre>
+                <p>
+                    Once configured, enter your credentials below to manage sections:
                 </p>
             </div>
             <div class="form-group">
-                <label for="username">Usuario:</label>
+                <label for="username">Username:</label>
                 <input type="text" id="username" placeholder="admin" value="admin">
             </div>
             <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" placeholder="Tu contraseña">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Your password">
             </div>
-            <p style="color: #666; font-size: 12px; margin-top: -10px; margin-bottom: 15px;">
-                Las credenciales se guardan localmente en tu navegador para facilitar el acceso.
+            <p class="hint">
+                Credentials are stored locally in your browser for easier access.
             </p>
         </div>
 
-        <!-- Gestionar Secciones -->
+        <!-- Manage Sections -->
         <div class="section">
-            <h2>2. Gestionar Secciones del CV</h2>
+            <h2>2. Manage Resume Sections</h2>
             <div id="section-message"></div>
             
             <div class="form-group">
-                <label for="section-select">Sección:</label>
+                <label for="section-select">Section:</label>
                 <select id="section-select" onchange="loadSection()">
-                    <option value="">Selecciona una sección...</option>
+                    <option value="">Select a section...</option>
                     <option value="profile">Profile</option>
                     <option value="about">About</option>
                     <option value="experience">Experience</option>
@@ -195,13 +344,13 @@
             </div>
 
             <div class="form-group">
-                <label for="section-data">Datos (JSON):</label>
+                <label for="section-data">Data (JSON):</label>
                 <textarea id="section-data" placeholder='{"key": "value"}'></textarea>
             </div>
 
             <div class="actions">
-                <button onclick="updateSection()">Actualizar Sección</button>
-                <button class="btn-danger" onclick="deleteSection()">Eliminar Sección</button>
+                <button onclick="updateSection()">Update Section</button>
+                <button class="btn-danger" onclick="deleteSection()">Delete Section</button>
             </div>
         </div>
     </div>
@@ -232,7 +381,7 @@
             if (username && password) {
                 storedCredentials = { username, password };
                 localStorage.setItem('api_credentials', JSON.stringify(storedCredentials));
-                showMessage('credentials-message', '✓ Credenciales guardadas localmente. Puedes usarlas para gestionar secciones.', 'success');
+                showMessage('credentials-message', '✓ Credentials saved locally. You can use them to manage sections.', 'success');
             }
         }
 
@@ -243,7 +392,7 @@
             if (saved) {
                 storedCredentials = JSON.parse(saved);
                 document.getElementById('username').value = storedCredentials.username || '';
-                showMessage('credentials-message', 'Credenciales guardadas localmente. Puedes usarlas para gestionar secciones.', 'success');
+                showMessage('credentials-message', 'Saved credentials found. You can use them to manage sections.', 'success');
             }
 
             // Auto-save credentials when user types
@@ -262,11 +411,15 @@
 
             try {
                 const response = await fetch(`${API_BASE}/resume/${sectionName}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const data = await response.json();
                 
                 document.getElementById('section-data').value = JSON.stringify(data, null, 2);
+                showMessage('section-message', `✓ Section "${sectionName}" loaded successfully`, 'success');
             } catch (error) {
-                showMessage('section-message', `Error al cargar: ${error.message}`, 'error');
+                showMessage('section-message', `Error loading section: ${error.message}`, 'error');
             }
         }
 
@@ -275,12 +428,12 @@
             const sectionData = document.getElementById('section-data').value;
 
             if (!sectionName) {
-                showMessage('section-message', 'Por favor selecciona una sección', 'error');
+                showMessage('section-message', 'Please select a section', 'error');
                 return;
             }
 
             if (!sectionData) {
-                showMessage('section-message', 'Por favor ingresa los datos JSON', 'error');
+                showMessage('section-message', 'Please enter JSON data', 'error');
                 return;
             }
 
@@ -288,11 +441,11 @@
             try {
                 payload = JSON.parse(sectionData);
             } catch (e) {
-                showMessage('section-message', 'JSON inválido. Por favor verifica el formato', 'error');
+                showMessage('section-message', 'Invalid JSON. Please check the format', 'error');
                 return;
             }
 
-            // Usar credenciales guardadas o las del formulario
+            // Use saved credentials or form credentials
             const credentials = storedCredentials 
                 ? btoa(`${storedCredentials.username}:${storedCredentials.password}`)
                 : getCredentials();
@@ -310,11 +463,11 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    showMessage('section-message', '✓ Sección actualizada exitosamente', 'success');
+                    showMessage('section-message', `✓ Section "${sectionName}" updated successfully`, 'success');
                 } else if (response.status === 401) {
-                    showMessage('section-message', 'Error: Credenciales inválidas. Configura las credenciales primero.', 'error');
+                    showMessage('section-message', 'Error: Invalid credentials. Please configure credentials first.', 'error');
                 } else {
-                    showMessage('section-message', `Error: ${data.message}`, 'error');
+                    showMessage('section-message', `Error: ${data.message || 'Unknown error'}`, 'error');
                 }
             } catch (error) {
                 showMessage('section-message', `Error: ${error.message}`, 'error');
@@ -325,11 +478,11 @@
             const sectionName = document.getElementById('section-select').value;
 
             if (!sectionName) {
-                showMessage('section-message', 'Por favor selecciona una sección', 'error');
+                showMessage('section-message', 'Please select a section', 'error');
                 return;
             }
 
-            if (!confirm(`¿Estás seguro de eliminar la sección "${sectionName}"?`)) {
+            if (!confirm(`Are you sure you want to delete the section "${sectionName}"? This action cannot be undone.`)) {
                 return;
             }
 
@@ -348,13 +501,13 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    showMessage('section-message', '✓ Sección eliminada exitosamente', 'success');
+                    showMessage('section-message', `✓ Section "${sectionName}" deleted successfully`, 'success');
                     document.getElementById('section-select').value = '';
                     document.getElementById('section-data').value = '';
                 } else if (response.status === 401) {
-                    showMessage('section-message', 'Error: Credenciales inválidas', 'error');
+                    showMessage('section-message', 'Error: Invalid credentials', 'error');
                 } else {
-                    showMessage('section-message', `Error: ${data.message}`, 'error');
+                    showMessage('section-message', `Error: ${data.message || 'Unknown error'}`, 'error');
                 }
             } catch (error) {
                 showMessage('section-message', `Error: ${error.message}`, 'error');
@@ -363,4 +516,3 @@
     </script>
 </body>
 </html>
-
