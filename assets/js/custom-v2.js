@@ -16,7 +16,7 @@
         return;
       }
 
-      var defaultBaseUrl = 'http://localhost:8081';
+      var defaultBaseUrl = 'https://api.waldo.panozo.info';
       var apiBase = (window.__RESUME_API_BASE_URL__ || defaultBaseUrl).replace(/\/$/, '');
       var fallbackUrl = (window.__RESUME_FALLBACK_URL__ || 'assets/data/resume-fallback.json').replace(/^\//, '');
 
