@@ -175,6 +175,14 @@
             background: #b91c1c;
         }
 
+        .btn-clear {
+            background: var(--text-gray) !important;
+        }
+
+        .btn-clear:hover {
+            background: var(--text-dark) !important;
+        }
+
         .message {
             padding: 16px;
             border-radius: 8px;
@@ -230,7 +238,7 @@
 
         pre {
             background: var(--primary-dark);
-            color: #e0e7ff;
+            color: #f1f5f9;
             padding: 16px;
             border-radius: 8px;
             margin: 12px 0;
@@ -244,7 +252,8 @@
         pre code {
             background: none;
             padding: 0;
-            color: inherit;
+            color: #f1f5f9;
+            font-weight: 400;
         }
 
         .actions {
@@ -318,6 +327,16 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" placeholder="Your password">
             </div>
+            <div class="form-group">
+                <div id="auth-buttons" style="display: flex; gap: 12px; align-items: center;">
+                    <button type="button" id="login-btn" onclick="login()" style="display: none;">
+                        🔐 Login
+                    </button>
+                    <button type="button" id="logout-btn" onclick="logout()" class="btn-clear" style="display: none; background: var(--text-gray); width: auto; min-width: auto; padding: 10px 20px;">
+                        🚪 Logout
+                    </button>
+                </div>
+            </div>
             <p class="hint">
                 Credentials are stored locally in your browser for easier access.
             </p>
@@ -373,15 +392,49 @@
             }, 5000);
         }
 
-        // Save credentials locally when user enters them
-        function saveCredentialsLocally() {
-            const username = document.getElementById('username').value;
+        // Login - Save credentials locally
+        function login() {
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
 
-            if (username && password) {
-                storedCredentials = { username, password };
-                localStorage.setItem('api_credentials', JSON.stringify(storedCredentials));
-                showMessage('credentials-message', '✓ Credentials saved locally. You can use them to manage sections.', 'success');
+            if (!username || !password) {
+                showMessage('credentials-message', 'Please enter both username and password.', 'error');
+                return;
+            }
+
+            storedCredentials = { username, password };
+            localStorage.setItem('api_credentials', JSON.stringify(storedCredentials));
+            updateAuthUI();
+            showMessage('credentials-message', '✓ Login successful! Credentials saved. You can now manage sections.', 'success');
+        }
+
+        // Logout - Clear saved credentials
+        function logout() {
+            if (!storedCredentials && !localStorage.getItem('api_credentials')) {
+                showMessage('credentials-message', 'No saved credentials to clear.', 'error');
+                return;
+            }
+
+            storedCredentials = null;
+            localStorage.removeItem('api_credentials');
+            document.getElementById('username').value = 'admin';
+            document.getElementById('password').value = '';
+            updateAuthUI();
+            showMessage('credentials-message', '✓ Logout successful! Credentials cleared.', 'success');
+        }
+
+        // Update UI based on login state
+        function updateAuthUI() {
+            const hasCredentials = storedCredentials || localStorage.getItem('api_credentials');
+            const loginBtn = document.getElementById('login-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            if (hasCredentials) {
+                loginBtn.style.display = 'none';
+                logoutBtn.style.display = 'inline-block';
+            } else {
+                loginBtn.style.display = 'inline-block';
+                logoutBtn.style.display = 'none';
             }
         }
 
@@ -392,17 +445,11 @@
             if (saved) {
                 storedCredentials = JSON.parse(saved);
                 document.getElementById('username').value = storedCredentials.username || '';
-                showMessage('credentials-message', 'Saved credentials found. You can use them to manage sections.', 'success');
+                showMessage('credentials-message', '✓ You are logged in. Saved credentials found.', 'success');
             }
 
-            // Auto-save credentials when user types
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-            
-            if (usernameInput && passwordInput) {
-                usernameInput.addEventListener('blur', saveCredentialsLocally);
-                passwordInput.addEventListener('blur', saveCredentialsLocally);
-            }
+            // Update UI based on login state
+            updateAuthUI();
         });
 
         async function loadSection() {
