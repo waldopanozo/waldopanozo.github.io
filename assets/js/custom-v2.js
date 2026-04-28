@@ -55,6 +55,15 @@
         node.textContent = finalValue;
       }
 
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
       function renderStats(stats) {
         var container = document.querySelector('[data-profile-stats]');
         if (!container || !Array.isArray(stats) || !stats.length) {
@@ -491,6 +500,149 @@
         }).join('');
       }
 
+      function renderDevStats(stats) {
+        var cardsContainer = document.querySelector('[data-dev-stats-cards]');
+        var metaContainer = document.querySelector('[data-dev-stats-meta]');
+        var languagesContainer = document.querySelector('[data-dev-stats-languages]');
+        var usersContainer = document.querySelector('[data-dev-stats-users]');
+        var topReposContainer = document.querySelector('[data-dev-stats-top-repos]');
+        var commitsChartContainer = document.querySelector('[data-dev-stats-commits-chart]');
+
+        if (!cardsContainer || !metaContainer || !languagesContainer || !usersContainer || !topReposContainer || !commitsChartContainer) {
+          return;
+        }
+
+        if (!stats || stats.status === 'unavailable') {
+          metaContainer.innerHTML = '<span class="dev-stats-badge dev-stats-badge--warn">Stats unavailable</span>';
+          languagesContainer.innerHTML = '<p class="devstats-empty">No language data available yet.</p>';
+          usersContainer.innerHTML = '<p class="devstats-empty">No user status available yet.</p>';
+          topReposContainer.innerHTML = '<p class="devstats-empty">No anonymized repo references available yet.</p>';
+          commitsChartContainer.innerHTML = '<p class="devstats-empty">No commits timeline available yet.</p>';
+          return;
+        }
+
+        var metrics = stats.metrics || {};
+        var totalCommits = Number(metrics.commits_last_window || 0);
+        var totalMergedPrs = Number(metrics.merged_prs_last_window || 0);
+        var reposScanned = Number(stats.repos_scanned || 0);
+        var generatedAt = stats.generated_at ? new Date(stats.generated_at) : null;
+        var generatedAtText = generatedAt && !isNaN(generatedAt.getTime())
+          ? generatedAt.toLocaleString()
+          : 'Unknown';
+        var globalStatus = stats.metrics_status || 'ok';
+        var statusClass = globalStatus === 'ok' ? 'dev-stats-badge--ok' : 'dev-stats-badge--warn';
+
+        metaContainer.innerHTML =
+          '<span class="dev-stats-badge ' + statusClass + '">Status: ' + escapeHtml(globalStatus.toUpperCase()) + '</span>' +
+          '<span class="dev-stats-updated">Updated: ' + escapeHtml(generatedAtText) + '</span>';
+
+        cardsContainer.innerHTML =
+          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h4>Recent commits</h4><p class="devstats-value">' + totalCommits + '</p></div></div>' +
+          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h4>Recent merged PRs</h4><p class="devstats-value">' + totalMergedPrs + '</p></div></div>' +
+          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h4>Repos Scanned</h4><p class="devstats-value">' + reposScanned + '</p></div></div>';
+
+        var languages = metrics.languages_by_bytes || {};
+        var languageEntries = Object.keys(languages).map(function(name) {
+          return { name: name, bytes: Number(languages[name] || 0) };
+        }).sort(function(a, b) {
+          return b.bytes - a.bytes;
+        }).slice(0, 6);
+
+        var totalBytes = languageEntries.reduce(function(sum, item) {
+          return sum + item.bytes;
+        }, 0);
+
+        if (!languageEntries.length || totalBytes === 0) {
+          languagesContainer.innerHTML = '<p class="devstats-empty">No language data available.</p>';
+        } else {
+          languagesContainer.innerHTML = languageEntries.map(function(item) {
+            var pct = Math.max(1, Math.round((item.bytes / totalBytes) * 100));
+            return (
+              '<div class="devstats-lang-item">' +
+                '<div class="devstats-lang-head"><span>' + escapeHtml(item.name) + '</span><strong>' + pct + '%</strong></div>' +
+                '<div class="devstats-lang-bar"><span style="width:' + pct + '%;"></span></div>' +
+              '</div>'
+            );
+          }).join('');
+        }
+
+        var userStatuses = stats.metrics_status_by_user || {};
+        var usernames = Object.keys(userStatuses);
+        if (!usernames.length) {
+          usersContainer.innerHTML = '<p class="devstats-empty">No user statuses available.</p>';
+        } else {
+          usersContainer.innerHTML = usernames.map(function(username) {
+            var statusInfo = userStatuses[username] || {};
+            var userStatus = statusInfo.status || 'ok';
+            var userErrors = Number(statusInfo.error_count || 0);
+            var userStatusClass = userStatus === 'ok' ? 'devstats-user--ok' : (userStatus === 'error' ? 'devstats-user--error' : 'devstats-user--partial');
+            return (
+              '<div class="devstats-user ' + userStatusClass + '">' +
+                '<span class="devstats-user-name">@' + escapeHtml(username) + '</span>' +
+                '<span class="devstats-user-state">' + escapeHtml(userStatus) + (userErrors ? ' (' + userErrors + ' errors)' : '') + '</span>' +
+              '</div>'
+            );
+          }).join('');
+        }
+
+        var topRepos = Array.isArray(metrics.top_repos_recent) ? metrics.top_repos_recent : [];
+        if (!topRepos.length) {
+          topReposContainer.innerHTML = '<p class="devstats-empty">No anonymized repo references available.</p>';
+        } else {
+          topReposContainer.innerHTML = topRepos.map(function(repoItem) {
+            var repoRef = escapeHtml(repoItem.repo_ref || 'Repo');
+            var repoCommits = Number(repoItem.commits_last_window || 0);
+            return (
+              '<div class="devstats-top-repo">' +
+                '<span class="devstats-top-repo-ref">' + repoRef + '</span>' +
+                '<strong class="devstats-top-repo-value">' + repoCommits + ' commits</strong>' +
+              '</div>'
+            );
+          }).join('');
+        }
+
+        var commitsByDay = metrics.commits_by_day || {};
+        var today = new Date();
+        var labelsAndValues = [];
+        for (var i = 29; i >= 0; i--) {
+          var day = new Date(today);
+          day.setHours(0, 0, 0, 0);
+          day.setDate(day.getDate() - i);
+          var y = day.getFullYear();
+          var m = String(day.getMonth() + 1).padStart(2, '0');
+          var d = String(day.getDate()).padStart(2, '0');
+          var key = y + '-' + m + '-' + d;
+          labelsAndValues.push({
+            key: key,
+            shortLabel: m + '/' + d,
+            value: Number(commitsByDay[key] || 0),
+          });
+        }
+
+        var maxCommits = labelsAndValues.reduce(function(max, item) {
+          return item.value > max ? item.value : max;
+        }, 0);
+
+        if (maxCommits === 0) {
+          commitsChartContainer.innerHTML = '<p class="devstats-empty">No commits registered in recent periods.</p>';
+        } else {
+          commitsChartContainer.innerHTML =
+            '<div class="devstats-commits-chart">' +
+              labelsAndValues.map(function(item, idx) {
+                var heightPct = Math.max(4, Math.round((item.value / maxCommits) * 100));
+                var showLabel = (idx % 5 === 0) || idx === labelsAndValues.length - 1;
+                return (
+                  '<div class="devstats-commits-bar-wrap">' +
+                    '<div class="devstats-commits-bar" style="height:' + heightPct + '%;" title="' + escapeHtml(item.key + ': ' + item.value + ' commits') + '"></div>' +
+                    '<div class="devstats-commits-count">' + item.value + '</div>' +
+                    '<div class="devstats-commits-label">' + (showLabel ? item.shortLabel : '&nbsp;') + '</div>' +
+                  '</div>'
+                );
+              }).join('') +
+            '</div>';
+        }
+      }
+
       function requestJson(url, options) {
         return fetch(url, options).then(function(response) {
           if (!response.ok) {
@@ -510,9 +662,20 @@
         });
       }
 
-      fetchResume()
-        .then(function(data) {
-          data = data || {};
+      function fetchDevStats() {
+        return requestJson(apiBase + '/resume/dev-stats', {
+          headers: { 'Accept': 'application/json' },
+          cache: 'no-store',
+        }).catch(function(error) {
+          console.warn('Dev stats endpoint unavailable.', error);
+          return null;
+        });
+      }
+
+      Promise.all([fetchResume(), fetchDevStats()])
+        .then(function(results) {
+          var data = results[0] || {};
+          var devStats = results[1];
           hydrateProfile(data.profile || {});
           hydrateAbout(data.about || {});
           renderExperience(data.experience || []);
@@ -521,6 +684,7 @@
           renderPortfolio(data.portfolio || []);
           renderContact(data.contact || {}, data.profile || {});
           renderSocial(data.social || []);
+          renderDevStats(devStats);
           animateOnScroll();
         })
         .catch(function(error) {
@@ -620,7 +784,7 @@
     // Animate on Scroll
     // ============================================
     function animateOnScroll() {
-      $('.timeline-item, .skill-category, .portfolio-card, .highlight-item, .contact-card').each(function() {
+      $('.timeline-item, .skill-category, .portfolio-card, .highlight-item, .contact-card, .devstats-card, .devstats-panel').each(function() {
         var elementTop = $(this).offset().top;
         var elementBottom = elementTop + $(this).outerHeight();
         var viewportTop = $(window).scrollTop();
@@ -837,7 +1001,9 @@ animationStyle.textContent = `
   .skill-category,
   .portfolio-card,
   .highlight-item,
-  .contact-card {
+  .contact-card,
+  .devstats-card,
+  .devstats-panel {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -847,7 +1013,9 @@ animationStyle.textContent = `
   .skill-category.animate-in,
   .portfolio-card.animate-in,
   .highlight-item.animate-in,
-  .contact-card.animate-in {
+  .contact-card.animate-in,
+  .devstats-card.animate-in,
+  .devstats-panel.animate-in {
     opacity: 1;
     transform: translateY(0);
   }
