@@ -112,6 +112,9 @@ ul {
   position: relative;
 }
 
+.navbar:not(.scrolled) .navbar-nav > li > a {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
 
 .navbar.scrolled .navbar-nav > li > a {
   color: var(--text-gray) !important;
@@ -119,7 +122,16 @@ ul {
 
 .navbar-nav > li > a:hover,
 .navbar-nav > li.active > a {
-  color: var(--primary-color) !important;
+  color: #1d4ed8 !important;
+}
+
+.navbar-nav > li.active > a {
+  background-color: transparent !important;
+}
+
+.navbar:not(.scrolled) .navbar-nav > li > a:hover,
+.navbar:not(.scrolled) .navbar-nav > li.active > a {
+  color: #ffffff !important;
 }
 
 .navbar-toggle {
@@ -352,28 +364,38 @@ ul {
 }
 
 .btn-primary {
-  background-color: var(--accent-color);
+  background-color: #1d4ed8;
   color: white;
-  border-color: var(--accent-color);
+  border-color: #1d4ed8;
 }
 
 .btn-primary:hover {
-  background-color: #d97706;
-  border-color: #d97706;
+  background-color: #1e40af;
+  border-color: #1e40af;
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
 
 .btn-outline {
   background-color: transparent;
+  color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.btn-outline:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.hero-section .btn-outline {
   color: white;
   border-color: white;
 }
 
-.btn-outline:hover {
+.hero-section .btn-outline:hover {
   background-color: white;
   color: var(--primary-color);
-  transform: translateY(-2px);
 }
 
 .download-resume-btn {
@@ -430,6 +452,12 @@ ul {
   color: white;
   font-size: 2rem;
   opacity: 0.8;
+}
+
+.scroll-indicator a:focus-visible {
+  outline: 3px solid #bfdbfe;
+  outline-offset: 4px;
+  border-radius: 8px;
 }
 
 @keyframes bounce {
@@ -1168,7 +1196,7 @@ ul {
   height: 100%;
 }
 
-.devstats-card h4 {
+.devstats-card h3 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
   color: var(--text-gray);
@@ -1188,6 +1216,51 @@ ul {
 
 .devstats-lang-item {
   margin-bottom: 1rem;
+}
+
+.devstats-lang-pie-wrap {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.devstats-lang-pie {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 10px solid #ffffff;
+  box-shadow: var(--shadow-sm);
+  justify-self: center;
+}
+
+.devstats-lang-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.devstats-lang-legend-item {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.devstats-lang-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.devstats-lang-legend-name {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+}
+
+.devstats-lang-legend-pct {
+  color: var(--text-dark);
+  font-size: 0.85rem;
 }
 
 .devstats-lang-head {
@@ -1250,13 +1323,17 @@ ul {
 }
 
 .devstats-top-repo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 0.7rem 0.9rem;
   border-radius: 8px;
   margin-bottom: 0.6rem;
   background: var(--bg-light);
+}
+
+.devstats-top-repo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .devstats-top-repo-ref {
@@ -1269,13 +1346,48 @@ ul {
   font-size: 0.9rem;
 }
 
+.devstats-top-repo-bar {
+  margin-top: 0.45rem;
+  height: 8px;
+  border-radius: 999px;
+  background: #dbeafe;
+  overflow: hidden;
+}
+
+.devstats-top-repo-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #1d4ed8, #38bdf8);
+}
+
+.devstats-commits-chart-wrap {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.devstats-commits-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #64748b;
+  font-size: 0.72rem;
+  padding: 0.2rem 0;
+}
+
 .devstats-commits-chart {
   height: 260px;
   display: grid;
-  grid-template-columns: repeat(30, minmax(0, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 8px;
   align-items: end;
-  padding-top: 12px;
+  padding: 0.2rem 0 0.1rem;
+  border-left: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(to top, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 100% 25%;
 }
 
 .devstats-commits-bar-wrap {
@@ -1284,13 +1396,15 @@ ul {
   align-items: center;
   justify-content: flex-end;
   min-width: 0;
+  height: 100%;
 }
 
 .devstats-commits-bar {
-  width: 100%;
+  width: 80%;
   min-height: 4px;
   background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
   border-radius: 6px 6px 0 0;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
 }
 
 .devstats-commits-count {
@@ -1301,8 +1415,8 @@ ul {
 }
 
 .devstats-commits-label {
-  font-size: 0.68rem;
-  color: var(--text-light);
+  font-size: 0.66rem;
+  color: #64748b;
   margin-top: 2px;
   line-height: 1;
 }
@@ -1389,13 +1503,13 @@ ul {
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  gap: 1rem;
+  flex-wrap: nowrap;
 }
 
 .social-icon {
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   background: rgba(15, 23, 42, 0.35);
   border-radius: 50%;
   display: flex;
@@ -1405,12 +1519,22 @@ ul {
   font-size: 1.5rem;
   transition: var(--transition);
   border: 1px solid rgba(248, 250, 252, 0.4);
+  margin: 6px;
 }
 
 .social-icon:hover {
   background: white;
   color: var(--primary-color);
   transform: translateY(-3px) scale(1.1);
+}
+
+.social-icon:focus-visible,
+.portfolio-link:focus-visible,
+.nav-link-icon:focus-visible,
+.btn:focus-visible,
+.carousel-control:focus-visible {
+  outline: 3px solid #bfdbfe;
+  outline-offset: 3px;
 }
 
 /* ============================================
@@ -1446,6 +1570,10 @@ ul {
    13. RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 768px) {
+  body {
+    padding-bottom: 78px;
+  }
+
   .hero-title {
     font-size: 2.5rem;
   }
@@ -1493,8 +1621,64 @@ ul {
     font-size: 1rem;
   }
 
+  .social-icons {
+    flex-wrap: wrap;
+  }
+
+  .quick-actions-mobile {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1100;
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .quick-actions-mobile .btn {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+    font-size: 0.82rem;
+    padding: 0.7rem 0.8rem;
+  }
+
   .tech-showcase {
     padding: 2rem 1rem;
+  }
+
+  .devstats-top-repo-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .devstats-commits-chart-wrap {
+    grid-template-columns: 32px 1fr;
+    gap: 0.5rem;
+  }
+
+  .devstats-commits-chart {
+    gap: 6px;
+    height: 220px;
+  }
+
+  .devstats-lang-pie-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .devstats-lang-pie {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (min-width: 769px) {
+  .quick-actions-mobile {
+    display: none;
   }
 }
 
