@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Waldo M. Panozo - Software Engineer | 15+ years of experience developing software with PHP, Java, JavaScript and REST Web Services">
+    <meta name="robots" content="index,follow">
     <meta name="keywords" content="Software Engineer, PHP, Java, JavaScript, React, REST API, PostgreSQL, MySQL, YII2, Spring Boot">
     <meta name="author" content="Waldo M. Panozo">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="canonical" href="https://waldopanozo.github.io/">
     <title>Waldo M. Panozo - Software Engineer</title>
     
     <!-- Fonts -->
@@ -84,6 +86,7 @@
       </div>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section id="home" class="hero-section">
       <div class="hero-overlay"></div>
@@ -132,7 +135,7 @@
         </div>
       </div>
       <div class="scroll-indicator">
-        <a href="#about"><i class="fa fa-chevron-down"></i></a>
+        <a href="#about" aria-label="Scroll to About section"><i class="fa fa-chevron-down"></i></a>
       </div>
     </section>
 
@@ -205,10 +208,10 @@
         </div>
         <div class="row mt-60">
           <div class="col-lg-12 text-center">
-            <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank" class="btn btn-primary">
+            <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank" rel="noopener" class="btn btn-primary">
               <i class="fa fa-linkedin"></i> View Full Profile on LinkedIn
             </a>
-            <a href="https://waldopanozo.github.io/" target="_blank" class="btn btn-outline" style="margin-left: 1rem;">
+            <a href="https://waldopanozo.github.io/" target="_blank" rel="noopener" class="btn btn-outline" style="margin-left: 1rem;">
               <i class="fa fa-github"></i> GitHub Pages
             </a>
           </div>
@@ -477,7 +480,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-title">Developer Activity Stats</h2>
-            <p class="section-subtitle">Métricas agregadas desde GitHub vía API backend (cacheadas en SQLite)</p>
+            <p class="section-subtitle">Live engineering activity from GitHub across my two profiles, aggregated by the Resume API and cached in SQLite.</p>
           </div>
         </div>
         <div class="row mt-60">
@@ -490,19 +493,19 @@
         <div class="row mt-30" data-dev-stats-cards>
           <div class="col-lg-4 col-md-6">
             <div class="devstats-card">
-              <h4>Recent commits</h4>
+              <h3>Recent commits</h3>
               <p class="devstats-value">-</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="devstats-card">
-              <h4>Recent merged PRs</h4>
+              <h3>Recent merged PRs</h3>
               <p class="devstats-value">-</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="devstats-card">
-              <h4>Repos Scanned</h4>
+              <h3>Repos Scanned</h3>
               <p class="devstats-value">-</p>
             </div>
           </div>
@@ -625,8 +628,8 @@
                   <img src="assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg" alt="RESTful API PHP">
                   <div class="portfolio-overlay">
                     <div class="portfolio-links">
-                      <a href="assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
-                      <a href="https://github.com/waldopanozo/php-slim-rest-sqlite" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                      <a href="assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg" class="portfolio-link" data-lightbox="portfolio" aria-label="Open preview image for RESTful API with PHP Slim"><i class="fa fa-search"></i></a>
+                      <a href="https://github.com/waldopanozo/php-slim-rest-sqlite" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open external link for RESTful API with PHP Slim"><i class="fa fa-external-link"></i></a>
                     </div>
                   </div>
                 </div>
@@ -648,8 +651,8 @@
                   <img src="assets/samples/react/tictactoe/tictactoe.png" alt="Tic Tac Toe React">
                   <div class="portfolio-overlay">
                     <div class="portfolio-links">
-                      <a href="assets/samples/react/tictactoe/tictactoe.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
-                      <a href="assets/samples/react/tictactoe/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                      <a href="assets/samples/react/tictactoe/tictactoe.png" class="portfolio-link" data-lightbox="portfolio" aria-label="Open preview image for Tic Tac Toe Game"><i class="fa fa-search"></i></a>
+                      <a href="assets/samples/react/tictactoe/index.html" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open external link for Tic Tac Toe Game"><i class="fa fa-external-link"></i></a>
                     </div>
                   </div>
                 </div>
@@ -670,8 +673,8 @@
                   <img src="assets/samples/react/calculator/calculator.png" alt="Calculator React">
                   <div class="portfolio-overlay">
                     <div class="portfolio-links">
-                      <a href="assets/samples/react/calculator/calculator.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
-                      <a href="assets/samples/react/calculator/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
+                      <a href="assets/samples/react/calculator/calculator.png" class="portfolio-link" data-lightbox="portfolio" aria-label="Open preview image for Calculator App"><i class="fa fa-search"></i></a>
+                      <a href="assets/samples/react/calculator/index.html" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open external link for Calculator App"><i class="fa fa-external-link"></i></a>
                     </div>
                   </div>
                 </div>
@@ -692,9 +695,9 @@
                   <img src="assets/samples/react/accordion/accordion.png" alt="Accordion React">
                   <div class="portfolio-overlay">
                     <div class="portfolio-links">
-                      <a href="assets/samples/react/accordion/accordion.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
-                      <a href="assets/samples/react/accordion/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
-                      <a href="https://gitlab.com/waldo.panozo/list_items_accordion" target="_blank" class="portfolio-link"><i class="fa fa-gitlab"></i></a>
+                      <a href="assets/samples/react/accordion/accordion.png" class="portfolio-link" data-lightbox="portfolio" aria-label="Open preview image for Accordion Component"><i class="fa fa-search"></i></a>
+                      <a href="assets/samples/react/accordion/index.html" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open external link for Accordion Component demo"><i class="fa fa-external-link"></i></a>
+                      <a href="https://gitlab.com/waldo.panozo/list_items_accordion" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open GitLab repository for Accordion Component"><i class="fa fa-gitlab"></i></a>
                     </div>
                   </div>
                 </div>
@@ -715,9 +718,9 @@
                   <img src="assets/samples/react/xmas_timer/xmas_timer.png" alt="Xmas Timer React">
                   <div class="portfolio-overlay">
                     <div class="portfolio-links">
-                      <a href="assets/samples/react/xmas_timer/xmas_timer.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
-                      <a href="assets/samples/react/xmas_timer/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
-                      <a href="https://gitlab.com/waldo.panozo/countdown_xmas.git" target="_blank" class="portfolio-link"><i class="fa fa-gitlab"></i></a>
+                      <a href="assets/samples/react/xmas_timer/xmas_timer.png" class="portfolio-link" data-lightbox="portfolio" aria-label="Open preview image for Christmas Countdown Timer"><i class="fa fa-search"></i></a>
+                      <a href="assets/samples/react/xmas_timer/index.html" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open external link for Christmas Countdown Timer demo"><i class="fa fa-external-link"></i></a>
+                      <a href="https://gitlab.com/waldo.panozo/countdown_xmas.git" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open GitLab repository for Christmas Countdown Timer"><i class="fa fa-gitlab"></i></a>
                     </div>
                   </div>
                 </div>
@@ -738,9 +741,9 @@
                   <img src="assets/samples/react/mortgage_calc/mortgage_calc.png" alt="Mortgage Calculator React">
                   <div class="portfolio-overlay">
                     <div class="portfolio-links">
-                      <a href="assets/samples/react/mortgage_calc/mortgage_calc.png" class="portfolio-link" data-lightbox="portfolio"><i class="fa fa-search"></i></a>
-                      <a href="assets/samples/react/mortgage_calc/index.html" target="_blank" class="portfolio-link"><i class="fa fa-external-link"></i></a>
-                      <a href="https://gitlab.com/waldo.panozo/mortgage_calc_react" target="_blank" class="portfolio-link"><i class="fa fa-gitlab"></i></a>
+                      <a href="assets/samples/react/mortgage_calc/mortgage_calc.png" class="portfolio-link" data-lightbox="portfolio" aria-label="Open preview image for Mortgage Calculator"><i class="fa fa-search"></i></a>
+                      <a href="assets/samples/react/mortgage_calc/index.html" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open external link for Mortgage Calculator demo"><i class="fa fa-external-link"></i></a>
+                      <a href="https://gitlab.com/waldo.panozo/mortgage_calc_react" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open GitLab repository for Mortgage Calculator"><i class="fa fa-gitlab"></i></a>
                     </div>
                   </div>
                 </div>
@@ -775,7 +778,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">Interested in working together? I really like the possibility of remote work, but the possibility of relocation is very attractive to me and my family</p>
+            <p class="section-subtitle">Interested in working together? I am open to remote opportunities and relocation for the right long-term impact.</p>
           </div>
         </div>
         <div class="contact-grid mt-60" data-contact-grid>
@@ -833,19 +836,19 @@
             <div class="social-links">
               <h3>Follow me on</h3>
             <div class="social-icons" data-social-links>
-                <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank" class="social-icon" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/waldopanozo/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
                   <i class="fa fa-linkedin"></i>
                 </a>
-                <a href="https://github.com/waldopanozo" target="_blank" class="social-icon" title="GitHub">
+                <a href="https://github.com/waldopanozo" target="_blank" rel="noopener" class="social-icon" title="GitHub" aria-label="GitHub">
                   <i class="fa fa-github"></i>
                 </a>
-                <a href="https://ezdevelopment.com" target="_blank" class="social-icon" title="Blog">
+                <a href="https://ezdevelopment.com" target="_blank" rel="noopener" class="social-icon" title="Blog" aria-label="Blog">
                   <i class="fa fa-globe"></i>
                 </a>
-                <a href="https://www.facebook.com/waldopanozo" target="_blank" class="social-icon" title="Facebook">
+                <a href="https://www.facebook.com/waldopanozo" target="_blank" rel="noopener" class="social-icon" title="Facebook" aria-label="Facebook">
                   <i class="fa fa-facebook"></i>
                 </a>
-                <a href="https://twitter.com/waldopanozo" target="_blank" class="social-icon" title="Twitter">
+                <a href="https://twitter.com/waldopanozo" target="_blank" rel="noopener" class="social-icon" title="Twitter" aria-label="Twitter">
                   <i class="fa fa-twitter"></i>
                 </a>
               </div>
@@ -854,6 +857,8 @@
         </div>
       </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -871,6 +876,10 @@
         </div>
       </div>
     </footer>
+    <nav class="quick-actions-mobile" aria-label="Quick actions">
+      <a href="#portfolio" class="btn btn-outline">View Portfolio</a>
+      <a href="#contact" class="btn btn-primary">Contact Me</a>
+    </nav>
 
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
