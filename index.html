@@ -47,6 +47,7 @@
               <li><a href="#about">ABOUT</a></li>
               <li><a href="#experience">EXPERIENCE</a></li>
               <li><a href="#skills">SKILLS</a></li>
+              <li><a href="#dev-stats">STATS</a></li>
               <li><a href="#education">EDUCATION</a></li>
               <li><a href="#portfolio">PORTFOLIO</a></li>
               <li><a href="#contact">CONTACT</a></li>
@@ -464,6 +465,73 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Developer Stats Section -->
+    <section id="dev-stats" class="section dev-stats-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Developer Activity Stats</h2>
+            <p class="section-subtitle">Métricas agregadas desde GitHub vía API backend (cacheadas en SQLite)</p>
+          </div>
+        </div>
+        <div class="row mt-60">
+          <div class="col-lg-12">
+            <div class="dev-stats-meta" data-dev-stats-meta>
+              <span class="dev-stats-badge">Loading stats...</span>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-30" data-dev-stats-cards>
+          <div class="col-lg-4 col-md-6">
+            <div class="devstats-card">
+              <h4>Recent commits</h4>
+              <p class="devstats-value">-</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="devstats-card">
+              <h4>Recent merged PRs</h4>
+              <p class="devstats-value">-</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="devstats-card">
+              <h4>Repos Scanned</h4>
+              <p class="devstats-value">-</p>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-30">
+          <div class="col-lg-6">
+            <div class="devstats-panel">
+              <h3>Languages by bytes</h3>
+              <div data-dev-stats-languages></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="devstats-panel">
+              <h3>User status</h3>
+              <div data-dev-stats-users></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="devstats-panel">
+              <h3>Top repos (anonymized references)</h3>
+              <div data-dev-stats-top-repos></div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-30">
+          <div class="col-lg-12">
+            <div class="devstats-panel">
+              <h3>Unified commits trend (recent periods)</h3>
+              <div data-dev-stats-commits-chart></div>
             </div>
           </div>
         </div>

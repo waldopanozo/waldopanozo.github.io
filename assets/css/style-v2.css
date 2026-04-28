@@ -1121,7 +1121,194 @@ ul {
 }
 
 /* ============================================
-   10. CONTACT SECTION
+   10. DEVELOPER STATS SECTION
+   ============================================ */
+.dev-stats-section {
+  background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+}
+
+.dev-stats-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dev-stats-badge {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dev-stats-badge--ok {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.dev-stats-badge--warn {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.dev-stats-updated {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+}
+
+.devstats-card,
+.devstats-panel {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.devstats-card h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--text-gray);
+}
+
+.devstats-value {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.devstats-panel h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.devstats-lang-item {
+  margin-bottom: 1rem;
+}
+
+.devstats-lang-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-gray);
+  margin-bottom: 0.35rem;
+}
+
+.devstats-lang-bar {
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  height: 8px;
+}
+
+.devstats-lang-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.devstats-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 0.6rem;
+  background: var(--bg-light);
+}
+
+.devstats-user-name {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.devstats-user-state {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.devstats-user--ok .devstats-user-state {
+  color: #166534;
+}
+
+.devstats-user--partial .devstats-user-state {
+  color: #92400e;
+}
+
+.devstats-user--error .devstats-user-state {
+  color: #b91c1c;
+}
+
+.devstats-empty {
+  color: var(--text-gray);
+  margin: 0;
+}
+
+.devstats-top-repo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 0.6rem;
+  background: var(--bg-light);
+}
+
+.devstats-top-repo-ref {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.devstats-top-repo-value {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.devstats-commits-chart {
+  height: 260px;
+  display: grid;
+  grid-template-columns: repeat(30, minmax(0, 1fr));
+  gap: 6px;
+  align-items: end;
+  padding-top: 12px;
+}
+
+.devstats-commits-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.devstats-commits-bar {
+  width: 100%;
+  min-height: 4px;
+  background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
+  border-radius: 6px 6px 0 0;
+}
+
+.devstats-commits-count {
+  font-size: 0.72rem;
+  color: var(--text-gray);
+  margin-top: 4px;
+  line-height: 1;
+}
+
+.devstats-commits-label {
+  font-size: 0.68rem;
+  color: var(--text-light);
+  margin-top: 2px;
+  line-height: 1;
+}
+
+/* ============================================
+   11. CONTACT SECTION
    ============================================ */
 .contact-section {
   background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 60%, #38bdf8 100%);
@@ -1227,7 +1414,7 @@ ul {
 }
 
 /* ============================================
-   11. FOOTER
+   12. FOOTER
    ============================================ */
 .footer {
   background: var(--text-dark);
@@ -1256,7 +1443,7 @@ ul {
 }
 
 /* ============================================
-   12. RESPONSIVE DESIGN
+   13. RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 768px) {
   .hero-title {
@@ -1331,7 +1518,7 @@ ul {
 }
 
 /* ============================================
-   13. UTILITIES
+   14. UTILITIES
    ============================================ */
 .text-center {
   text-align: center;
