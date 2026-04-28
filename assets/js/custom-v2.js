@@ -316,11 +316,11 @@
           var links = [];
           // Add search icon for lightbox if image exists
           if (item.image) {
-            links.push('<a href="' + item.image + '" class="portfolio-link portfolio-lightbox-link" data-lightbox-src="' + item.image + '"><i class="fa fa-search"></i></a>');
+            links.push('<a href="' + item.image + '" class="portfolio-link portfolio-lightbox-link" data-lightbox-src="' + item.image + '" aria-label="Open preview image for ' + escapeHtml(item.title || 'portfolio item') + '"><i class="fa fa-search"></i></a>');
           }
           // Add external link icon if link exists
           if (item.link) {
-            links.push('<a href="' + item.link + '" target="_blank" class="portfolio-link" onclick="event.stopPropagation();"><i class="fa fa-external-link"></i></a>');
+            links.push('<a href="' + item.link + '" target="_blank" rel="noopener" class="portfolio-link" aria-label="Open external link for ' + escapeHtml(item.title || 'portfolio item') + '" onclick="event.stopPropagation();"><i class="fa fa-external-link"></i></a>');
           }
 
           return (
@@ -493,7 +493,7 @@
           var icon = SOCIAL_ICONS[iconKey] || 'fa fa-globe';
 
           return (
-            '<a href="' + item.url + '" target="_blank" class="social-icon" title="' + (item.platform || 'Social') + '">' +
+            '<a href="' + item.url + '" target="_blank" rel="noopener" class="social-icon" title="' + (item.platform || 'Social') + '" aria-label="' + escapeHtml(item.platform || 'Social profile') + '">' +
               '<i class="' + icon + '"></i>' +
             '</a>'
           );
@@ -537,9 +537,9 @@
           '<span class="dev-stats-updated">Updated: ' + escapeHtml(generatedAtText) + '</span>';
 
         cardsContainer.innerHTML =
-          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h4>Recent commits</h4><p class="devstats-value">' + totalCommits + '</p></div></div>' +
-          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h4>Recent merged PRs</h4><p class="devstats-value">' + totalMergedPrs + '</p></div></div>' +
-          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h4>Repos Scanned</h4><p class="devstats-value">' + reposScanned + '</p></div></div>';
+          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h3>Recent commits</h3><p class="devstats-value">' + totalCommits + '</p></div></div>' +
+          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h3>Recent merged PRs</h3><p class="devstats-value">' + totalMergedPrs + '</p></div></div>' +
+          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h3>Repos Scanned</h3><p class="devstats-value">' + reposScanned + '</p></div></div>';
 
         var languages = metrics.languages_by_bytes || {};
         var languageEntries = Object.keys(languages).map(function(name) {
@@ -555,15 +555,42 @@
         if (!languageEntries.length || totalBytes === 0) {
           languagesContainer.innerHTML = '<p class="devstats-empty">No language data available.</p>';
         } else {
-          languagesContainer.innerHTML = languageEntries.map(function(item) {
+          var palette = ['#1d4ed8', '#0ea5e9', '#14b8a6', '#6366f1', '#f59e0b', '#ef4444'];
+          var cumulative = 0;
+          var segments = languageEntries.map(function(item, idx) {
             var pct = Math.max(1, Math.round((item.bytes / totalBytes) * 100));
+            var start = cumulative;
+            cumulative += pct;
+            var end = cumulative;
+            var color = palette[idx % palette.length];
+            return {
+              name: item.name,
+              pct: pct,
+              color: color,
+              start: start,
+              end: end,
+            };
+          });
+
+          var gradient = segments.map(function(seg) {
+            return seg.color + ' ' + seg.start + '% ' + seg.end + '%';
+          }).join(', ');
+
+          var legend = segments.map(function(seg) {
             return (
-              '<div class="devstats-lang-item">' +
-                '<div class="devstats-lang-head"><span>' + escapeHtml(item.name) + '</span><strong>' + pct + '%</strong></div>' +
-                '<div class="devstats-lang-bar"><span style="width:' + pct + '%;"></span></div>' +
+              '<div class="devstats-lang-legend-item">' +
+                '<span class="devstats-lang-legend-dot" style="background:' + seg.color + ';"></span>' +
+                '<span class="devstats-lang-legend-name">' + escapeHtml(seg.name) + '</span>' +
+                '<strong class="devstats-lang-legend-pct">' + seg.pct + '%</strong>' +
               '</div>'
             );
           }).join('');
+
+          languagesContainer.innerHTML =
+            '<div class="devstats-lang-pie-wrap">' +
+              '<div class="devstats-lang-pie" role="img" style="background:conic-gradient(' + gradient + ');" aria-label="Language distribution pie chart"></div>' +
+              '<div class="devstats-lang-legend">' + legend + '</div>' +
+            '</div>';
         }
 
         var userStatuses = stats.metrics_status_by_user || {};
@@ -589,35 +616,62 @@
         if (!topRepos.length) {
           topReposContainer.innerHTML = '<p class="devstats-empty">No anonymized repo references available.</p>';
         } else {
-          topReposContainer.innerHTML = topRepos.map(function(repoItem) {
-            var repoRef = escapeHtml(repoItem.repo_ref || 'Repo');
+          var maxTopRepoCommits = topRepos.reduce(function(max, repoItem) {
+            var commits = Number((repoItem || {}).commits_last_window || 0);
+            return commits > max ? commits : max;
+          }, 0);
+
+          topReposContainer.innerHTML = topRepos.map(function(repoItem, index) {
+            var rawRepoRef = String(repoItem.repo_ref || ('Repo ' + (index + 1)));
+            var cleanedRepoRef = rawRepoRef;
+            var match = rawRepoRef.match(/^Repo\s+\d+\s+\((.*)\)$/i);
+            if (match && match[1]) {
+              cleanedRepoRef = match[1];
+            }
+            cleanedRepoRef = cleanedRepoRef.replace(/^Repo\s+\d+\s*-\s*/i, '').trim();
+            var repoRef = escapeHtml(cleanedRepoRef || rawRepoRef);
             var repoCommits = Number(repoItem.commits_last_window || 0);
+            var pct = maxTopRepoCommits > 0 ? Math.max(4, Math.round((repoCommits / maxTopRepoCommits) * 100)) : 0;
             return (
               '<div class="devstats-top-repo">' +
-                '<span class="devstats-top-repo-ref">' + repoRef + '</span>' +
-                '<strong class="devstats-top-repo-value">' + repoCommits + ' commits</strong>' +
+                '<div class="devstats-top-repo-head">' +
+                  '<span class="devstats-top-repo-ref">' + repoRef + '</span>' +
+                  '<strong class="devstats-top-repo-value">' + repoCommits + ' commits</strong>' +
+                '</div>' +
+                '<div class="devstats-top-repo-bar"><span style="width:' + pct + '%;"></span></div>' +
               '</div>'
             );
           }).join('');
         }
 
         var commitsByDay = metrics.commits_by_day || {};
-        var today = new Date();
-        var labelsAndValues = [];
-        for (var i = 29; i >= 0; i--) {
-          var day = new Date(today);
-          day.setHours(0, 0, 0, 0);
-          day.setDate(day.getDate() - i);
-          var y = day.getFullYear();
-          var m = String(day.getMonth() + 1).padStart(2, '0');
-          var d = String(day.getDate()).padStart(2, '0');
-          var key = y + '-' + m + '-' + d;
-          labelsAndValues.push({
-            key: key,
-            shortLabel: m + '/' + d,
-            value: Number(commitsByDay[key] || 0),
-          });
-        }
+        var weeklyBuckets = {};
+        Object.keys(commitsByDay).forEach(function(dayKey) {
+          var date = new Date(dayKey + 'T00:00:00');
+          if (isNaN(date.getTime())) {
+            return;
+          }
+
+          var dayOfWeek = date.getDay();
+          var mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+          date.setDate(date.getDate() + mondayOffset);
+
+          var y = date.getFullYear();
+          var m = String(date.getMonth() + 1).padStart(2, '0');
+          var d = String(date.getDate()).padStart(2, '0');
+          var weekKey = y + '-' + m + '-' + d;
+          weeklyBuckets[weekKey] = (weeklyBuckets[weekKey] || 0) + Number(commitsByDay[dayKey] || 0);
+        });
+
+        var labelsAndValues = Object.keys(weeklyBuckets).sort().map(function(weekKey) {
+          var labelDate = new Date(weekKey + 'T00:00:00');
+          var shortLabel = String(labelDate.getMonth() + 1).padStart(2, '0') + '/' + String(labelDate.getDate()).padStart(2, '0');
+          return {
+            key: weekKey,
+            shortLabel: shortLabel,
+            value: Number(weeklyBuckets[weekKey] || 0),
+          };
+        }).slice(-12);
 
         var maxCommits = labelsAndValues.reduce(function(max, item) {
           return item.value > max ? item.value : max;
@@ -626,19 +680,29 @@
         if (maxCommits === 0) {
           commitsChartContainer.innerHTML = '<p class="devstats-empty">No commits registered in recent periods.</p>';
         } else {
+          var yTicks = [1, 0.75, 0.5, 0.25].map(function(ratio) {
+            return Math.ceil(maxCommits * ratio);
+          });
+          yTicks = Array.from(new Set(yTicks)).sort(function(a, b) { return b - a; });
+
           commitsChartContainer.innerHTML =
-            '<div class="devstats-commits-chart">' +
-              labelsAndValues.map(function(item, idx) {
-                var heightPct = Math.max(4, Math.round((item.value / maxCommits) * 100));
-                var showLabel = (idx % 5 === 0) || idx === labelsAndValues.length - 1;
-                return (
-                  '<div class="devstats-commits-bar-wrap">' +
-                    '<div class="devstats-commits-bar" style="height:' + heightPct + '%;" title="' + escapeHtml(item.key + ': ' + item.value + ' commits') + '"></div>' +
-                    '<div class="devstats-commits-count">' + item.value + '</div>' +
-                    '<div class="devstats-commits-label">' + (showLabel ? item.shortLabel : '&nbsp;') + '</div>' +
-                  '</div>'
-                );
-              }).join('') +
+            '<div class="devstats-commits-chart-wrap">' +
+              '<div class="devstats-commits-axis">' + yTicks.map(function(tick) {
+                return '<span>' + tick + '</span>';
+              }).join('') + '</div>' +
+              '<div class="devstats-commits-chart">' +
+                labelsAndValues.map(function(item) {
+                  var normalized = Math.sqrt(item.value / maxCommits);
+                  var barPx = Math.max(12, Math.round(normalized * 180));
+                  return (
+                    '<div class="devstats-commits-bar-wrap">' +
+                      '<div class="devstats-commits-bar" style="height:' + barPx + 'px;" title="' + escapeHtml('Week of ' + item.key + ': ' + item.value + ' commits') + '"></div>' +
+                      '<div class="devstats-commits-count">' + item.value + '</div>' +
+                      '<div class="devstats-commits-label">' + item.shortLabel + '</div>' +
+                    '</div>'
+                  );
+                }).join('') +
+              '</div>' +
             '</div>';
         }
       }
