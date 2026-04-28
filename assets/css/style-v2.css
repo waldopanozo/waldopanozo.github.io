@@ -57,23 +57,6 @@ body.variant-active::before {
   background: linear-gradient(90deg, var(--variant-primary), var(--variant-secondary));
 }
 
-.variant-indicator {
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  z-index: 1200;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  color: #fff;
-  background: linear-gradient(135deg, var(--variant-primary), var(--variant-secondary));
-  border-radius: 999px;
-  padding: 5px 10px;
-  box-shadow: var(--shadow-md);
-  opacity: 0.85;
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
@@ -324,6 +307,10 @@ ul {
 
 .hero-photo {
   margin-bottom: 2rem;
+  position: relative;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-photo img {
@@ -335,6 +322,30 @@ ul {
   object-fit: cover;
   margin: 0 auto;
   display: block;
+}
+
+.hero-tech-badges {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 180px;
+}
+
+.hero-tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.78);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .hero-badge {

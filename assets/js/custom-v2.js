@@ -20,6 +20,7 @@
       var apiBase = (window.__RESUME_API_BASE_URL__ || defaultBaseUrl).replace(/\/$/, '');
       var fallbackUrl = (window.__RESUME_FALLBACK_URL__ || 'assets/data/resume-fallback.json').replace(/^\//, '');
       var currentPid = resolvePostulationPid();
+      var hasActiveVariant = false;
 
       var SKILL_CARD_META = {
         programming_languages: { title: 'Programming Languages', icon: 'fa fa-code' },
@@ -578,11 +579,14 @@
           }).join(', ');
 
           var legend = segments.map(function(seg) {
+            var pctHtml = hasActiveVariant
+              ? ''
+              : '<strong class="devstats-lang-legend-pct">' + seg.pct + '%</strong>';
             return (
               '<div class="devstats-lang-legend-item">' +
                 '<span class="devstats-lang-legend-dot" style="background:' + seg.color + ';"></span>' +
                 '<span class="devstats-lang-legend-name">' + escapeHtml(seg.name) + '</span>' +
-                '<strong class="devstats-lang-legend-pct">' + seg.pct + '%</strong>' +
+                pctHtml +
               '</div>'
             );
           }).join('');
@@ -729,6 +733,7 @@
         if (!variant || typeof variant !== 'object') {
           return;
         }
+        hasActiveVariant = !!variant.pid;
 
         var root = document.documentElement;
         var theme = variant.theme || {};
@@ -740,22 +745,19 @@
         }
 
         document.body.classList.add('variant-active');
+      }
 
-        var label = String(theme.badge || variant.name || '').trim();
-        if (!label) {
-          return;
+      function updateCanonicalUrl() {
+        try {
+          var canonicalNode = document.querySelector('link[rel="canonical"]');
+          if (!canonicalNode) {
+            return;
+          }
+          var canonicalUrl = window.location.origin + window.location.pathname + window.location.search;
+          canonicalNode.setAttribute('href', canonicalUrl);
+        } catch (error) {
+          // ignore URL handling errors
         }
-
-        var indicator = document.getElementById('variant-indicator');
-        if (!indicator) {
-          indicator = document.createElement('div');
-          indicator.id = 'variant-indicator';
-          indicator.className = 'variant-indicator';
-          indicator.setAttribute('role', 'status');
-          indicator.setAttribute('aria-live', 'polite');
-          document.body.appendChild(indicator);
-        }
-        indicator.textContent = label;
       }
 
       function resolvePostulationPid() {
@@ -790,9 +792,7 @@
               }
             }
 
-            url.searchParams.delete('pid');
-            var cleanUrl = url.pathname + (url.search || '') + (url.hash || '');
-            window.history.replaceState({}, '', cleanUrl);
+            // keep pid in URL so each profile variant can be crawled/indexed
           }
         } catch (error) {
           // ignore URL parsing errors
@@ -834,6 +834,7 @@
         .then(function(results) {
           var data = results[0] || {};
           var devStats = results[1];
+          updateCanonicalUrl();
           applyVariantTheme(data._variant || null);
           hydrateProfile(data.profile || {});
           hydrateAbout(data.about || {});
