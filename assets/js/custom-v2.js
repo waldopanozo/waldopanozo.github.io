@@ -19,6 +19,7 @@
       var defaultBaseUrl = 'https://api.waldo.panozo.info';
       var apiBase = (window.__RESUME_API_BASE_URL__ || defaultBaseUrl).replace(/\/$/, '');
       var fallbackUrl = (window.__RESUME_FALLBACK_URL__ || 'assets/data/resume-fallback.json').replace(/^\//, '');
+      var currentPid = resolvePostulationPid();
 
       var SKILL_CARD_META = {
         programming_languages: { title: 'Programming Languages', icon: 'fa fa-code' },
@@ -716,8 +717,101 @@
         });
       }
 
+      function sanitizePid(value) {
+        var normalized = String(value || '').trim().toLowerCase();
+        if (!normalized) {
+          return '';
+        }
+        return /^[a-f0-9]{16,64}$/.test(normalized) ? normalized : '';
+      }
+
+      function applyVariantTheme(variant) {
+        if (!variant || typeof variant !== 'object') {
+          return;
+        }
+
+        var root = document.documentElement;
+        var theme = variant.theme || {};
+        if (theme.primary) {
+          root.style.setProperty('--variant-primary', theme.primary);
+        }
+        if (theme.secondary) {
+          root.style.setProperty('--variant-secondary', theme.secondary);
+        }
+
+        document.body.classList.add('variant-active');
+
+        var label = String(theme.badge || variant.name || '').trim();
+        if (!label) {
+          return;
+        }
+
+        var indicator = document.getElementById('variant-indicator');
+        if (!indicator) {
+          indicator = document.createElement('div');
+          indicator.id = 'variant-indicator';
+          indicator.className = 'variant-indicator';
+          indicator.setAttribute('role', 'status');
+          indicator.setAttribute('aria-live', 'polite');
+          document.body.appendChild(indicator);
+        }
+        indicator.textContent = label;
+      }
+
+      function resolvePostulationPid() {
+        var storageKey = 'resume_pid';
+        var pidFromStorage = '';
+        var pidFromQuery = '';
+
+        try {
+          pidFromStorage = sanitizePid(sessionStorage.getItem(storageKey) || '');
+        } catch (error) {
+          pidFromStorage = '';
+        }
+
+        try {
+          var url = new URL(window.location.href);
+          pidFromQuery = sanitizePid(url.searchParams.get('pid') || '');
+
+          if (url.searchParams.has('pid')) {
+            if (pidFromQuery !== '') {
+              try {
+                sessionStorage.setItem(storageKey, pidFromQuery);
+              } catch (error) {
+                // ignore storage errors and continue with query pid only
+              }
+            }
+
+            if (pidFromQuery === '') {
+              try {
+                sessionStorage.removeItem(storageKey);
+              } catch (error) {
+                // ignore storage errors
+              }
+            }
+
+            url.searchParams.delete('pid');
+            var cleanUrl = url.pathname + (url.search || '') + (url.hash || '');
+            window.history.replaceState({}, '', cleanUrl);
+          }
+        } catch (error) {
+          // ignore URL parsing errors
+        }
+
+        return pidFromQuery || pidFromStorage || '';
+      }
+
+      function withPid(path) {
+        if (!currentPid) {
+          return path;
+        }
+
+        var separator = path.indexOf('?') === -1 ? '?' : '&';
+        return path + separator + 'pid=' + encodeURIComponent(currentPid);
+      }
+
       function fetchResume() {
-        return requestJson(apiBase + '/resume', {
+        return requestJson(apiBase + withPid('/resume'), {
           headers: { 'Accept': 'application/json' },
           cache: 'no-store',
         }).catch(function(error) {
@@ -727,7 +821,7 @@
       }
 
       function fetchDevStats() {
-        return requestJson(apiBase + '/resume/dev-stats', {
+        return requestJson(apiBase + withPid('/resume/dev-stats'), {
           headers: { 'Accept': 'application/json' },
           cache: 'no-store',
         }).catch(function(error) {
@@ -740,6 +834,7 @@
         .then(function(results) {
           var data = results[0] || {};
           var devStats = results[1];
+          applyVariantTheme(data._variant || null);
           hydrateProfile(data.profile || {});
           hydrateAbout(data.about || {});
           renderExperience(data.experience || []);
