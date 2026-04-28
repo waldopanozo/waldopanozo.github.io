@@ -832,6 +832,15 @@
         });
       }
 
+      function updateResumeDownloadLinks() {
+        var downloadUrl = apiBase + withPid('/resume/pdf');
+        document.querySelectorAll('[data-resume-download]').forEach(function(link) {
+          link.setAttribute('href', downloadUrl);
+        });
+      }
+
+      updateResumeDownloadLinks();
+
       Promise.all([fetchResume(), fetchDevStats()])
         .then(function(results) {
           var data = results[0] || {};
