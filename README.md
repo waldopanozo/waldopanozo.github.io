@@ -32,6 +32,27 @@ The integration is implemented in `assets/js/custom-v2.js`:
 - `fetchDevStats()` hydrates the new **Developer Activity Stats** section.
 - If `/resume` is temporarily unavailable, the site falls back to `assets/data/resume-fallback.json`.
 
+### Variant flow (`pid`)
+
+The frontend supports postulation variants through URL parameter `?pid=...`:
+
+- Reads `pid` from URL on first load.
+- Validates format as hex string (`16-64` chars, lowercase/uppercase accepted then normalized).
+- Stores valid value in `sessionStorage` (`resume_pid`).
+- Removes `pid` from URL using `history.replaceState` (clean shareable URL).
+- Appends `pid` to API calls (`/resume` and `/resume/dev-stats`).
+
+Behavior without variant in URL:
+
+- Frontend sends no `pid` if `sessionStorage` is empty.
+- Backend default variant is applied (`demo-php-react`), so users still get a personalized baseline profile.
+
+Visual indicator of active profile:
+
+- Top gradient line changes with variant theme.
+- Floating badge at bottom-right shows current track label.
+- Theme values are received from API in `_variant.theme`.
+
 ### Runtime configuration
 
 You can override endpoints without changing source code by defining globals before loading `custom-v2.js`:
