@@ -792,7 +792,9 @@
               }
             }
 
-            // keep pid in URL so each profile variant can be crawled/indexed
+            url.searchParams.delete('pid');
+            var cleanUrl = url.pathname + (url.search || '') + (url.hash || '');
+            window.history.replaceState({}, '', cleanUrl);
           }
         } catch (error) {
           // ignore URL parsing errors
