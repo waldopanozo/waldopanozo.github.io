@@ -64,7 +64,7 @@ SEO behavior with variants:
 
 - `pid` is intentionally removed from the visible URL after first load.
 - Variant context is persisted in `sessionStorage`.
-- `sitemap.xml` includes profile variant URLs for crawler discovery.
+- Variants are not listed in the public site or sitemap; only direct links with `?pid=...` activate them.
 
 ### Runtime configuration
 
@@ -106,7 +106,7 @@ python3 -m http.server 8080
   - theme color variables from API `_variant.theme`.
   - subtle top gradient indicator for active variant context.
 - Added profile tech badges near hero photo using icon-font approach (non-SVG primary path).
-- Added internal discoverability links for key profile tracks in footer.
+- Profile variants are activated only via `?pid=...` links (for example from applications), not listed on the public site.
 
 ## License
 
