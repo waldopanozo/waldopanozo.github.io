@@ -64,7 +64,8 @@ SEO behavior with variants:
 
 - `pid` is intentionally removed from the visible URL after first load.
 - Variant context is persisted in `sessionStorage`.
-- Variants are not listed in the public site or sitemap; only direct links with `?pid=...` activate them.
+- `sitemap.xml` includes profile variant URLs for crawler discovery.
+- Variants are not listed on the public site; only direct links with `?pid=...` activate them.
 
 ### Runtime configuration
 
