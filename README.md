@@ -64,7 +64,9 @@ SEO behavior with variants:
 
 - `pid` is intentionally removed from the visible URL after first load.
 - Variant context is persisted in `sessionStorage`.
-- `sitemap.xml` includes profile variant URLs for crawler discovery.
+- `sitemap.xml` includes all **18** profile variant URLs (home + each `?pid=...`) for discovery and employer sharing.
+- API mirror: `https://api.waldo.panozo.info/sitemap.xml` lists JSON, PDF, and dev-stats per variant.
+- Regenerate after variant changes: `php scripts/generate_variant_sitemaps.php` in `resume-api` (see `docs/variant-links.md`).
 - Variants are not listed on the public site; only direct links with `?pid=...` activate them.
 
 ### Runtime configuration
