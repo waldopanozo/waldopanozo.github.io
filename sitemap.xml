@@ -2,57 +2,116 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://waldopanozo.github.io/</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://waldopanozo.github.io/?pid=0f9ab54e1d8c4a7fb239dc17e8aa2f41</loc>
+    <loc>https://waldopanozo.github.io/?pid=2d9a7c4e1b836405f2e8a9736540127</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://waldopanozo.github.io/?pid=a93f1d2c7b8e4f1096a2ce54d1fcb872</loc>
+    <loc>https://waldopanozo.github.io/?pid=5c29d8f710624a3eb9c4e6018725439</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=8b1f6e3a2d9450c7b8e4a1926375048</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=7f4e2a91c638405b8d1e5f3a9026478</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=3ea8f1c2b9d04e7fa6b5c8392015476</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://waldopanozo.github.io/?pid=be71c9942f8a40f3b2dd6ac8e31a6f5d</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://waldopanozo.github.io/?pid=9c3de6f18ab24c10b9f0d3726e54aa8e</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://waldopanozo.github.io/?pid=fd2ab7e9c30a41f18de6b4a79f2c1d58</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://waldopanozo.github.io/?pid=51e0cd7aa84f4a4fbe09d3c2f7e1a6bc</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://waldopanozo.github.io/?pid=74b8d2f10ce64f1a8adf2e6bc59103de</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://waldopanozo.github.io/?pid=2d5fb1c8e7a0491a9be4c6f20d83a7ef</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=9c3de6f18ab24c10b9f0d3726e54aa8e</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=0f9ab54e1d8c4a7fb239dc17e8aa2f41</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=fd2ab7e9c30a41f18de6b4a79f2c1d58</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=d19a4c7e62b84f3aa5e91d0cfb4732a8</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=c84e2f9b7a6d4e1f93ab52cd8f70a4b1</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=a93f1d2c7b8e4f1096a2ce54d1fcb872</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://waldopanozo.github.io/?pid=f27b5d8a9ce14e30b6a4f2d11c7395ef</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://waldopanozo.github.io/?pid=e91a4d7cb63f44f4a8f0be3d152c6a90</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://waldopanozo.github.io/?pid=6ab3f9d0247a45ef82dc1a9be5f43c71</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
