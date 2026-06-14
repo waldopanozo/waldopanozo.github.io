@@ -313,6 +313,10 @@ ul {
   margin-right: auto;
 }
 
+.hero-photo picture {
+  display: block;
+}
+
 .hero-photo img {
   width: 300px;
   height: 300px;
@@ -557,6 +561,10 @@ ul {
 
 .about-photo-wrapper {
   margin-bottom: 2rem;
+}
+
+.about-photo-wrapper picture {
+  display: block;
 }
 
 .about-photo {
