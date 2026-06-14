@@ -240,11 +240,38 @@
       "native": ["Spanish"]
     },
     "additional": {
-      "Version Control": ["GitLab", "GitHub", "Git"],
-      "CI/CD": ["Jenkins", "Automated Pipelines"],
-      "APIs & Microservices": ["REST APIs", "Load Balancing", "Proxy"],
-      "Mobile & Web": ["React Native", "Mobile Applications"],
-      "Quantitative Finance & Trading": ["MetaTrader 5", "MQL5", "Algorithmic Trading", "Technical Analysis", "Risk Management", "PostgreSQL Analytics"]
+      "Frontend Engineering": {
+        "icon": "fa fa-desktop",
+        "items": ["React", "TypeScript", "Next.js", "UI/UX", "Cypress", "Vite", "Bootstrap"]
+      },
+      "Python & Data": {
+        "icon": "fa fa-bar-chart",
+        "items": ["pandas", "NumPy", "scikit-learn", "TensorFlow", "psycopg2", "MetaTrader5 API"]
+      },
+      "FinTech & Crypto": {
+        "icon": "fa fa-usd",
+        "items": ["Open Finance", "Crypto & Forex Markets", "Payment Flows", "API Security", "Performance Optimization"]
+      },
+      "Version Control": {
+        "icon": "fa fa-git",
+        "items": ["GitLab", "GitHub", "Git"]
+      },
+      "CI/CD": {
+        "icon": "fa fa-server",
+        "items": ["Jenkins", "GitHub Actions", "Automated Pipelines"]
+      },
+      "APIs & Microservices": {
+        "icon": "fa fa-plug",
+        "items": ["REST APIs", "Load Balancing", "Proxy"]
+      },
+      "Mobile & Web": {
+        "icon": "fa fa-mobile",
+        "items": ["React Native", "Mobile Applications"]
+      },
+      "Quantitative Finance & Trading": {
+        "icon": "fa fa-line-chart",
+        "items": ["MetaTrader 5", "MQL5", "Algorithmic Trading", "Technical Analysis", "Risk Management", "PostgreSQL Analytics"]
+      }
     }
   },
   "education": [
