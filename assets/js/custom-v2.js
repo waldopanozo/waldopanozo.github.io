@@ -39,6 +39,17 @@
         x: 'fa fa-twitter',
       };
 
+      var PORTFOLIO_NO_IMAGE = 'assets/img/no-image.webp';
+
+      function portfolioImageSrc(item) {
+        var src = item && item.image ? String(item.image).trim() : '';
+        return src || PORTFOLIO_NO_IMAGE;
+      }
+
+      function hasCustomPortfolioImage(item) {
+        return !!(item && item.image && String(item.image).trim());
+      }
+
       function setNodeText(node, value, transform) {
         if (!node || typeof value === 'undefined' || value === null) {
           return;
@@ -494,9 +505,12 @@
             : '';
 
           var links = [];
-          // Add search icon for lightbox if image exists
-          if (item.image) {
-            links.push('<a href="' + item.image + '" class="portfolio-link portfolio-lightbox-link" data-lightbox-src="' + item.image + '" aria-label="Open preview image for ' + escapeHtml(item.title || 'portfolio item') + '"><i class="fa fa-search"></i></a>');
+          var imageSrc = portfolioImageSrc(item);
+          var isPlaceholder = !hasCustomPortfolioImage(item);
+
+          // Lightbox only for registered preview images (not the shared placeholder)
+          if (hasCustomPortfolioImage(item)) {
+            links.push('<a href="' + imageSrc + '" class="portfolio-link portfolio-lightbox-link" data-lightbox-src="' + imageSrc + '" aria-label="Open preview image for ' + escapeHtml(item.title || 'portfolio item') + '"><i class="fa fa-search"></i></a>');
           }
           // Add external link icon if link exists
           if (item.link) {
@@ -506,8 +520,8 @@
           return (
             '<div class="portfolio-slide">' +
               '<div class="portfolio-card">' +
-                '<div class="portfolio-image">' +
-                  (item.image ? '<img src="' + item.image + '" alt="' + (item.title || 'Portfolio item') + '">' : '') +
+                '<div class="portfolio-image' + (isPlaceholder ? ' portfolio-image--placeholder' : '') + '">' +
+                  '<img src="' + imageSrc + '" alt="' + escapeHtml(item.title || 'Portfolio item') + '" loading="lazy" onerror="this.onerror=null;this.src=\'' + PORTFOLIO_NO_IMAGE + '\';var p=this.parentElement;if(p){p.classList.add(\'portfolio-image--placeholder\');}">' +
                   (links.length ? '<div class="portfolio-overlay"><div class="portfolio-links">' + links.join('') + '</div></div>' : '') +
                 '</div>' +
                 '<div class="portfolio-content">' +

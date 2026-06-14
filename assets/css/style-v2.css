@@ -1039,6 +1039,12 @@ ul {
   transition: var(--transition);
 }
 
+.portfolio-image--placeholder img {
+  object-fit: contain;
+  background: var(--bg-dark, #0f172a);
+  padding: 0.5rem;
+}
+
 .portfolio-image-clickable {
   cursor: pointer;
 }
