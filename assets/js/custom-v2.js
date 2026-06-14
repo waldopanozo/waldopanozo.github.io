@@ -194,6 +194,141 @@
         }).join('');
       }
 
+      function parseYoutubeId(url) {
+        if (!url || typeof url !== 'string') {
+          return '';
+        }
+        var match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+        return match ? match[1] : '';
+      }
+
+      function resolveMediaUrl(url) {
+        if (!url || typeof url !== 'string') {
+          return '';
+        }
+        if (/^https?:\/\//i.test(url)) {
+          return url;
+        }
+        var apiBase = (window.__RESUME_API_BASE_URL__ || 'https://api.waldo.panozo.info').replace(/\/$/, '');
+        return url.charAt(0) === '/' ? apiBase + url : apiBase + '/' + url;
+      }
+
+      function renderAwardMedia(media) {
+        if (!media || typeof media !== 'object') {
+          return '';
+        }
+
+        var type = (media.type || '').toLowerCase();
+        var url = resolveMediaUrl(media.url || '');
+        if (!url) {
+          return '';
+        }
+
+        if (type === 'youtube') {
+          var videoId = parseYoutubeId(url);
+          if (!videoId) {
+            return (
+              '<div class="award-media">' +
+                '<a href="' + url + '" target="_blank" rel="noopener" class="award-media-link">Watch on YouTube</a>' +
+              '</div>'
+            );
+          }
+          return (
+            '<div class="award-media award-media-video">' +
+              '<iframe src="https://www.youtube.com/embed/' + videoId + '" title="Award video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>' +
+            '</div>'
+          );
+        }
+
+        if (type === 'image') {
+          return (
+            '<div class="award-media award-media-image">' +
+              '<img src="' + url + '" alt="Award media" loading="lazy" />' +
+            '</div>'
+          );
+        }
+
+        if (type === 'pdf' || type === 'file') {
+          return (
+            '<div class="award-media">' +
+              '<a href="' + url + '" target="_blank" rel="noopener" class="award-media-link"><i class="fa fa-file-pdf-o"></i> View certificate / document</a>' +
+            '</div>'
+          );
+        }
+
+        return (
+          '<div class="award-media">' +
+            '<a href="' + url + '" target="_blank" rel="noopener" class="award-media-link">View media</a>' +
+          '</div>'
+        );
+      }
+
+      function awardKindLabel(kind) {
+        var labels = {
+          hackathon: 'Hackathon',
+          recognition: 'Recognition',
+          award: 'Award',
+        };
+        return labels[(kind || '').toLowerCase()] || 'Recognition';
+      }
+
+      function renderAwards(awards) {
+        var container = document.querySelector('[data-awards-list]');
+        if (!container || !Array.isArray(awards)) {
+          return;
+        }
+
+        var items = awards.filter(function(item) { return item && item.title; });
+        if (!items.length) {
+          container.innerHTML = '';
+          var emptySection = container.closest('.section');
+          if (emptySection) {
+            emptySection.classList.add('is-hidden');
+          }
+          return;
+        }
+
+        var awardsSection = container.closest('.section');
+        if (awardsSection) {
+          awardsSection.classList.remove('is-hidden');
+        }
+        container.innerHTML = items.map(function(award) {
+          var metaParts = [
+            awardKindLabel(award.kind),
+            award.organization || '',
+            award.year || '',
+          ].filter(Boolean);
+
+          var recognition = award.recognition_from
+            ? '<p class="award-recognition"><i class="fa fa-certificate"></i> ' + award.recognition_from + '</p>'
+            : '';
+
+          var description = award.description
+            ? '<p class="award-description">' + award.description + '</p>'
+            : '';
+
+          var externalLink = award.link
+            ? '<a href="' + award.link + '" target="_blank" rel="noopener" class="award-external-link">Learn more</a>'
+            : '';
+
+          return (
+            '<article class="award-card">' +
+              '<div class="award-card-header">' +
+                '<span class="award-kind">' + awardKindLabel(award.kind) + '</span>' +
+                '<h3 class="award-title">' + award.title + '</h3>' +
+                (metaParts.length > 1 ? '<p class="award-meta">' + metaParts.slice(1).join(' · ') + '</p>' : '') +
+                recognition +
+              '</div>' +
+              '<div class="award-card-body">' +
+                description +
+                renderAwardMedia(award.media) +
+                externalLink +
+              '</div>' +
+            '</article>'
+          );
+        }).join('');
+      }
+
       function capitalize(text) {
         if (typeof text !== 'string') return text;
         return text.charAt(0).toUpperCase() + text.slice(1);
@@ -850,6 +985,7 @@
           hydrateProfile(data.profile || {});
           hydrateAbout(data.about || {});
           renderExperience(data.experience || []);
+          renderAwards(data.awards || []);
           renderSkills(data.skills || {});
           renderEducation(data.education || []);
           renderPortfolio(data.portfolio || []);
