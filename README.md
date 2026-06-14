@@ -5,7 +5,7 @@ This repository hosts my personal CV site on GitHub Pages (`https://waldopanozo.
 ## Highlights
 
 - **Hero + detailed sections:** Up-to-date summary, achievements, experience timeline, skills, and education pulled directly from my resume.
-- **Portfolio carousel:** Horizontal slider with smooth scrolling and custom controls for each featured project (React apps, APIs, etc.).
+- **Portfolio carousel:** Horizontal slider with smooth scrolling and custom controls for each featured project (React apps, APIs, etc.). Items without a preview image use the shared placeholder `assets/img/no-image.webp`.
 - **Blue-themed UI:** Translucent navigation bar, strong CTA buttons, and glassmorphism-inspired tiles.
 - **Resume CTAs:** Download buttons in the hero, navbar, and contact area always point to the latest PDF.
 - **Centralized contact:** Email, WhatsApp, availability, and social links presented as cards for quick access.
