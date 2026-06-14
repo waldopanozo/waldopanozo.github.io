@@ -563,10 +563,6 @@ ul {
   margin-bottom: 2rem;
 }
 
-.about-photo-wrapper picture {
-  display: block;
-}
-
 .about-photo {
   width: 280px;
   height: 280px;
