@@ -1548,6 +1548,79 @@ ul {
   background: linear-gradient(90deg, #1d4ed8, #38bdf8);
 }
 
+.devstats-trend-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.devstats-trend-controls {
+  display: inline-flex;
+  gap: 0.35rem;
+  padding: 0.25rem;
+  background: var(--bg-light);
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.devstats-trend-btn {
+  border: 0;
+  background: transparent;
+  color: var(--text-gray);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.devstats-trend-btn:hover,
+.devstats-trend-btn:focus-visible {
+  color: var(--primary-color);
+  outline: none;
+}
+
+.devstats-trend-btn.is-active {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.devstats-trend-note {
+  font-size: 0.82rem;
+  color: var(--text-gray);
+}
+
+[data-dev-stats-commits-chart] {
+  position: relative;
+}
+
+.devstats-trend-tooltip {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  background: #0f172a;
+  color: #f8fafc;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+}
+
+.devstats-trend-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .devstats-commits-chart-wrap {
   display: grid;
   grid-template-columns: 44px 1fr;
@@ -1562,51 +1635,78 @@ ul {
   align-items: flex-end;
   color: #64748b;
   font-size: 0.72rem;
-  padding: 0.2rem 0;
+  padding: 1.6rem 0 1.8rem;
+}
+
+.devstats-commits-plot {
+  min-width: 0;
+  overflow-x: auto;
 }
 
 .devstats-commits-chart {
-  height: 260px;
+  --trend-columns: 4;
+  min-height: 240px;
+  min-width: min(100%, calc(var(--trend-columns) * 56px));
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(var(--trend-columns), minmax(48px, 1fr));
+  gap: 10px;
   align-items: end;
-  padding: 0.2rem 0 0.1rem;
+  padding: 0.5rem 0.25rem 0;
   border-left: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
-  background: linear-gradient(to top, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-  background-size: 100% 25%;
+  background:
+    linear-gradient(to top, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+  background-size: 100% 25%, calc(100% / var(--trend-columns)) 100%;
 }
 
-.devstats-commits-bar-wrap {
+.devstats-commits-bar-col {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
   min-width: 0;
-  height: 100%;
+  height: 220px;
+}
+
+.devstats-commits-bar-value {
+  font-size: 0.72rem;
+  color: var(--text-gray);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+  min-height: 0.9rem;
+}
+
+.devstats-commits-bar-track {
+  flex: 1;
+  width: 72%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 0;
 }
 
 .devstats-commits-bar {
-  width: 80%;
-  min-height: 4px;
+  width: 100%;
+  min-height: 6px;
   background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
   border-radius: 6px 6px 0 0;
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+  transition: transform 0.15s ease, filter 0.15s ease;
+  cursor: pointer;
 }
 
-.devstats-commits-count {
-  font-size: 0.72rem;
-  color: var(--text-gray);
-  margin-top: 4px;
-  line-height: 1;
+.devstats-commits-bar.is-highlighted {
+  transform: scaleX(1.08);
+  filter: brightness(1.08);
 }
 
 .devstats-commits-label {
   font-size: 0.66rem;
   color: #64748b;
-  margin-top: 2px;
-  line-height: 1;
+  margin-top: 0.45rem;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* ============================================
@@ -1851,7 +1951,16 @@ ul {
 
   .devstats-commits-chart {
     gap: 6px;
-    height: 220px;
+    min-height: 210px;
+  }
+
+  .devstats-commits-bar-col {
+    height: 190px;
+  }
+
+  .devstats-trend-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .devstats-lang-pie-wrap {

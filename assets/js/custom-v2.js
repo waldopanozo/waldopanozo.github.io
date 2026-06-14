@@ -836,66 +836,228 @@
         }
 
         var commitsByDay = metrics.commits_by_day || {};
-        var weeklyBuckets = {};
+        renderCommitsTrendChart(commitsChartContainer, commitsByDay, stats.tracking_started_at || '');
+      }
+
+      function aggregateCommitsTrend(commitsByDay, granularity) {
+        var buckets = {};
         Object.keys(commitsByDay).forEach(function(dayKey) {
-          var date = new Date(dayKey + 'T00:00:00');
-          if (isNaN(date.getTime())) {
+          var count = Number(commitsByDay[dayKey] || 0);
+          if (!count) {
             return;
           }
 
-          var dayOfWeek = date.getDay();
-          var mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-          date.setDate(date.getDate() + mondayOffset);
+          var match = String(dayKey).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+          if (!match) {
+            return;
+          }
 
-          var y = date.getFullYear();
-          var m = String(date.getMonth() + 1).padStart(2, '0');
-          var d = String(date.getDate()).padStart(2, '0');
-          var weekKey = y + '-' + m + '-' + d;
-          weeklyBuckets[weekKey] = (weeklyBuckets[weekKey] || 0) + Number(commitsByDay[dayKey] || 0);
+          var year = match[1];
+          var month = match[2];
+          var day = match[3];
+          var bucketKey = '';
+          var label = '';
+
+          if (granularity === 'year') {
+            bucketKey = year;
+            label = year;
+          } else if (granularity === 'month') {
+            bucketKey = year + '-' + month;
+            label = month + '/' + year;
+          } else {
+            var date = new Date(year + '-' + month + '-' + day + 'T00:00:00');
+            if (isNaN(date.getTime())) {
+              return;
+            }
+            var dayOfWeek = date.getDay();
+            var mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+            date.setDate(date.getDate() + mondayOffset);
+            var weekYear = String(date.getFullYear());
+            var weekMonth = String(date.getMonth() + 1).padStart(2, '0');
+            var weekDay = String(date.getDate()).padStart(2, '0');
+            bucketKey = weekYear + '-' + weekMonth + '-' + weekDay;
+            label = weekMonth + '/' + weekDay;
+          }
+
+          buckets[bucketKey] = (buckets[bucketKey] || 0) + count;
         });
 
-        var labelsAndValues = Object.keys(weeklyBuckets).sort().map(function(weekKey) {
-          var labelDate = new Date(weekKey + 'T00:00:00');
-          var shortLabel = String(labelDate.getMonth() + 1).padStart(2, '0') + '/' + String(labelDate.getDate()).padStart(2, '0');
+        var items = Object.keys(buckets).sort().map(function(key) {
+          var itemLabel = key;
+          if (granularity === 'year') {
+            itemLabel = key;
+          } else if (granularity === 'month') {
+            var monthParts = key.split('-');
+            itemLabel = monthParts[1] + '/' + monthParts[0];
+          } else {
+            var weekParts = key.split('-');
+            itemLabel = weekParts[1] + '/' + weekParts[2];
+          }
           return {
-            key: weekKey,
-            shortLabel: shortLabel,
-            value: Number(weeklyBuckets[weekKey] || 0),
+            key: key,
+            label: itemLabel,
+            value: Number(buckets[key] || 0),
           };
-        }).slice(-24);
+        });
 
-        var maxCommits = labelsAndValues.reduce(function(max, item) {
-          return item.value > max ? item.value : max;
-        }, 0);
+        if (granularity === 'week') {
+          return items.slice(-16);
+        }
+        if (granularity === 'month') {
+          return items.slice(-18);
+        }
+        return items;
+      }
 
-        if (maxCommits === 0) {
-          commitsChartContainer.innerHTML = '<p class="devstats-empty">No commits registered in recent periods.</p>';
-        } else {
+      function detectDefaultTrendGranularity(commitsByDay) {
+        var years = {};
+        Object.keys(commitsByDay).forEach(function(dayKey) {
+          var year = String(dayKey).slice(0, 4);
+          if (/^\d{4}$/.test(year)) {
+            years[year] = true;
+          }
+        });
+        var yearCount = Object.keys(years).length;
+        if (yearCount > 1) {
+          return 'year';
+        }
+        if (Object.keys(commitsByDay).length > 120) {
+          return 'month';
+        }
+        return 'week';
+      }
+
+      function renderCommitsTrendChart(container, commitsByDay, trackingStartedAt) {
+        if (!container) {
+          return;
+        }
+
+        var defaultGranularity = detectDefaultTrendGranularity(commitsByDay);
+        container.dataset.trendGranularity = defaultGranularity;
+        container.dataset.trackingStartedAt = trackingStartedAt || '';
+
+        function paintChart(granularity) {
+          var items = aggregateCommitsTrend(commitsByDay, granularity);
+          var maxCommits = items.reduce(function(max, item) {
+            return item.value > max ? item.value : max;
+          }, 0);
+
+          if (!items.length || maxCommits === 0) {
+            container.innerHTML = '<p class="devstats-empty">No commits registered yet.</p>';
+            return;
+          }
+
           var yTicks = [1, 0.75, 0.5, 0.25].map(function(ratio) {
             return Math.ceil(maxCommits * ratio);
           });
           yTicks = Array.from(new Set(yTicks)).sort(function(a, b) { return b - a; });
 
-          commitsChartContainer.innerHTML =
+          var granularityLabels = {
+            year: 'Yearly',
+            month: 'Monthly',
+            week: 'Weekly',
+          };
+
+          var controlsHtml = ['year', 'month', 'week'].map(function(mode) {
+            var activeClass = mode === granularity ? ' is-active' : '';
+            return '<button type="button" class="devstats-trend-btn' + activeClass + '" data-trend-granularity="' + mode + '">' + granularityLabels[mode] + '</button>';
+          }).join('');
+
+          var barsHtml = items.map(function(item, index) {
+            var normalized = Math.sqrt(item.value / maxCommits);
+            var barPct = Math.max(8, Math.round(normalized * 100));
+            var detailLabel = granularity === 'year'
+              ? 'Year ' + item.label
+              : (granularity === 'month' ? 'Month ' + item.label : 'Week of ' + item.key);
+            return (
+              '<div class="devstats-commits-bar-col" data-trend-index="' + index + '">' +
+                '<div class="devstats-commits-bar-value">' + item.value + '</div>' +
+                '<div class="devstats-commits-bar-track">' +
+                  '<div class="devstats-commits-bar" style="height:' + barPct + '%;" ' +
+                    'data-trend-label="' + escapeHtml(detailLabel) + '" ' +
+                    'data-trend-value="' + item.value + '" ' +
+                    'role="img" aria-label="' + escapeHtml(detailLabel + ': ' + item.value + ' commits') + '"></div>' +
+                '</div>' +
+                '<div class="devstats-commits-label">' + escapeHtml(item.label) + '</div>' +
+              '</div>'
+            );
+          }).join('');
+
+          var trackingNote = trackingStartedAt
+            ? '<span class="devstats-trend-note">Data since ' + escapeHtml(new Date(trackingStartedAt).toLocaleDateString()) + '</span>'
+            : '';
+
+          container.innerHTML =
+            '<div class="devstats-trend-header">' +
+              '<div class="devstats-trend-controls" role="tablist" aria-label="Commits trend granularity">' + controlsHtml + '</div>' +
+              trackingNote +
+            '</div>' +
+            '<div class="devstats-trend-tooltip" aria-hidden="true"></div>' +
             '<div class="devstats-commits-chart-wrap">' +
               '<div class="devstats-commits-axis">' + yTicks.map(function(tick) {
                 return '<span>' + tick + '</span>';
               }).join('') + '</div>' +
-              '<div class="devstats-commits-chart">' +
-                labelsAndValues.map(function(item) {
-                  var normalized = Math.sqrt(item.value / maxCommits);
-                  var barPx = Math.max(12, Math.round(normalized * 180));
-                  return (
-                    '<div class="devstats-commits-bar-wrap">' +
-                      '<div class="devstats-commits-bar" style="height:' + barPx + 'px;" title="' + escapeHtml('Week of ' + item.key + ': ' + item.value + ' commits') + '"></div>' +
-                      '<div class="devstats-commits-count">' + item.value + '</div>' +
-                      '<div class="devstats-commits-label">' + item.shortLabel + '</div>' +
-                    '</div>'
-                  );
-                }).join('') +
+              '<div class="devstats-commits-plot">' +
+                '<div class="devstats-commits-chart" style="--trend-columns:' + items.length + ';">' + barsHtml + '</div>' +
               '</div>' +
             '</div>';
+
+          container.querySelectorAll('[data-trend-granularity]').forEach(function(button) {
+            button.addEventListener('click', function() {
+              var mode = button.getAttribute('data-trend-granularity') || 'year';
+              container.dataset.trendGranularity = mode;
+              paintChart(mode);
+              bindCommitsTrendInteractivity(container);
+            });
+          });
+
+          bindCommitsTrendInteractivity(container);
         }
+
+        paintChart(defaultGranularity);
+      }
+
+      function bindCommitsTrendInteractivity(container) {
+        var tooltip = container.querySelector('.devstats-trend-tooltip');
+        if (!tooltip) {
+          return;
+        }
+
+        container.querySelectorAll('.devstats-commits-bar').forEach(function(bar) {
+          bar.addEventListener('mouseenter', function() {
+            var label = bar.getAttribute('data-trend-label') || 'Commits';
+            var value = bar.getAttribute('data-trend-value') || '0';
+            tooltip.textContent = label + ': ' + value + ' commits';
+            tooltip.classList.add('is-visible');
+            bar.classList.add('is-highlighted');
+          });
+
+          bar.addEventListener('mousemove', function(event) {
+            var parentRect = container.getBoundingClientRect();
+            tooltip.style.left = (event.clientX - parentRect.left + 12) + 'px';
+            tooltip.style.top = (event.clientY - parentRect.top - 36) + 'px';
+          });
+
+          bar.addEventListener('mouseleave', function() {
+            tooltip.classList.remove('is-visible');
+            bar.classList.remove('is-highlighted');
+          });
+
+          bar.addEventListener('focus', function() {
+            var label = bar.getAttribute('data-trend-label') || 'Commits';
+            var value = bar.getAttribute('data-trend-value') || '0';
+            tooltip.textContent = label + ': ' + value + ' commits';
+            tooltip.classList.add('is-visible');
+            bar.classList.add('is-highlighted');
+          });
+
+          bar.addEventListener('blur', function() {
+            tooltip.classList.remove('is-visible');
+            bar.classList.remove('is-highlighted');
+          });
+
+          bar.setAttribute('tabindex', '0');
+        });
       }
 
       function requestJson(url, options) {
