@@ -167,23 +167,32 @@
           }).join('');
         }
 
-        var highlightsWrapper = document.querySelector('[data-about-achievements]');
-        if (highlightsWrapper && Array.isArray(about.achievements)) {
-          highlightsWrapper.innerHTML = about.achievements.map(function(item) {
+        var achievementsTrack = document.querySelector('[data-achievements-track]');
+        if (achievementsTrack && Array.isArray(about.achievements)) {
+          achievementsTrack.innerHTML = about.achievements.map(function(item) {
             if (!item || !item.title || !item.description) {
               return '';
             }
 
             return (
-              '<div class="highlight-item">' +
-                '<div class="highlight-icon"><i class="fa ' + resolveAchievementIcon(item) + '"></i></div>' +
-                '<div class="highlight-content">' +
-                  '<h4>' + item.title + '</h4>' +
-                  '<p>' + item.description + '</p>' +
-                '</div>' +
+              '<div class="achievement-slide">' +
+                '<article class="achievement-card">' +
+                  '<div class="achievement-card-icon"><i class="fa ' + resolveAchievementIcon(item) + '"></i></div>' +
+                  '<h4 class="achievement-card-title">' + escapeHtml(item.title) + '</h4>' +
+                  '<p class="achievement-card-desc">' + escapeHtml(item.description) + '</p>' +
+                '</article>' +
               '</div>'
             );
           }).join('');
+
+          var achievementsRow = achievementsTrack.closest('.row');
+          if (achievementsRow) {
+            achievementsRow.style.display = achievementsTrack.children.length ? '' : 'none';
+          }
+
+          if (typeof window.refreshAchievementsCarousel === 'function') {
+            window.refreshAchievementsCarousel();
+          }
         }
       }
 
@@ -1377,14 +1386,14 @@
     });
 
     // ============================================
-    // Portfolio Carousel Controls
+    // Horizontal Carousel Controls (portfolio + achievements)
     // ============================================
-    (function() {
-      var track = document.getElementById('portfolio-track');
-      if (!track) return;
+    function initHorizontalCarousel(track, prevBtn, nextBtn, slideSelector) {
+      if (!track) {
+        return function() {};
+      }
 
-      var prevBtn = document.querySelector('.carousel-control.prev');
-      var nextBtn = document.querySelector('.carousel-control.next');
+      var slideQuery = slideSelector || '.portfolio-slide, .achievement-slide';
 
       function getGap() {
         var styles = window.getComputedStyle(track);
@@ -1393,7 +1402,7 @@
       }
 
       function getScrollAmount() {
-        var slide = track.querySelector('.portfolio-slide');
+        var slide = track.querySelector(slideQuery);
         if (!slide) return track.clientWidth;
         return slide.getBoundingClientRect().width + getGap();
       }
@@ -1412,21 +1421,50 @@
         });
       }
 
-      if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-          scrollTrack(-1);
-        });
+      if (!track.dataset.carouselBound) {
+        track.dataset.carouselBound = '1';
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function() {
+            scrollTrack(-1);
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function() {
+            scrollTrack(1);
+          });
+        }
+        track.addEventListener('scroll', updateControls);
+        window.addEventListener('resize', updateControls);
       }
 
-      if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-          scrollTrack(1);
-        });
-      }
-
-      track.addEventListener('scroll', updateControls);
-      window.addEventListener('resize', updateControls);
       updateControls();
+      return updateControls;
+    }
+
+    (function() {
+      var portfolioCarousel = document.querySelector('.portfolio-carousel');
+      var portfolioTrack = document.getElementById('portfolio-track');
+      if (!portfolioCarousel || !portfolioTrack) return;
+
+      initHorizontalCarousel(
+        portfolioTrack,
+        portfolioCarousel.querySelector('.carousel-control.prev'),
+        portfolioCarousel.querySelector('.carousel-control.next'),
+        '.portfolio-slide'
+      );
+    })();
+
+    (function() {
+      var achievementsCarousel = document.querySelector('[data-achievements-carousel]');
+      var achievementsTrack = document.querySelector('[data-achievements-track]');
+      if (!achievementsCarousel || !achievementsTrack) return;
+
+      window.refreshAchievementsCarousel = initHorizontalCarousel(
+        achievementsTrack,
+        achievementsCarousel.querySelector('.achievements-carousel-prev'),
+        achievementsCarousel.querySelector('.achievements-carousel-next'),
+        '.achievement-slide'
+      );
     })();
 
     // ============================================
