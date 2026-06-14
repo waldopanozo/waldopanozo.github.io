@@ -174,6 +174,41 @@
       "tech_stack": ["Java", "WebObjects", "Oracle", "MySQL"]
     }
   ],
+  "awards": [
+    {
+      "kind": "hackathon",
+      "title": "Revolution Parts Hackathon Winner",
+      "recognition_from": "Caching optimization track",
+      "organization": "Revolution Parts",
+      "year": "2024",
+      "description": "Delivered a caching strategy that reduced GMV page load time by 57%, winning the company hackathon.",
+      "link": "",
+      "media": { "type": "youtube", "url": "" },
+      "show_in_pdf": true
+    },
+    {
+      "kind": "hackathon",
+      "title": "Revolution Parts Hackathon Winner",
+      "recognition_from": "AI product imagery search",
+      "organization": "Revolution Parts",
+      "year": "2025",
+      "description": "Built an AI assistant to search product imagery across the catalog; second hackathon win at Revolution Parts.",
+      "link": "",
+      "media": null,
+      "show_in_pdf": true
+    },
+    {
+      "kind": "recognition",
+      "title": "Vehicle Search Launch — SEMA 2025",
+      "recognition_from": "CEO recognition",
+      "organization": "Revolution Parts",
+      "year": "2025",
+      "description": "Led end-to-end delivery of the multi-tenant vehicle search experience showcased at SEMA 2025.",
+      "link": "",
+      "media": null,
+      "show_in_pdf": true
+    }
+  ],
   "skills": {
     "programming_languages": {
       "advanced": ["JavaScript (12+ YOE)", "PHP (15+ YOE)", "Java (8+ YOE)", "Python (5+ YOE)"],
