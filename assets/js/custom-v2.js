@@ -100,6 +100,29 @@
         renderStats(profile.stats);
       }
 
+      function resolveAchievementIcon(item) {
+        if (item && typeof item.icon === 'string' && item.icon.trim() !== '') {
+          var icon = item.icon.trim();
+          return icon.indexOf('fa-') === 0 ? icon : 'fa-' + icon.replace(/^fa-/, '');
+        }
+
+        var title = String((item && item.title) || '').toLowerCase();
+        if (/vehicle|search|sema|automotive|car/.test(title)) {
+          return 'fa-car';
+        }
+        if (/productivity|%|growth|efficiency|orchestration/.test(title)) {
+          return 'fa-line-chart';
+        }
+        if (/hackathon|winner|award/.test(title)) {
+          return 'fa-trophy';
+        }
+        if (/user|served|80k|platform|biometric|scholarship/.test(title)) {
+          return 'fa-users';
+        }
+
+        return 'fa-star';
+      }
+
       function hydrateAbout(about) {
         if (!about || typeof about !== 'object') {
           return;
@@ -139,7 +162,7 @@
 
             return (
               '<div class="highlight-item">' +
-                '<div class="highlight-icon"><i class="fa fa-star"></i></div>' +
+                '<div class="highlight-icon"><i class="fa ' + resolveAchievementIcon(item) + '"></i></div>' +
                 '<div class="highlight-content">' +
                   '<h4>' + item.title + '</h4>' +
                   '<p>' + item.description + '</p>' +

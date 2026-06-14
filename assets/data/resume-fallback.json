@@ -17,19 +17,23 @@
     "achievements": [
       {
         "title": "Vehicle Search Launch",
-        "description": "Led the delivery of a multi-tenant vehicle search experience highlighted at SEMA 2025."
+        "description": "Led the delivery of a multi-tenant vehicle search experience highlighted at SEMA 2025.",
+        "icon": "fa-car"
       },
       {
         "title": "+70% Productivity",
-        "description": "Built an agile orchestration platform that increased productivity by at least 70%."
+        "description": "Built an agile orchestration platform that increased productivity by at least 70%.",
+        "icon": "fa-line-chart"
       },
       {
         "title": "Hackathon Wins",
-        "description": "Two-time Revolution Parts hackathon winner for caching and AI initiatives."
+        "description": "Two-time Revolution Parts hackathon winner for caching and AI initiatives.",
+        "icon": "fa-trophy"
       },
       {
         "title": "80K+ Users Served",
-        "description": "Delivered biometric control and scholarship platforms supporting 80K+ users."
+        "description": "Delivered biometric control and scholarship platforms supporting 80K+ users.",
+        "icon": "fa-users"
       }
     ],
     "roles": [
