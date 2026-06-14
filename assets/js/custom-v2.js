@@ -429,7 +429,7 @@
             if (!Array.isArray(items) || !items.length) return '';
 
             return (
-              '<div class="col-lg-3 col-md-6">' +
+              '<div class="tech-grid__item">' +
                 '<div class="tech-item">' +
                   '<i class="fa fa-check-square-o"></i>' +
                   '<h4>' + name + '</h4>' +
@@ -439,7 +439,7 @@
             );
           }).join('');
 
-          additionalWrapper.innerHTML = '<h3 class="text-center mb-40">Additional Technologies</h3><div class="row">' + additionalHtml + '</div>';
+          additionalWrapper.innerHTML = '<h3 class="text-center mb-40">Additional Technologies</h3><div class="tech-grid">' + additionalHtml + '</div>';
         }
       }
 
