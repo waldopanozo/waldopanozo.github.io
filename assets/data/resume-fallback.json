@@ -34,6 +34,11 @@
         "title": "80K+ Users Served",
         "description": "Delivered biometric control and scholarship platforms supporting 80K+ users.",
         "icon": "fa-users"
+      },
+      {
+        "title": "Algorithmic Trading R&D",
+        "description": "Personal finance research stack: MT5 indicators (MQL5), Python execution bot, ML analytics, and TradersWorld platform — aligned with doctoral specialization in finance.",
+        "icon": "fa-exchange"
       }
     ],
     "roles": [
@@ -238,15 +243,15 @@
       "Version Control": ["GitLab", "GitHub", "Git"],
       "CI/CD": ["Jenkins", "Automated Pipelines"],
       "APIs & Microservices": ["REST APIs", "Load Balancing", "Proxy"],
-      "Mobile & Web": ["React Native", "Mobile Applications"]
+      "Mobile & Web": ["React Native", "Mobile Applications"],
+      "Quantitative Finance & Trading": ["MetaTrader 5", "MQL5", "Algorithmic Trading", "Technical Analysis", "Risk Management", "PostgreSQL Analytics"]
     }
   },
   "education": [
     {
       "title": "Ph.D. Business Science",
       "institution": "Public University \"Mariscal Jose Ballivian\"",
-      "status": "In progress",
-      "notes": "Doctorate in Business Science - In progress"
+      "status": "In progress — finance specialization; algorithmic trading & quantitative decision support"
     },
     {
       "title": "MSc. AI, Machine Learning & Data Science",
@@ -276,6 +281,24 @@
     }
   ],
   "portfolio": [
+    {
+      "title": "TradersWorld — Trading & Finance Platform",
+      "description": "Personal platform (tradersworld.top): market news for crypto, forex, metals and stocks; RBAC admin, paid resources, and MT5 operations dashboard.",
+      "tags": ["TypeScript", "React", "Node.js", "PostgreSQL", "MetaTrader 5", "FinTech"],
+      "link": "https://tradersworld.top"
+    },
+    {
+      "title": "MT5 Algorithmic Trading Bot",
+      "description": "Python bot on MetaTrader 5 with custom DEMA ATR channel indicators (MQL5), MACD confirmation, multi-account execution, and dynamic risk-based lot sizing.",
+      "tags": ["Python", "MetaTrader 5", "MQL5", "PostgreSQL", "Algorithmic Trading"],
+      "link": "https://tradersworld.top"
+    },
+    {
+      "title": "Trading AI Analytics",
+      "description": "Quantitative research toolkit: walk-forward TP/SL simulation, ML trade-score filtering, and opportunity ranking by risk profile.",
+      "tags": ["Python", "Machine Learning", "PostgreSQL", "Quantitative Finance"],
+      "link": "https://github.com/waldopanozo"
+    },
     {
       "title": "RESTful API with PHP Slim",
       "description": "RESTful API using PHP Slim, Composer, and SQLite with clean architecture.",

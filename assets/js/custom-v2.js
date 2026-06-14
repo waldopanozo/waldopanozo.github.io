@@ -116,6 +116,9 @@
         if (/hackathon|winner|award/.test(title)) {
           return 'fa-trophy';
         }
+        if (/trading|finance|algorithmic|mt5|quant/.test(title)) {
+          return 'fa-exchange';
+        }
         if (/user|served|80k|platform|biometric|scholarship/.test(title)) {
           return 'fa-users';
         }
