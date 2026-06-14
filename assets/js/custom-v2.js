@@ -424,16 +424,29 @@
 
         var additionalWrapper = document.querySelector('[data-skills-additional]');
         if (additionalWrapper && skills.additional) {
+          function normalizeAdditionalEntry(entry) {
+            if (Array.isArray(entry)) {
+              return { icon: 'fa fa-cogs', items: entry };
+            }
+            if (entry && typeof entry === 'object') {
+              return {
+                icon: typeof entry.icon === 'string' && entry.icon.trim() !== '' ? entry.icon.trim() : 'fa fa-cogs',
+                items: Array.isArray(entry.items) ? entry.items : [],
+              };
+            }
+            return { icon: 'fa fa-cogs', items: [] };
+          }
+
           var additionalHtml = Object.keys(skills.additional).map(function(name) {
-            var items = skills.additional[name];
-            if (!Array.isArray(items) || !items.length) return '';
+            var normalized = normalizeAdditionalEntry(skills.additional[name]);
+            if (!normalized.items.length) return '';
 
             return (
               '<div class="tech-grid__item">' +
                 '<div class="tech-item">' +
-                  '<i class="fa fa-check-square-o"></i>' +
-                  '<h4>' + name + '</h4>' +
-                  '<p>' + items.join(', ') + '</p>' +
+                  '<i class="' + escapeHtml(normalized.icon) + '"></i>' +
+                  '<h4>' + escapeHtml(name) + '</h4>' +
+                  '<p>' + escapeHtml(normalized.items.join(', ')) + '</p>' +
                 '</div>' +
               '</div>'
             );
