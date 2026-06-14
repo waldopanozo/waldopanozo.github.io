@@ -1,387 +1,644 @@
 {
-  "profile": {
-    "name": "Waldo Miguel Panozo",
-    "headline": "Senior Software Engineer",
-    "summary": "Senior Software Engineer with 15+ years designing high-impact solutions with PHP, Java, JavaScript, and REST services. I love driving measurable results through clean architecture, modern frameworks, and collaborative leadership—whether remotely or on-site.",
-    "location": "Asunción, Paraguay (GMT-3)",
-    "availability": ["Remote Work", "Relocation"],
-    "stats": [
-      { "label": "Years Experience", "value": "15+" },
-      { "label": "Transactions/Year", "value": "20M+" },
-      { "label": "Active Users", "value": "90K+" },
-      { "label": "Productivity Gain", "value": "70%" }
-    ]
-  },
-  "about": {
-    "bio": "I'm Waldo M. Panozo, a Senior Software Engineer with 15+ years of experience designing and scaling products with PHP, Java, JavaScript, and modern REST architectures.",
-    "achievements": [
-      {
-        "title": "Vehicle Search Launch",
-        "description": "Led the delivery of a multi-tenant vehicle search experience highlighted at SEMA 2025.",
-        "icon": "fa-car"
-      },
-      {
-        "title": "+70% Productivity",
-        "description": "Built an agile orchestration platform that increased productivity by at least 70%.",
-        "icon": "fa-line-chart"
-      },
-      {
-        "title": "Hackathon Wins",
-        "description": "Two-time Revolution Parts hackathon winner for caching and AI initiatives.",
-        "icon": "fa-trophy"
-      },
-      {
-        "title": "80K+ Users Served",
-        "description": "Delivered biometric control and scholarship platforms supporting 80K+ users.",
-        "icon": "fa-users"
-      },
-      {
-        "title": "Algorithmic Trading R&D",
-        "description": "Personal finance research stack: MT5 indicators (MQL5), Python execution bot, ML analytics, and TradersWorld platform — aligned with doctoral specialization in finance.",
-        "icon": "fa-exchange"
-      }
+    "profile": {
+        "name": "Waldo Miguel Panozo",
+        "headline": "Senior Software Engineer",
+        "summary": "Senior Software Engineer with 15+ years designing high-impact solutions with PHP, Java, JavaScript, and REST services. I love driving measurable results through clean architecture, modern frameworks, and collaborative leadership—whether remotely or on-site.",
+        "location": "Asunción, Paraguay (GMT-3)",
+        "availability": [
+            "Remote Work",
+            "Relocation"
+        ],
+        "stats": [
+            {
+                "label": "Years Experience",
+                "value": "15+"
+            },
+            {
+                "label": "Transactions/Year",
+                "value": "20M+"
+            },
+            {
+                "label": "Active Users",
+                "value": "90K+"
+            },
+            {
+                "label": "Productivity Gain",
+                "value": "70%"
+            }
+        ]
+    },
+    "about": {
+        "bio": "I'm Waldo M. Panozo, a Senior Software Engineer with 15+ years of experience designing and scaling products with PHP, Java, JavaScript, and modern REST architectures.",
+        "achievements": [
+            {
+                "title": "Vehicle Search Launch",
+                "description": "Led the delivery of a multi-tenant vehicle search experience highlighted at SEMA 2025.",
+                "icon": "fa-car"
+            },
+            {
+                "title": "+70% Productivity",
+                "description": "Built an agile orchestration platform that increased productivity by at least 70%.",
+                "icon": "fa-line-chart"
+            },
+            {
+                "title": "Hackathon Wins",
+                "description": "Two-time Revolution Parts hackathon winner for caching and AI initiatives.",
+                "icon": "fa-trophy"
+            },
+            {
+                "title": "80K+ Users Served",
+                "description": "Delivered biometric control and scholarship platforms supporting 80K+ users.",
+                "icon": "fa-users"
+            },
+            {
+                "title": "Algorithmic Trading R&D",
+                "description": "FinTech monorepo uniting TradersWorld, MT5 execution, and quantitative analytics with ML trade scoring.",
+                "icon": "fa-exchange"
+            },
+            {
+                "title": "MSc AI — Active Coursework",
+                "description": "MSc AI lab work: TensorFlow/OpenCV/YOLO projects, Unity AR demos, and KNIME workflows.",
+                "icon": "fa-graduation-cap"
+            },
+            {
+                "title": "PropTech MVP — urbv3",
+                "description": "NestJS + Next.js platform for building billing, expensas, fines, and payment verification.",
+                "icon": "fa-building"
+            },
+            {
+                "title": "AI Entertainment Recommendations",
+                "description": "Live movie, series, and music recommendations with LLM + RAG, OAuth, and bilingual UI.",
+                "icon": "fa-film"
+            },
+            {
+                "title": ".NET + Angular School Scheduling",
+                "description": "ASP.NET Core + Angular scheduler for parent–teacher interviews with RBAC, OAuth, and Docker CI.",
+                "icon": "fa-calendar"
+            },
+            {
+                "title": "School Safety MVP — Events & Alerts",
+                "description": "Spring Boot + Kafka school incident platform with outbox events, JWT RBAC, and React role UI.",
+                "icon": "fa-shield"
+            },
+            {
+                "title": "WhatsApp Support & AI Expenses",
+                "description": "WhatsApp helpdesk with React console, hardened API, Laravel BFF, and AI expense parsing from chat.",
+                "icon": "fa-whatsapp"
+            },
+            {
+                "title": "Clean Code Bot — LLM Refactorer CLI",
+                "description": "Python CLI for LLM-assisted refactoring with SOLID docstrings and behavior-preserving rules.",
+                "icon": "fa-code"
+            },
+            {
+                "title": "Personal Finance Dashboard",
+                "description": "Next.js expense tracker with Chart.js category insights and persistent client-side budgeting.",
+                "icon": "fa-pie-chart"
+            },
+            {
+                "title": "TaskMaster Pro — Workshop MVP",
+                "description": "Clean Architecture task API: Express + TypeScript + Prisma with Zod validation and Jest tests.",
+                "icon": "fa-tasks"
+            },
+            {
+                "title": "Blockchain & EdTech NFT R&D",
+                "description": "Web3 R&D: multi-chain NFT certificates, Solana/Polygon apps, and modular chain prototypes.",
+                "icon": "fa-graduation-cap"
+            },
+            {
+                "title": "Auto Parts Image Classifier API",
+                "description": "Flask TensorFlow service classifying automotive catalog imagery for parts search workflows.",
+                "icon": "fa-cogs"
+            },
+            {
+                "title": "Lex Tutor — AI Exam Prep SaaS",
+                "description": "Live EdTech SaaS for certification exam prep with multi-provider LLM tutoring and subscriptions.",
+                "icon": "fa-comments"
+            }
+        ],
+        "roles": [
+            "Senior Software Engineer",
+            "Tech Lead",
+            "Software Development Lead",
+            "IT Manager"
+        ]
+    },
+    "experience": [
+        {
+            "company": "Revolution Parts",
+            "location": "Canada / USA (Assuresoft Paraguay)",
+            "period": "January 2023 – Present",
+            "timeline_label": "2023 - Present",
+            "roles": [
+                {
+                    "title": "Senior Software Engineer",
+                    "period": "December 2023 – Present",
+                    "highlights": [
+                        "Launched a new multi-tenant vehicle search experience showcased at SEMA 2025.",
+                        "Improved GMV conversions by 13.7% through SEO and analytics instrumentation.",
+                        "Won company hackathon twice by delivering caching optimizations and AI tooling."
+                    ]
+                },
+                {
+                    "title": "Tech Lead",
+                    "period": "February 2025 – May 2025",
+                    "highlights": [
+                        "Onboarded new team members and restructured the GMV squad until leadership hire.",
+                        "Coordinated sprint rituals, PR reviews, and cross-team HLD to align delivery."
+                    ]
+                }
+            ],
+            "tech_stack": [
+                "PHP",
+                "Laravel",
+                "Slim",
+                "Python",
+                "React",
+                "Redis",
+                "Elasticsearch",
+                "Docker",
+                "GitHub Actions",
+                "Go",
+                "Cypress",
+                "Linux"
+            ]
+        },
+        {
+            "company": "Public University “Mayor de San Simón”",
+            "location": "Cochabamba, Bolivia",
+            "period": "January 2017 – December 2023",
+            "timeline_label": "2017 - 2023",
+            "roles": [
+                {
+                    "title": "Software Development Lead",
+                    "period": "April 2021 – December 2023",
+                    "highlights": [
+                        "Boosted productivity by 70% via a digital workflow platform.",
+                        "Designed provider administration portals reducing request time from 15 to 5 days.",
+                        "Led scholarship services serving 15K+ students annually."
+                    ]
+                },
+                {
+                    "title": "Senior Software Developer",
+                    "period": "January 2017 – April 2021",
+                    "highlights": [
+                        "Implemented biometric-enabled support control for 80K+ users.",
+                        "Created dynamic survey platform mixing SQL and NoSQL storage.",
+                        "Built the university’s first API enabling 20M+ yearly transactions."
+                    ]
+                }
+            ],
+            "tech_stack": [
+                "PHP",
+                "Yii2",
+                "Java",
+                "Spring Boot",
+                "Angular",
+                "React",
+                "jQuery",
+                "PostgreSQL",
+                "GitLab",
+                "Jenkins"
+            ]
+        },
+        {
+            "company": "Bilingual Communications (BICOM USA)",
+            "location": "Remote",
+            "period": "January 2008 – April 2016",
+            "timeline_label": "2008 - 2016",
+            "roles": [
+                {
+                    "title": "Senior Software Engineer (Contractor)",
+                    "period": "August 2015 – April 2016",
+                    "highlights": [
+                        "Created a call recording platform combining hardware and software.",
+                        "Built a real-estate catalog with recommendation engine driven by engagement."
+                    ]
+                },
+                {
+                    "title": "IT Manager",
+                    "period": "January 2010 – January 2014",
+                    "highlights": [
+                        "Reduced communication and operations expenses by 70% using VoIP and broadband upgrades."
+                    ]
+                },
+                {
+                    "title": "Software Engineer",
+                    "period": "January 2008 – December 2009",
+                    "highlights": [
+                        "Maintained corporate website with lead workflows.",
+                        "Developed an SMS marketing platform with reusable templates."
+                    ]
+                }
+            ],
+            "tech_stack": [
+                "PHP",
+                "Yii2",
+                "jQuery",
+                "MySQL"
+            ]
+        },
+        {
+            "company": "Menuocity (USA)",
+            "location": "Remote",
+            "period": "February 2014 – March 2015",
+            "timeline_label": "2014 - 2015",
+            "roles": [
+                {
+                    "title": "Principal Software Engineer",
+                    "period": "February 2014 – March 2015",
+                    "highlights": [
+                        "Developed the primary ordering site with automated notifications for restaurant managers."
+                    ]
+                }
+            ],
+            "tech_stack": [
+                "PHP",
+                "Yii2",
+                "JavaScript",
+                "MySQL"
+            ]
+        },
+        {
+            "company": "Iventiva",
+            "location": "Remote",
+            "period": "February 2011 – August 2011",
+            "timeline_label": "2011",
+            "roles": [
+                {
+                    "title": "Software Engineer",
+                    "period": "February 2011 – August 2011",
+                    "highlights": [
+                        "Built CuisineLinks, a social recipe-sharing platform with guided publishing flows."
+                    ]
+                }
+            ],
+            "tech_stack": [
+                "Java",
+                "Spring",
+                "jQuery",
+                "MySQL"
+            ]
+        },
+        {
+            "company": "Intersoft",
+            "location": "Remote",
+            "period": "June 2009 – March 2010",
+            "timeline_label": "2009 - 2010",
+            "roles": [
+                {
+                    "title": "Software Engineer",
+                    "period": "June 2009 – March 2010",
+                    "highlights": [
+                        "Developed a DOLE field-tracking platform monitoring ISO compliance."
+                    ]
+                }
+            ],
+            "tech_stack": [
+                "Java",
+                "WebObjects",
+                "Oracle",
+                "MySQL"
+            ]
+        }
     ],
-    "roles": [
-      "Senior Software Engineer",
-      "Tech Lead",
-      "Software Development Lead",
-      "IT Manager"
+    "awards": [
+        {
+            "kind": "hackathon",
+            "title": "Revolution Parts Hackathon Winner",
+            "recognition_from": "Caching optimization track",
+            "organization": "Revolution Parts",
+            "year": "2024",
+            "description": "Delivered a caching strategy that reduced GMV page load time by 57%, winning the company hackathon.",
+            "link": "",
+            "media": {
+                "type": "youtube",
+                "url": ""
+            },
+            "show_in_pdf": true
+        },
+        {
+            "kind": "hackathon",
+            "title": "Revolution Parts Hackathon Winner",
+            "recognition_from": "AI product imagery search",
+            "organization": "Revolution Parts",
+            "year": "2025",
+            "description": "Built an AI assistant to search product imagery across the catalog; second hackathon win at Revolution Parts.",
+            "link": "",
+            "media": null,
+            "show_in_pdf": true
+        },
+        {
+            "kind": "recognition",
+            "title": "Vehicle Search Launch — SEMA 2025",
+            "recognition_from": "CEO recognition",
+            "organization": "Revolution Parts",
+            "year": "2025",
+            "description": "Led end-to-end delivery of the multi-tenant vehicle search experience showcased at SEMA 2025.",
+            "link": "",
+            "media": null,
+            "show_in_pdf": true
+        }
+    ],
+    "skills": {
+        "programming_languages": {
+            "advanced": [
+                "JavaScript (12+ YOE)",
+                "PHP (15+ YOE)",
+                "Java (8+ YOE)",
+                "Python (5+ YOE)"
+            ],
+            "intermediate": [
+                "C# (4+ YOE)"
+            ]
+        },
+        "frameworks": {
+            "advanced": [
+                "ASP.NET",
+                "Yii2",
+                "jQuery"
+            ],
+            "intermediate": [
+                "REST APIs",
+                "Laravel",
+                "Django",
+                "React",
+                "React Native"
+            ]
+        },
+        "databases": {
+            "advanced": [
+                "MySQL",
+                "MariaDB",
+                "PostgreSQL"
+            ],
+            "intermediate": [
+                "Oracle",
+                "SQLite"
+            ]
+        },
+        "project_management": {
+            "advanced": [
+                "Scrum",
+                "Requirements Analysis",
+                "Business Process"
+            ],
+            "intermediate": [
+                "Kanban",
+                "Design Thinking"
+            ]
+        },
+        "languages": {
+            "upper_intermediate": [
+                "English"
+            ],
+            "native": [
+                "Spanish"
+            ]
+        },
+        "additional": {
+            "Frontend Engineering": {
+                "icon": "fa fa-desktop",
+                "items": [
+                    "React",
+                    "TypeScript",
+                    "Next.js",
+                    "UI/UX",
+                    "Cypress",
+                    "Vite",
+                    "Bootstrap"
+                ]
+            },
+            "Python & Data": {
+                "icon": "fa fa-bar-chart",
+                "items": [
+                    "pandas",
+                    "NumPy",
+                    "scikit-learn",
+                    "TensorFlow",
+                    "psycopg2",
+                    "MetaTrader5 API"
+                ]
+            },
+            "FinTech & Crypto": {
+                "icon": "fa fa-usd",
+                "items": [
+                    "Open Finance",
+                    "Crypto & Forex Markets",
+                    "Payment Flows",
+                    "API Security",
+                    "Performance Optimization"
+                ]
+            },
+            "Version Control": {
+                "icon": "fa fa-git",
+                "items": [
+                    "GitLab",
+                    "GitHub",
+                    "Git"
+                ]
+            },
+            "CI/CD": {
+                "icon": "fa fa-server",
+                "items": [
+                    "Jenkins",
+                    "GitHub Actions",
+                    "Automated Pipelines"
+                ]
+            },
+            "APIs & Microservices": {
+                "icon": "fa fa-plug",
+                "items": [
+                    "REST APIs",
+                    "Load Balancing",
+                    "Proxy"
+                ]
+            },
+            "Mobile & Web": {
+                "icon": "fa fa-mobile",
+                "items": [
+                    "React Native",
+                    "Mobile Applications"
+                ]
+            },
+            "Quantitative Finance & Trading": {
+                "icon": "fa fa-line-chart",
+                "items": [
+                    "MetaTrader 5",
+                    "MQL5",
+                    "Algorithmic Trading",
+                    "Technical Analysis",
+                    "Risk Management",
+                    "PostgreSQL Analytics"
+                ]
+            }
+        }
+    },
+    "education": [
+        {
+            "title": "Ph.D. Business Science",
+            "institution": "Public University \"Mariscal Jose Ballivian\"",
+            "status": "In progress — finance specialization; algorithmic trading & quantitative decision support"
+        },
+        {
+            "title": "MSc. AI, Machine Learning & Data Science",
+            "institution": "Public University \"El Alto\", Bolivia",
+            "status": "In progress",
+            "notes": "Master's studies focused on AI, ML, and Data Science - In progress"
+        },
+        {
+            "title": "MSc. Telematics",
+            "institution": "Public University \"Mayor de San Simón\"",
+            "status": "2010"
+        },
+        {
+            "title": "International Leadership Training Program",
+            "institution": "Georgetown University, USA",
+            "status": "2012"
+        },
+        {
+            "title": "Postgraduate Diploma Higher Education",
+            "institution": "Public University \"Mayor de San Simón\"",
+            "status": "2018"
+        },
+        {
+            "title": "Bachelor of Telecommunication Engineering",
+            "institution": "Private University \"Aquino Bolivia\"",
+            "status": "2008"
+        }
+    ],
+    "portfolio": [
+        {
+            "title": "TradersWorld — Trading & Finance Platform",
+            "description": "Personal platform (tradersworld.top): market news for crypto, forex, metals and stocks; RBAC admin, paid resources, and MT5 operations dashboard.",
+            "tags": [
+                "TypeScript",
+                "React",
+                "Node.js",
+                "PostgreSQL",
+                "MetaTrader 5",
+                "FinTech"
+            ],
+            "link": "https://tradersworld.top"
+        },
+        {
+            "title": "MT5 Algorithmic Trading Bot",
+            "description": "Python bot on MetaTrader 5 with custom DEMA ATR channel indicators (MQL5), MACD confirmation, multi-account execution, and dynamic risk-based lot sizing.",
+            "tags": [
+                "Python",
+                "MetaTrader 5",
+                "MQL5",
+                "PostgreSQL",
+                "Algorithmic Trading"
+            ],
+            "link": "https://tradersworld.top"
+        },
+        {
+            "title": "Trading AI Analytics",
+            "description": "Quantitative research toolkit: walk-forward TP/SL simulation, ML trade-score filtering, and opportunity ranking by risk profile.",
+            "tags": [
+                "Python",
+                "Machine Learning",
+                "PostgreSQL",
+                "Quantitative Finance"
+            ],
+            "link": "https://github.com/waldopanozo"
+        },
+        {
+            "title": "RESTful API with PHP Slim",
+            "description": "RESTful API using PHP Slim, Composer, and SQLite with clean architecture.",
+            "tags": [
+                "PHP",
+                "Slim",
+                "REST API",
+                "SQLite"
+            ],
+            "image": "assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg",
+            "link": "https://github.com/waldopanozo/php-slim-rest-sqlite"
+        },
+        {
+            "title": "Tic Tac Toe Game",
+            "description": "Classic Tic Tac Toe built with React focusing on state management.",
+            "tags": [
+                "React",
+                "JavaScript",
+                "Game Development"
+            ],
+            "image": "assets/samples/react/tictactoe/tictactoe.png",
+            "link": "https://waldopanozo.github.io/assets/samples/react/tictactoe/index.html"
+        },
+        {
+            "title": "Calculator App",
+            "description": "Functional calculator in React with precise calculations.",
+            "tags": [
+                "React",
+                "UI/UX",
+                "JavaScript"
+            ],
+            "image": "assets/samples/react/calculator/calculator.png",
+            "link": "https://waldopanozo.github.io/assets/samples/react/calculator/index.html"
+        },
+        {
+            "title": "Accordion Component",
+            "description": "Reusable accordion component optimized for performance and accessibility.",
+            "tags": [
+                "React",
+                "Components",
+                "GitLab"
+            ],
+            "image": "assets/samples/react/accordion/accordion.png",
+            "link": "https://gitlab.com/waldo.panozo/list_items_accordion"
+        },
+        {
+            "title": "Christmas Countdown Timer",
+            "description": "Countdown timer with festive UI and animations.",
+            "tags": [
+                "React",
+                "Timer",
+                "Animations"
+            ],
+            "image": "assets/samples/react/xmas_timer/xmas_timer.png",
+            "link": "https://gitlab.com/waldo.panozo/countdown_xmas"
+        },
+        {
+            "title": "Mortgage Calculator",
+            "description": "Mortgage calculator handling complex financial calculations.",
+            "tags": [
+                "React",
+                "Finance",
+                "Calculations"
+            ],
+            "image": "assets/samples/react/mortgage_calc/mortgage_calc.png",
+            "link": "https://gitlab.com/waldo.panozo/mortgage_calc_react"
+        }
+    ],
+    "contact": {
+        "email": "waldo.panozo@gmail.com",
+        "whatsapp_bolivia": "+59177499919",
+        "whatsapp_paraguay": "+595984039973",
+        "location": "Asunción, Paraguay",
+        "timezone": "GMT-3"
+    },
+    "social": [
+        {
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/in/waldopanozo/"
+        },
+        {
+            "platform": "GitHub",
+            "url": "https://github.com/waldopanozo"
+        },
+        {
+            "platform": "Blog",
+            "url": "https://ezdevelopment.com"
+        },
+        {
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/waldopanozo"
+        },
+        {
+            "platform": "Twitter",
+            "url": "https://twitter.com/waldopanozo"
+        }
     ]
-  },
-  "experience": [
-    {
-      "company": "Revolution Parts",
-      "location": "Canada / USA (Assuresoft Paraguay)",
-      "period": "January 2023 – Present",
-      "timeline_label": "2023 - Present",
-      "roles": [
-        {
-          "title": "Senior Software Engineer",
-          "period": "December 2023 – Present",
-          "highlights": [
-            "Launched a new multi-tenant vehicle search experience showcased at SEMA 2025.",
-            "Improved GMV conversions by 13.7% through SEO and analytics instrumentation.",
-            "Won company hackathon twice by delivering caching optimizations and AI tooling."
-          ]
-        },
-        {
-          "title": "Tech Lead",
-          "period": "February 2025 – May 2025",
-          "highlights": [
-            "Onboarded new team members and restructured the GMV squad until leadership hire.",
-            "Coordinated sprint rituals, PR reviews, and cross-team HLD to align delivery."
-          ]
-        }
-      ],
-      "tech_stack": ["PHP", "Laravel", "Slim", "Python", "React", "Redis", "Elasticsearch", "Docker", "GitHub Actions", "Go", "Cypress", "Linux"]
-    },
-    {
-      "company": "Public University “Mayor de San Simón”",
-      "location": "Cochabamba, Bolivia",
-      "period": "January 2017 – December 2023",
-      "timeline_label": "2017 - 2023",
-      "roles": [
-        {
-          "title": "Software Development Lead",
-          "period": "April 2021 – December 2023",
-          "highlights": [
-            "Boosted productivity by 70% via a digital workflow platform.",
-            "Designed provider administration portals reducing request time from 15 to 5 days.",
-            "Led scholarship services serving 15K+ students annually."
-          ]
-        },
-        {
-          "title": "Senior Software Developer",
-          "period": "January 2017 – April 2021",
-          "highlights": [
-            "Implemented biometric-enabled support control for 80K+ users.",
-            "Created dynamic survey platform mixing SQL and NoSQL storage.",
-            "Built the university’s first API enabling 20M+ yearly transactions."
-          ]
-        }
-      ],
-      "tech_stack": ["PHP", "Yii2", "Java", "Spring Boot", "Angular", "React", "jQuery", "PostgreSQL", "GitLab", "Jenkins"]
-    },
-    {
-      "company": "Bilingual Communications (BICOM USA)",
-      "location": "Remote",
-      "period": "January 2008 – April 2016",
-      "timeline_label": "2008 - 2016",
-      "roles": [
-        {
-          "title": "Senior Software Engineer (Contractor)",
-          "period": "August 2015 – April 2016",
-          "highlights": [
-            "Created a call recording platform combining hardware and software.",
-            "Built a real-estate catalog with recommendation engine driven by engagement."
-          ]
-        },
-        {
-          "title": "IT Manager",
-          "period": "January 2010 – January 2014",
-          "highlights": [
-            "Reduced communication and operations expenses by 70% using VoIP and broadband upgrades."
-          ]
-        },
-        {
-          "title": "Software Engineer",
-          "period": "January 2008 – December 2009",
-          "highlights": [
-            "Maintained corporate website with lead workflows.",
-            "Developed an SMS marketing platform with reusable templates."
-          ]
-        }
-      ],
-      "tech_stack": ["PHP", "Yii2", "jQuery", "MySQL"]
-    },
-    {
-      "company": "Menuocity (USA)",
-      "location": "Remote",
-      "period": "February 2014 – March 2015",
-      "timeline_label": "2014 - 2015",
-      "roles": [
-        {
-          "title": "Principal Software Engineer",
-          "period": "February 2014 – March 2015",
-          "highlights": [
-            "Developed the primary ordering site with automated notifications for restaurant managers."
-          ]
-        }
-      ],
-      "tech_stack": ["PHP", "Yii2", "JavaScript", "MySQL"]
-    },
-    {
-      "company": "Iventiva",
-      "location": "Remote",
-      "period": "February 2011 – August 2011",
-      "timeline_label": "2011",
-      "roles": [
-        {
-          "title": "Software Engineer",
-          "period": "February 2011 – August 2011",
-          "highlights": [
-            "Built CuisineLinks, a social recipe-sharing platform with guided publishing flows."
-          ]
-        }
-      ],
-      "tech_stack": ["Java", "Spring", "jQuery", "MySQL"]
-    },
-    {
-      "company": "Intersoft",
-      "location": "Remote",
-      "period": "June 2009 – March 2010",
-      "timeline_label": "2009 - 2010",
-      "roles": [
-        {
-          "title": "Software Engineer",
-          "period": "June 2009 – March 2010",
-          "highlights": [
-            "Developed a DOLE field-tracking platform monitoring ISO compliance."
-          ]
-        }
-      ],
-      "tech_stack": ["Java", "WebObjects", "Oracle", "MySQL"]
-    }
-  ],
-  "awards": [
-    {
-      "kind": "hackathon",
-      "title": "Revolution Parts Hackathon Winner",
-      "recognition_from": "Caching optimization track",
-      "organization": "Revolution Parts",
-      "year": "2024",
-      "description": "Delivered a caching strategy that reduced GMV page load time by 57%, winning the company hackathon.",
-      "link": "",
-      "media": { "type": "youtube", "url": "" },
-      "show_in_pdf": true
-    },
-    {
-      "kind": "hackathon",
-      "title": "Revolution Parts Hackathon Winner",
-      "recognition_from": "AI product imagery search",
-      "organization": "Revolution Parts",
-      "year": "2025",
-      "description": "Built an AI assistant to search product imagery across the catalog; second hackathon win at Revolution Parts.",
-      "link": "",
-      "media": null,
-      "show_in_pdf": true
-    },
-    {
-      "kind": "recognition",
-      "title": "Vehicle Search Launch — SEMA 2025",
-      "recognition_from": "CEO recognition",
-      "organization": "Revolution Parts",
-      "year": "2025",
-      "description": "Led end-to-end delivery of the multi-tenant vehicle search experience showcased at SEMA 2025.",
-      "link": "",
-      "media": null,
-      "show_in_pdf": true
-    }
-  ],
-  "skills": {
-    "programming_languages": {
-      "advanced": ["JavaScript (12+ YOE)", "PHP (15+ YOE)", "Java (8+ YOE)", "Python (5+ YOE)"],
-      "intermediate": ["C# (4+ YOE)"]
-    },
-    "frameworks": {
-      "advanced": ["ASP.NET", "Yii2", "jQuery"],
-      "intermediate": ["REST APIs", "Laravel", "Django", "React", "React Native"]
-    },
-    "databases": {
-      "advanced": ["MySQL", "MariaDB", "PostgreSQL"],
-      "intermediate": ["Oracle", "SQLite"]
-    },
-    "project_management": {
-      "advanced": ["Scrum", "Requirements Analysis", "Business Process"],
-      "intermediate": ["Kanban", "Design Thinking"]
-    },
-    "languages": {
-      "upper_intermediate": ["English"],
-      "native": ["Spanish"]
-    },
-    "additional": {
-      "Frontend Engineering": {
-        "icon": "fa fa-desktop",
-        "items": ["React", "TypeScript", "Next.js", "UI/UX", "Cypress", "Vite", "Bootstrap"]
-      },
-      "Python & Data": {
-        "icon": "fa fa-bar-chart",
-        "items": ["pandas", "NumPy", "scikit-learn", "TensorFlow", "psycopg2", "MetaTrader5 API"]
-      },
-      "FinTech & Crypto": {
-        "icon": "fa fa-usd",
-        "items": ["Open Finance", "Crypto & Forex Markets", "Payment Flows", "API Security", "Performance Optimization"]
-      },
-      "Version Control": {
-        "icon": "fa fa-git",
-        "items": ["GitLab", "GitHub", "Git"]
-      },
-      "CI/CD": {
-        "icon": "fa fa-server",
-        "items": ["Jenkins", "GitHub Actions", "Automated Pipelines"]
-      },
-      "APIs & Microservices": {
-        "icon": "fa fa-plug",
-        "items": ["REST APIs", "Load Balancing", "Proxy"]
-      },
-      "Mobile & Web": {
-        "icon": "fa fa-mobile",
-        "items": ["React Native", "Mobile Applications"]
-      },
-      "Quantitative Finance & Trading": {
-        "icon": "fa fa-line-chart",
-        "items": ["MetaTrader 5", "MQL5", "Algorithmic Trading", "Technical Analysis", "Risk Management", "PostgreSQL Analytics"]
-      }
-    }
-  },
-  "education": [
-    {
-      "title": "Ph.D. Business Science",
-      "institution": "Public University \"Mariscal Jose Ballivian\"",
-      "status": "In progress — finance specialization; algorithmic trading & quantitative decision support"
-    },
-    {
-      "title": "MSc. AI, Machine Learning & Data Science",
-      "institution": "Public University \"El Alto\", Bolivia",
-      "status": "In progress",
-      "notes": "Master's studies focused on AI, ML, and Data Science - In progress"
-    },
-    {
-      "title": "MSc. Telematics",
-      "institution": "Public University \"Mayor de San Simón\"",
-      "status": "2010"
-    },
-    {
-      "title": "International Leadership Training Program",
-      "institution": "Georgetown University, USA",
-      "status": "2012"
-    },
-    {
-      "title": "Postgraduate Diploma Higher Education",
-      "institution": "Public University \"Mayor de San Simón\"",
-      "status": "2018"
-    },
-    {
-      "title": "Bachelor of Telecommunication Engineering",
-      "institution": "Private University \"Aquino Bolivia\"",
-      "status": "2008"
-    }
-  ],
-  "portfolio": [
-    {
-      "title": "TradersWorld — Trading & Finance Platform",
-      "description": "Personal platform (tradersworld.top): market news for crypto, forex, metals and stocks; RBAC admin, paid resources, and MT5 operations dashboard.",
-      "tags": ["TypeScript", "React", "Node.js", "PostgreSQL", "MetaTrader 5", "FinTech"],
-      "link": "https://tradersworld.top"
-    },
-    {
-      "title": "MT5 Algorithmic Trading Bot",
-      "description": "Python bot on MetaTrader 5 with custom DEMA ATR channel indicators (MQL5), MACD confirmation, multi-account execution, and dynamic risk-based lot sizing.",
-      "tags": ["Python", "MetaTrader 5", "MQL5", "PostgreSQL", "Algorithmic Trading"],
-      "link": "https://tradersworld.top"
-    },
-    {
-      "title": "Trading AI Analytics",
-      "description": "Quantitative research toolkit: walk-forward TP/SL simulation, ML trade-score filtering, and opportunity ranking by risk profile.",
-      "tags": ["Python", "Machine Learning", "PostgreSQL", "Quantitative Finance"],
-      "link": "https://github.com/waldopanozo"
-    },
-    {
-      "title": "RESTful API with PHP Slim",
-      "description": "RESTful API using PHP Slim, Composer, and SQLite with clean architecture.",
-      "tags": ["PHP", "Slim", "REST API", "SQLite"],
-      "image": "assets/img/portfolio/slim-php-composer-github-waldo-ezdevelopment-sqlite.jpg",
-      "link": "https://github.com/waldopanozo/php-slim-rest-sqlite"
-    },
-    {
-      "title": "Tic Tac Toe Game",
-      "description": "Classic Tic Tac Toe built with React focusing on state management.",
-      "tags": ["React", "JavaScript", "Game Development"],
-      "image": "assets/samples/react/tictactoe/tictactoe.png",
-      "link": "https://waldopanozo.github.io/assets/samples/react/tictactoe/index.html"
-    },
-    {
-      "title": "Calculator App",
-      "description": "Functional calculator in React with precise calculations.",
-      "tags": ["React", "UI/UX", "JavaScript"],
-      "image": "assets/samples/react/calculator/calculator.png",
-      "link": "https://waldopanozo.github.io/assets/samples/react/calculator/index.html"
-    },
-    {
-      "title": "Accordion Component",
-      "description": "Reusable accordion component optimized for performance and accessibility.",
-      "tags": ["React", "Components", "GitLab"],
-      "image": "assets/samples/react/accordion/accordion.png",
-      "link": "https://gitlab.com/waldo.panozo/list_items_accordion"
-    },
-    {
-      "title": "Christmas Countdown Timer",
-      "description": "Countdown timer with festive UI and animations.",
-      "tags": ["React", "Timer", "Animations"],
-      "image": "assets/samples/react/xmas_timer/xmas_timer.png",
-      "link": "https://gitlab.com/waldo.panozo/countdown_xmas"
-    },
-    {
-      "title": "Mortgage Calculator",
-      "description": "Mortgage calculator handling complex financial calculations.",
-      "tags": ["React", "Finance", "Calculations"],
-      "image": "assets/samples/react/mortgage_calc/mortgage_calc.png",
-      "link": "https://gitlab.com/waldo.panozo/mortgage_calc_react"
-    }
-  ],
-  "contact": {
-    "email": "waldo.panozo@gmail.com",
-    "whatsapp_bolivia": "+59177499919",
-    "whatsapp_paraguay": "+595984039973",
-    "location": "Asunción, Paraguay",
-    "timezone": "GMT-3"
-  },
-  "social": [
-    { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/waldopanozo/" },
-    { "platform": "GitHub", "url": "https://github.com/waldopanozo" },
-    { "platform": "Blog", "url": "https://ezdevelopment.com" },
-    { "platform": "Facebook", "url": "https://www.facebook.com/waldopanozo" },
-    { "platform": "Twitter", "url": "https://twitter.com/waldopanozo" }
-  ]
 }
-
