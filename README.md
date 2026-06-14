@@ -46,7 +46,8 @@ The frontend supports postulation variants through URL parameter `?pid=...`:
 Behavior without variant in URL:
 
 - Frontend sends no `pid` if `sessionStorage` is empty.
-- Backend default variant is applied (`demo-php-react`), so users still get a personalized baseline profile.
+- Backend returns the **full base resume** (all experience, skills, portfolio, and `bio_full`).
+- Tailored profiles activate only via `?pid=...` application links. See `resume-api/docs/profile-visibility-and-variants.md`.
 
 Visual indicator of active profile:
 
