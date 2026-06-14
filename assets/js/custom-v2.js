@@ -702,23 +702,31 @@
         }
 
         var metrics = stats.metrics || {};
-        var totalCommits = Number(metrics.commits_last_window || 0);
-        var totalMergedPrs = Number(metrics.merged_prs_last_window || 0);
+        var totalCommitsTracked = Number(metrics.commits_total_tracked || metrics.commits_last_window || 0);
+        var totalCommitsWindow = Number(metrics.commits_last_window || 0);
+        var totalMergedPrs = Number(metrics.merged_prs_total_tracked || metrics.merged_prs_last_window || 0);
         var reposScanned = Number(stats.repos_scanned || 0);
         var generatedAt = stats.generated_at ? new Date(stats.generated_at) : null;
+        var trackingStartedAt = stats.tracking_started_at ? new Date(stats.tracking_started_at) : null;
         var generatedAtText = generatedAt && !isNaN(generatedAt.getTime())
           ? generatedAt.toLocaleString()
           : 'Unknown';
+        var trackingStartedText = trackingStartedAt && !isNaN(trackingStartedAt.getTime())
+          ? trackingStartedAt.toLocaleDateString()
+          : '';
         var globalStatus = stats.metrics_status || 'ok';
         var statusClass = globalStatus === 'ok' ? 'dev-stats-badge--ok' : 'dev-stats-badge--warn';
 
         metaContainer.innerHTML =
           '<span class="dev-stats-badge ' + statusClass + '">Status: ' + escapeHtml(globalStatus.toUpperCase()) + '</span>' +
-          '<span class="dev-stats-updated">Updated: ' + escapeHtml(generatedAtText) + '</span>';
+          '<span class="dev-stats-updated">Updated: ' + escapeHtml(generatedAtText) + '</span>' +
+          (trackingStartedText
+            ? '<span class="dev-stats-updated">Tracking since: ' + escapeHtml(trackingStartedText) + '</span>'
+            : '');
 
         cardsContainer.innerHTML =
-          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h3>Recent commits</h3><p class="devstats-value">' + totalCommits + '</p></div></div>' +
-          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h3>Recent merged PRs</h3><p class="devstats-value">' + totalMergedPrs + '</p></div></div>' +
+          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h3>Commits tracked</h3><p class="devstats-value">' + totalCommitsTracked + '</p><p class="devstats-card-note">Last ' + Number(stats.window_days || 90) + ' days: ' + totalCommitsWindow + '</p></div></div>' +
+          '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h3>Merged PRs tracked</h3><p class="devstats-value">' + totalMergedPrs + '</p></div></div>' +
           '<div class="col-lg-4 col-md-6"><div class="devstats-card"><h3>Repos Scanned</h3><p class="devstats-value">' + reposScanned + '</p></div></div>';
 
         var languages = metrics.languages_by_bytes || {};
@@ -854,7 +862,7 @@
             shortLabel: shortLabel,
             value: Number(weeklyBuckets[weekKey] || 0),
           };
-        }).slice(-12);
+        }).slice(-24);
 
         var maxCommits = labelsAndValues.reduce(function(max, item) {
           return item.value > max ? item.value : max;
