@@ -868,6 +868,10 @@
         if (!variant || typeof variant !== 'object') {
           return;
         }
+        if ((variant.name || '').toLowerCase() === 'full') {
+          hasActiveVariant = false;
+          return;
+        }
         hasActiveVariant = !!variant.pid;
 
         var root = document.documentElement;
