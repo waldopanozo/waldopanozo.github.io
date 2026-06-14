@@ -683,7 +683,7 @@
           return { name: name, bytes: Number(languages[name] || 0) };
         }).sort(function(a, b) {
           return b.bytes - a.bytes;
-        }).slice(0, 6);
+        }).slice(0, 8);
 
         var totalBytes = languageEntries.reduce(function(sum, item) {
           return sum + item.bytes;
@@ -692,7 +692,7 @@
         if (!languageEntries.length || totalBytes === 0) {
           languagesContainer.innerHTML = '<p class="devstats-empty">No language data available.</p>';
         } else {
-          var palette = ['#1d4ed8', '#0ea5e9', '#14b8a6', '#6366f1', '#f59e0b', '#ef4444'];
+          var palette = ['#1d4ed8', '#0ea5e9', '#14b8a6', '#6366f1', '#f59e0b', '#ef4444', '#8b5cf6', '#22c55e'];
           var cumulative = 0;
           var segments = languageEntries.map(function(item, idx) {
             var pct = Math.max(1, Math.round((item.bytes / totalBytes) * 100));
