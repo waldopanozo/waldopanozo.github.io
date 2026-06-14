@@ -156,7 +156,9 @@
           return;
         }
 
-        timeline.innerHTML = experience.map(function(job) {
+        timeline.innerHTML = experience.filter(function(job) {
+          return job && (job.show_in_site ?? true) !== false;
+        }).map(function(job) {
           if (!job) return '';
 
           var rolesHtml = (job.roles || []).map(function(role) {
@@ -278,7 +280,9 @@
           return;
         }
 
-        var items = awards.filter(function(item) { return item && item.title; });
+        var items = awards.filter(function(item) {
+          return item && item.title && (item.show_in_site ?? true) !== false;
+        });
         if (!items.length) {
           container.innerHTML = '';
           var emptySection = container.closest('.section');
