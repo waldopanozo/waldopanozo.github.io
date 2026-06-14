@@ -726,7 +726,7 @@ ul {
   font-size: 0.95rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   overflow: hidden;
 }
 
@@ -1242,6 +1242,10 @@ ul {
   margin-bottom: 1rem;
   flex-grow: 1;
   line-height: 1.7;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
 }
 
 .portfolio-tags {
