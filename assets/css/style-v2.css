@@ -1391,6 +1391,12 @@ ul {
   color: var(--primary-color);
 }
 
+.devstats-card-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-gray);
+}
+
 .devstats-panel h3 {
   font-size: 1.15rem;
   margin-bottom: 1rem;
