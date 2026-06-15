@@ -1611,6 +1611,54 @@ ul {
   margin: 0;
 }
 
+.devstats-panel-note {
+  color: var(--text-gray);
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+
+.devstats-oss-table-wrap {
+  overflow-x: auto;
+}
+
+.devstats-oss-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.devstats-oss-table th,
+.devstats-oss-table td {
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.devstats-oss-table th {
+  color: var(--text-dark);
+  font-weight: 600;
+  background: var(--bg-light);
+}
+
+.devstats-oss-table td a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.devstats-oss-table td a:hover,
+.devstats-oss-table td a:focus-visible {
+  text-decoration: underline;
+}
+
+.devstats-oss-project {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.devstats-oss-title {
+  color: var(--text-dark);
+}
+
 .devstats-top-repo {
   padding: 0.7rem 0.9rem;
   border-radius: 8px;

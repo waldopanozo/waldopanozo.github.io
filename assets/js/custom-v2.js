@@ -865,6 +865,53 @@
         renderCommitsTrendChart(commitsChartContainer, commitsByDay, stats.tracking_started_at || '');
       }
 
+      function renderOssContributions(payload) {
+        var tableContainer = document.querySelector('[data-oss-contributions-table]');
+        if (!tableContainer) {
+          return;
+        }
+
+        if (!payload || payload.status === 'unavailable') {
+          tableContainer.innerHTML = '<p class="devstats-empty">No open-source contributions available yet.</p>';
+          return;
+        }
+
+        var pullRequests = Array.isArray(payload.pull_requests) ? payload.pull_requests : [];
+        if (!pullRequests.length) {
+          tableContainer.innerHTML = '<p class="devstats-empty">No merged pull requests to public third-party repositories found.</p>';
+          return;
+        }
+
+        var rows = pullRequests.map(function(item) {
+          var project = String(item.project || '');
+          var projectUrl = String(item.project_url || ('https://github.com/' + project));
+          var prNumber = Number(item.pr_number || 0);
+          var prUrl = String(item.url || (projectUrl + '/pull/' + prNumber));
+          var title = String(item.title || '');
+          var mergedAt = item.merged_at ? new Date(item.merged_at) : null;
+          var mergedText = mergedAt && !isNaN(mergedAt.getTime())
+            ? mergedAt.toLocaleDateString()
+            : '—';
+
+          return (
+            '<tr>' +
+              '<td class="devstats-oss-project"><a href="' + escapeHtml(projectUrl) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(project) + '</a></td>' +
+              '<td><a href="' + escapeHtml(prUrl) + '" target="_blank" rel="noopener noreferrer">#' + prNumber + '</a></td>' +
+              '<td class="devstats-oss-title">' + escapeHtml(title) + '</td>' +
+              '<td>' + escapeHtml(mergedText) + '</td>' +
+            '</tr>'
+          );
+        }).join('');
+
+        tableContainer.innerHTML =
+          '<div class="devstats-oss-table-wrap">' +
+            '<table class="devstats-oss-table">' +
+              '<thead><tr><th>Project</th><th>PR</th><th>Title</th><th>Merged</th></tr></thead>' +
+              '<tbody>' + rows + '</tbody>' +
+            '</table>' +
+          '</div>';
+      }
+
       function aggregateCommitsTrend(commitsByDay, granularity) {
         var buckets = {};
         Object.keys(commitsByDay).forEach(function(dayKey) {
@@ -1210,6 +1257,16 @@
         });
       }
 
+      function fetchOssContributions() {
+        return requestJson(apiBase + '/resume/oss-contributions', {
+          headers: { 'Accept': 'application/json' },
+          cache: 'no-store',
+        }).catch(function(error) {
+          console.warn('OSS contributions endpoint unavailable.', error);
+          return null;
+        });
+      }
+
       function updateResumeDownloadLinks() {
         var downloadUrl = apiBase + withPid('/resume/pdf');
         document.querySelectorAll('[data-resume-download]').forEach(function(link) {
@@ -1219,10 +1276,11 @@
 
       updateResumeDownloadLinks();
 
-      Promise.all([fetchResume(), fetchDevStats()])
+      Promise.all([fetchResume(), fetchDevStats(), fetchOssContributions()])
         .then(function(results) {
           var data = results[0] || {};
           var devStats = results[1];
+          var ossContributions = results[2];
           updateCanonicalUrl();
           applyVariantTheme(data._variant || null);
           hydrateProfile(data.profile || {});
@@ -1235,6 +1293,7 @@
           renderContact(data.contact || {}, data.profile || {});
           renderSocial(data.social || []);
           renderDevStats(devStats);
+          renderOssContributions(ossContributions);
           animateOnScroll();
         })
         .catch(function(error) {
