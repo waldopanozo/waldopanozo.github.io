@@ -817,9 +817,12 @@
             var userStatus = statusInfo.status || 'ok';
             var userErrors = Number(statusInfo.error_count || 0);
             var userStatusClass = userStatus === 'ok' ? 'devstats-user--ok' : (userStatus === 'error' ? 'devstats-user--error' : 'devstats-user--partial');
+            var displayName = username.indexOf('gitlab:') === 0
+              ? 'gitlab/@' + username.slice(7)
+              : '@' + username;
             return (
               '<div class="devstats-user ' + userStatusClass + '">' +
-                '<span class="devstats-user-name">@' + escapeHtml(username) + '</span>' +
+                '<span class="devstats-user-name">' + escapeHtml(displayName) + '</span>' +
                 '<span class="devstats-user-state">' + escapeHtml(userStatus) + (userErrors ? ' (' + userErrors + ' errors)' : '') + '</span>' +
               '</div>'
             );
