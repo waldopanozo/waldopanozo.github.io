@@ -43,7 +43,16 @@
 
       function portfolioImageSrc(item) {
         var src = item && item.image ? String(item.image).trim() : '';
-        return src || PORTFOLIO_NO_IMAGE;
+        if (!src) {
+          return PORTFOLIO_NO_IMAGE;
+        }
+        if (/^https?:\/\//i.test(src)) {
+          return src;
+        }
+        if (src.charAt(0) === '/') {
+          return resolveMediaUrl(src);
+        }
+        return src;
       }
 
       function hasCustomPortfolioImage(item) {
