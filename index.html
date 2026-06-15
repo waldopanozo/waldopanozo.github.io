@@ -491,7 +491,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-title">Developer Activity Stats</h2>
-            <p class="section-subtitle">Live engineering activity from GitHub across my two profiles, aggregated by the Resume API and cached in SQLite.</p>
+            <p class="section-subtitle">Live engineering activity from GitHub across my two profiles, aggregated by the Resume API and cached in SQLite. Includes <a href="#oss-contributions">open-source PR contributions</a> to public third-party repos.</p>
           </div>
         </div>
         <div class="row mt-60">
@@ -543,18 +543,20 @@
         </div>
         <div class="row mt-30">
           <div class="col-lg-12">
-            <div class="devstats-panel">
-              <h3>Commits trend</h3>
-              <div data-dev-stats-commits-chart></div>
+            <div class="devstats-panel" id="oss-contributions">
+              <h3>Open-source contributions</h3>
+              <p class="devstats-panel-note">Merged pull requests to public third-party repositories only (excludes private repos and waldopanozo/* / wpanozo/*).</p>
+              <div data-oss-contributions-table>
+                <p class="devstats-empty">Loading open-source contributions...</p>
+              </div>
             </div>
           </div>
         </div>
         <div class="row mt-30">
           <div class="col-lg-12">
             <div class="devstats-panel">
-              <h3>Open-source contributions</h3>
-              <p class="devstats-panel-note">Merged pull requests to public third-party repositories only (excludes private repos and waldopanozo/* / wpanozo/*).</p>
-              <div data-oss-contributions-table></div>
+              <h3>Commits trend</h3>
+              <div data-dev-stats-commits-chart></div>
             </div>
           </div>
         </div>
@@ -905,7 +907,7 @@
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/custom-v2.js"></script>
+    <script src="assets/js/custom-v2.js?v=20260615"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var yearSpan = document.getElementById('current-year');
