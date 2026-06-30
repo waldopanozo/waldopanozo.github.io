@@ -19,8 +19,10 @@
       var defaultBaseUrl = 'https://api.waldo.panozo.info';
       var apiBase = (window.__RESUME_API_BASE_URL__ || defaultBaseUrl).replace(/\/$/, '');
       var fallbackUrl = (window.__RESUME_FALLBACK_URL__ || 'assets/data/resume-fallback.json').replace(/^\//, '');
+      var visitContext = captureVisitContext();
       var currentPid = resolvePostulationPid();
       var hasActiveVariant = false;
+      var activeVariantMeta = {};
 
       var SKILL_CARD_META = {
         programming_languages: { title: 'Programming Languages', icon: 'fa fa-code' },
@@ -1143,11 +1145,118 @@
       }
 
       function requestJson(url, options) {
+        options = options || {};
+        options.headers = options.headers || {};
+        if (!options.headers['X-Resume-Client']) {
+          options.headers['X-Resume-Client'] = 'site';
+        }
+
         return fetch(url, options).then(function(response) {
           if (!response.ok) {
             throw new Error('Request to ' + url + ' failed with status ' + response.status);
           }
           return response.json();
+        });
+      }
+
+      function captureVisitContext() {
+        var context = {
+          landing_url: window.location.href,
+          referrer_url: document.referrer || '',
+          utm_source: '',
+          utm_medium: '',
+          utm_campaign: '',
+          utm_term: '',
+          utm_content: '',
+        };
+
+        try {
+          var landingUrl = new URL(window.location.href);
+          context.utm_source = landingUrl.searchParams.get('utm_source') || '';
+          context.utm_medium = landingUrl.searchParams.get('utm_medium') || '';
+          context.utm_campaign = landingUrl.searchParams.get('utm_campaign') || '';
+          context.utm_term = landingUrl.searchParams.get('utm_term') || '';
+          context.utm_content = landingUrl.searchParams.get('utm_content') || '';
+        } catch (error) {
+          // ignore URL parsing errors
+        }
+
+        return context;
+      }
+
+      function getAnalyticsSessionId() {
+        var storageKey = 'resume_analytics_session';
+        try {
+          var existing = sessionStorage.getItem(storageKey);
+          if (existing) {
+            return existing;
+          }
+          var generated = 'sess_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 12);
+          sessionStorage.setItem(storageKey, generated);
+          return generated;
+        } catch (error) {
+          return 'sess_' + Date.now();
+        }
+      }
+
+      function buildAnalyticsPayload(eventType, variantMeta, extra) {
+        variantMeta = variantMeta || {};
+        extra = extra || {};
+        var sessionId = getAnalyticsSessionId();
+
+        return Object.assign({}, visitContext, extra, {
+          event_type: eventType,
+          event_id: eventType + '_' + sessionId,
+          session_id: sessionId,
+          pid: currentPid || variantMeta.pid || '',
+          variant_name: variantMeta.name || '',
+          visited_at: new Date().toISOString(),
+          client_language: navigator.language || '',
+          client_timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''),
+          screen_width: window.screen ? window.screen.width : null,
+          screen_height: window.screen ? window.screen.height : null,
+          viewport_width: window.innerWidth || null,
+          viewport_height: window.innerHeight || null,
+        });
+      }
+
+      function postAnalyticsEvent(payload) {
+        try {
+          fetch(apiBase + '/resume/analytics/event', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Resume-Client': 'site',
+            },
+            body: JSON.stringify(payload),
+            keepalive: true,
+          }).catch(function() {
+            // analytics must never block UX
+          });
+        } catch (error) {
+          // ignore analytics errors
+        }
+      }
+
+      function sendVariantAnalyticsPageView(variantMeta) {
+        var sentKey = 'resume_analytics_page_view_sent';
+        try {
+          if (sessionStorage.getItem(sentKey) === '1') {
+            return;
+          }
+          sessionStorage.setItem(sentKey, '1');
+        } catch (error) {
+          return;
+        }
+
+        postAnalyticsEvent(buildAnalyticsPayload('page_view', variantMeta));
+      }
+
+      function bindResumeDownloadAnalytics() {
+        document.querySelectorAll('[data-resume-download]').forEach(function(link) {
+          link.addEventListener('click', function() {
+            postAnalyticsEvent(buildAnalyticsPayload('pdf_click', activeVariantMeta));
+          });
         });
       }
 
@@ -1284,12 +1393,15 @@
       }
 
       updateResumeDownloadLinks();
+      bindResumeDownloadAnalytics();
 
       Promise.all([fetchResume(), fetchDevStats(), fetchOssContributions()])
         .then(function(results) {
           var data = results[0] || {};
           var devStats = results[1];
           var ossContributions = results[2];
+          activeVariantMeta = data._variant || {};
+          sendVariantAnalyticsPageView(activeVariantMeta);
           updateCanonicalUrl();
           applyVariantTheme(data._variant || null);
           hydrateProfile(data.profile || {});
