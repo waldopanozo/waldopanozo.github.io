@@ -1,2 +1,4 @@
 .history/
 .venv/
+# Generated local knowledge graph — do not commit
+graphify-out/
