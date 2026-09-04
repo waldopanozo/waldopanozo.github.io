@@ -557,6 +557,20 @@
             "link": "https://github.com/waldopanozo/php-slim-rest-sqlite"
         },
         {
+            "title": "Stillvial — Calm Water Sort Puzzle",
+            "description": "Sensory-friendly tube-sorting puzzle in Godot 4: offline play, accessibility patterns, daily challenge, and a playable HTML5 demo.",
+            "tags": [
+                "Godot 4",
+                "GDScript",
+                "HTML5",
+                "Game Development",
+                "Accessibility",
+                "Android"
+            ],
+            "image": "assets/samples/godot/stillvial/stillvial.png",
+            "link": "https://waldopanozo.github.io/assets/samples/godot/stillvial/index.html"
+        },
+        {
             "title": "Tic Tac Toe Game",
             "description": "Classic Tic Tac Toe built with React focusing on state management.",
             "tags": [
