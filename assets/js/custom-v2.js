@@ -993,30 +993,12 @@
         return items;
       }
 
-      function detectDefaultTrendGranularity(commitsByDay) {
-        var years = {};
-        Object.keys(commitsByDay).forEach(function(dayKey) {
-          var year = String(dayKey).slice(0, 4);
-          if (/^\d{4}$/.test(year)) {
-            years[year] = true;
-          }
-        });
-        var yearCount = Object.keys(years).length;
-        if (yearCount > 1) {
-          return 'year';
-        }
-        if (Object.keys(commitsByDay).length > 120) {
-          return 'month';
-        }
-        return 'week';
-      }
-
       function renderCommitsTrendChart(container, commitsByDay, trackingStartedAt) {
         if (!container) {
           return;
         }
 
-        var defaultGranularity = detectDefaultTrendGranularity(commitsByDay);
+        var defaultGranularity = 'week';
         container.dataset.trendGranularity = defaultGranularity;
         container.dataset.trackingStartedAt = trackingStartedAt || '';
 
